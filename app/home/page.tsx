@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { ProfileForm } from "@/components/profile-form";
 import { Button } from "@/components/ui/button";
+import { VerificationForm } from "@/components/verification-form";
 import Link from "next/link";
 
 export default function Page() {
@@ -10,6 +11,7 @@ export default function Page() {
         <Link href="/">Salir</Link>
       </Button></div>
       <ProfileForm />
+      <VerificationForm />
     </main>
     )
   }
