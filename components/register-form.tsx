@@ -1,25 +1,31 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 export function RegisterForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Registro</CardTitle>
-        <CardDescription>
-          Crea tus credenciales para ingresar
-        </CardDescription>
+        <CardDescription>Crea tus credenciales para ingresar</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
+          <div className="grid gap-2">
+            <Label htmlFor="name">Nombre</Label>
+            <Input
+              id="name"
+              required
+            />
+          </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -41,7 +47,11 @@ export function RegisterForm() {
             </div>
             <Input id="password" type="password" required />
           </div>
-          <p className="text-sm text-muted-foreground">Una vez creada tu cuenta tendrás que esperar el correo con tu código de verificación en las próximas horas. Enviaré los correos manualmente así que paciencia xd</p>
+          <p className="text-sm text-muted-foreground">
+            Una vez creada tu cuenta tendrás que esperar el correo con tu código
+            de verificación en las próximas horas. Enviaré los correos
+            manualmente así que paciencia xd
+          </p>
           <Button type="submit" className="w-full">
             Crea tu cuenta
           </Button>
@@ -54,5 +64,5 @@ export function RegisterForm() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
