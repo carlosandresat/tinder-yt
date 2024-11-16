@@ -1,3 +1,4 @@
+import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ProfileForm } from "@/components/profile-form";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,8 @@ export default function Page() {
       </Button></div>
       <ProfileForm />
       <VerificationForm />
+      <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
+      <MatchSection /></div>
     </main>
     )
   }
