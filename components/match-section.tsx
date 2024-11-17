@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export function MatchSection() {
   return (
@@ -19,39 +20,36 @@ export function MatchSection() {
         <Card>
           <CardHeader>
             <CardTitle>#1</CardTitle>
-            <CardDescription>89% compatibilidad</CardDescription>
+            <CardDescription>89% compatible</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-              <Avatar className="w-20 h-20">
-                <AvatarImage src="/logo.webp" alt="Profile picture preview" />
-                <AvatarFallback>Foto</AvatarFallback>
-              </Avatar>
+            <div className="w-20 h-20">
+                <Image src="/me.jpg" alt="Profile picture preview" className="rounded-full h-full w-full object-cover" width={500} height={500}/>
+              </div>
 
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                 Carlos Arévalo
               </h4>
             </div>
           </CardContent>
-          <CardFooter className="justify-between">
-            <Button variant="secondary">Desbloquear</Button>
+          <CardFooter className="justify-end">
+            
             <Button>Ver respuestas</Button>
           </CardFooter>
         </Card>
         <Card>
           <CardHeader>
             <CardTitle>#2</CardTitle>
-            <CardDescription>85% compatibilidad</CardDescription>
+            <CardDescription>85% compatible</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-              <Avatar className="w-20 h-20">
-                <AvatarImage src="/logo.webp" alt="Profile picture preview" />
-                <AvatarFallback>Foto</AvatarFallback>
-              </Avatar>
-
+              <div className="w-20 h-20">
+                <Image src="/me.jpg" alt="Profile picture preview" className="rounded-full h-full w-full object-cover" width={5} height={5}/>
+              </div>
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                Carlos Arévalo
+                Match #2
               </h4>
             </div>
           </CardContent>
@@ -63,17 +61,16 @@ export function MatchSection() {
         <Card>
           <CardHeader>
             <CardTitle>#3</CardTitle>
-            <CardDescription>78% compatibilidad</CardDescription>
+            <CardDescription>78% compatible</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-              <Avatar className="w-20 h-20">
-                <AvatarImage src="/logo.webp" alt="Profile picture preview" />
-                <AvatarFallback>Foto</AvatarFallback>
-              </Avatar>
+            <div className="w-20 h-20">
+                <Image src="/me.jpg" alt="Profile picture preview" className="rounded-full h-full w-full object-cover" width={5} height={5}/>
+              </div>
 
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                Carlos Arévalo
+                Match #3
               </h4>
             </div>
           </CardContent>
