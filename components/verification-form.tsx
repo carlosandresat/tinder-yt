@@ -48,7 +48,7 @@ export function VerificationForm() {
  
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className=" items-center flex flex-col space-y-6">
         <FormField
           control={form.control}
           name="pin"
@@ -75,7 +75,7 @@ export function VerificationForm() {
           )}
         />
  
-        <Button type="submit">Ingresar</Button>
+        <Button type="submit">Verificar</Button>
       </form>
     </Form>
   )

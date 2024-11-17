@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -24,8 +23,14 @@ export function MatchSection() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-            <div className="w-20 h-20">
-                <Image src="/me.jpg" alt="Profile picture preview" className="rounded-full h-full w-full object-cover" width={500} height={500}/>
+              <div className="w-20 h-20">
+                <Image
+                  src="/me.jpg"
+                  alt="Profile picture preview"
+                  className="rounded-full h-full w-full object-cover"
+                  width={500}
+                  height={500}
+                />
               </div>
 
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
@@ -34,7 +39,6 @@ export function MatchSection() {
             </div>
           </CardContent>
           <CardFooter className="justify-end">
-            
             <Button>Ver respuestas</Button>
           </CardFooter>
         </Card>
@@ -46,7 +50,13 @@ export function MatchSection() {
           <CardContent>
             <div className="flex items-center gap-4">
               <div className="w-20 h-20">
-                <Image src="/me.jpg" alt="Profile picture preview" className="rounded-full h-full w-full object-cover" width={5} height={5}/>
+                <Image
+                  src="/me.jpg"
+                  alt="Profile picture preview"
+                  className="rounded-full h-full w-full object-cover"
+                  width={5}
+                  height={5}
+                />
               </div>
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                 Match #2
@@ -65,8 +75,14 @@ export function MatchSection() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-            <div className="w-20 h-20">
-                <Image src="/me.jpg" alt="Profile picture preview" className="rounded-full h-full w-full object-cover" width={5} height={5}/>
+              <div className="w-20 h-20">
+                <Image
+                  src="/me.jpg"
+                  alt="Profile picture preview"
+                  className="rounded-full h-full w-full object-cover"
+                  width={5}
+                  height={5}
+                />
               </div>
 
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
