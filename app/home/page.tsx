@@ -7,12 +7,13 @@ import Link from "next/link";
 
 export default function Page() {
   const isVerified = true;
-  const formmDueDate = new Date("2024-11-18");
+  const formDueDate = new Date("2024-11-18");
   const isAppActive = true;
+  const isFormAnswered = true;
 
   if (!isVerified) {
     return (
-      <main className="flex min-h-screen flex-col items-center">
+      <main className="flex min-h-screen flex-col items-center justify-center">
         <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
           <ModeToggle />
           <Button asChild>
@@ -43,35 +44,73 @@ export default function Page() {
         </main>
       );
     } else {
-      if (Date.now() < formmDueDate.getTime()) {
-        return (
-          <main className="flex min-h-screen flex-col items-center">
-            <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
-              <ModeToggle />
-              <Button asChild>
-                <Link href="/">Salir</Link>
-              </Button>
-            </div>
-            <div className="w-full max-w-screen-xl p-8">
-              <ProfileForm />
-            </div>
-          </main>
-        );
+      if (Date.now() < formDueDate.getTime()) {
+        if (!isFormAnswered) {
+          return (
+            <main className="flex min-h-screen flex-col items-center">
+              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
+                <ModeToggle />
+                <Button asChild>
+                  <Link href="/">Salir</Link>
+                </Button>
+              </div>
+              <div className="w-full max-w-screen-xl p-8">
+                <ProfileForm />
+              </div>
+            </main>
+          );
+        } else {
+          return (
+            <main className="flex min-h-screen flex-col items-center">
+              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
+                <ModeToggle />
+                <Button asChild>
+                  <Link href="/">Salir</Link>
+                </Button>
+              </div>
+              <div className="w-full max-w-screen-xl p-8">
+                <p className="text-xl text-muted-foreground text-center">
+                  Gracias por responder la encuesta, próximamente podrás ver tus
+                  matchs
+                </p>
+              </div>
+            </main>
+          );
+        }
       } else {
-        return (
-          <main className="flex min-h-screen flex-col items-center">
-            <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
-              <ModeToggle />
-              <Button asChild>
-                <Link href="/">Salir</Link>
-              </Button>
-            </div>
+        if (!isFormAnswered) {
+          return (
+            <main className="flex min-h-screen flex-col items-center">
+              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
+                <ModeToggle />
+                <Button asChild>
+                  <Link href="/">Salir</Link>
+                </Button>
+              </div>
+              <div className="w-full max-w-screen-xl p-8">
+                <p className="text-xl text-muted-foreground text-center">
+                  Ya se realizaron los matchs. ¡Contesta con tiempo la encuesta
+                  para la próxima ronda!
+                </p>
+              </div>
+            </main>
+          );
+        } else {
+          return (
+            <main className="flex min-h-screen flex-col items-center">
+              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
+                <ModeToggle />
+                <Button asChild>
+                  <Link href="/">Salir</Link>
+                </Button>
+              </div>
 
-            <div className="w-full max-w-screen-xl p-8">
-              <MatchSection />
-            </div>
-          </main>
-        );
+              <div className="w-full max-w-screen-xl p-8">
+                <MatchSection />
+              </div>
+            </main>
+          );
+        }
       }
     }
   }
