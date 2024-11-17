@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { ForgotPassword } from "@/components/forgot-password"
 export function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm">
@@ -32,9 +33,7 @@ export function LoginForm() {
           <div className="grid gap-2">
             <div className="flex items-center">
               <Label htmlFor="password">Contraseña</Label>
-              <Link href="#" className="ml-auto inline-block text-sm underline">
-                ¿Olvidaste tu contraseña?
-              </Link>
+              <ForgotPassword />
             </div>
             <Input id="password" type="password" required />
           </div>
