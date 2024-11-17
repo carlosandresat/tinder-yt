@@ -9,22 +9,28 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+
 
 export function RegisterForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Registro</CardTitle>
-        <CardDescription>Crea tus credenciales para ingresar</CardDescription>
+        <CardDescription>Llena tus datos para ingresar</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="name">Nombre</Label>
-            <Input
-              id="name"
-              required
-            />
+            <Input id="name" required />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="sex">Sexo</Label>
+            <ToggleGroup type="single" id="sex" variant="outline">
+              <ToggleGroupItem value="m">Masculino</ToggleGroupItem>
+              <ToggleGroupItem value="f">Femenino</ToggleGroupItem>
+            </ToggleGroup>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
@@ -50,7 +56,7 @@ export function RegisterForm() {
           <p className="text-sm text-muted-foreground">
             Una vez creada tu cuenta tendrás que esperar el correo con tu código
             de verificación en las próximas horas. Enviaré los correos
-            manualmente así que paciencia xd
+            manualmente así que paciencia 😅
           </p>
           <Button type="submit" className="w-full">
             Crea tu cuenta
