@@ -69,7 +69,7 @@ export function ProfileForm() {
             <div className="flex items-center space-x-4">
               <Avatar className="w-24 h-24">
                 {formData.profilePicturePreview ? (
-                  <AvatarImage src={formData.profilePicturePreview} alt="Profile picture preview" />
+                  <AvatarImage src={formData.profilePicturePreview} alt="Profile picture preview" className="object-cover"/>
                 ) : (
                   <AvatarFallback>Foto</AvatarFallback>
                 )}
