@@ -51,7 +51,13 @@ export function LoginForm() {
           ),
         });
       } catch (e) {
-        // Handle errors here
+        if (e instanceof Error) {
+          const message = e.message
+          toast({
+            title: "¡Error!",
+            description: message,
+          });
+        }
       }
     });
   }

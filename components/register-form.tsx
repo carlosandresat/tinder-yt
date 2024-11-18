@@ -54,7 +54,15 @@ export function RegisterForm() {
             </pre>
           ),
         });
-      } catch (e) {}
+      } catch (e) {
+        if (e instanceof Error) {
+          const message = e.message
+          toast({
+            title: "¡Error!",
+            description: message,
+          });
+        }
+      }
     });
   }
 
