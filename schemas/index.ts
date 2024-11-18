@@ -2,13 +2,15 @@ import { z } from "zod";
 
 export const RegisterSchema = z.object({
   fullname: z
-    .string()
+    .string({
+      required_error: "Por favor ingresa tu correo institucional.",
+    })
     .min(2, "Tu nombre debe contener más de 2 caracteres")
     .max(50, "Tu nombre debe contener menos de 50 caracteres"),
   sex: z.enum(["m", "f"]),
   email: z
     .string()
-    .email()
+    .email("Correo inválido, revisa la sintaxis.")
     .endsWith(
       "@yachaytech.edu.ec",
       "Debes usar tu correo institucional para comprobar que eres estudiante de la poderosísima Yachay Tech 💅"
@@ -20,15 +22,16 @@ export const RegisterSchema = z.object({
 });
 
 export const LoginSchema = z.object({
-    email: z
-      .string({
-        required_error: "Por favor ingresa tu correo institucional.",
-      })
-      .email("Correo inválido, revisa la sintaxis.")
-      .endsWith("@yachaytech.edu.ec", {
-        message: "Usa tu correo institucional",
-      }),
-    password: z.string().min(1, {
-      message: "Debes ingresar tu contraseña",
+  email: z
+    .string({
+      required_error: "Por favor ingresa tu correo institucional.",
+    })
+    .email("Correo inválido, revisa la sintaxis.")
+    .endsWith("@yachaytech.edu.ec", {
+      message: "Usa tu correo institucional",
     }),
-  });
+  password: z
+    .string()
+    .min(1, "Debes ingresar tu contraseña")
+    .max(20, "Tu contraseña no puede poseer más de 20 caracteres"),
+});
