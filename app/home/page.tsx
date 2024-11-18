@@ -9,7 +9,7 @@ export default function Page() {
   const isVerified = true;
   const formDueDate = new Date("2024-11-18");
   const isAppActive = true;
-  const isFormAnswered = false;
+  const isFormAnswered = true;
 
   if (!isVerified) {
     return (
@@ -48,7 +48,7 @@ export default function Page() {
         if (!isFormAnswered) {
           return (
             <main className="flex min-h-screen flex-col items-center justify-center">
-              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8 absolute top-0">
+              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
                 <ModeToggle />
                 <Button asChild>
                   <Link href="/">Salir</Link>
