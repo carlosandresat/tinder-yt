@@ -1,16 +1,61 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { z } from "zod";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { ForgotPassword } from "@/components/forgot-password"
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema } from "@/schemas";
+import { useTransition } from "react";
+import { toast } from "@/hooks/use-toast";
+import { ForgotPassword } from "@/components/forgot-password";
+
 export function LoginForm() {
+  const [isPending, startTransition] = useTransition();
+
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  function onSubmit(data: z.infer<typeof LoginSchema>) {
+    startTransition(async () => {
+      try {
+        toast({
+          title: "Datos enviados:",
+          description: (
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <code className="text-white">
+                {JSON.stringify(data, null, 2)}
+              </code>
+            </pre>
+          ),
+        });
+      } catch (e) {
+        // Handle errors here
+      }
+    });
+  }
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -20,34 +65,49 @@ export function LoginForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              required
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input {...field} type="email" required />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className="grid gap-2">
-            <div className="flex items-center">
-              <Label htmlFor="password">Contraseña</Label>
-              <ForgotPassword />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex items-center justify-between">
+                    <FormLabel>Contraseña</FormLabel>
+                    <ForgotPassword />
+                  </div>
+                  <FormControl>
+                    <Input {...field} type="password" required />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" className="w-full" disabled={isPending}>
+              Ingresa
+            </Button>
+            <div className="mt-4 text-center text-sm">
+              ¿No tienes cuenta?{" "}
+              <Link href="/auth/register" className="underline">
+                Regístrate
+              </Link>
             </div>
-            <Input id="password" type="password" required />
-          </div>
-          <Button type="submit" className="w-full">
-            Ingresa
-          </Button>
-        </div>
-        <div className="mt-4 text-center text-sm">
-          ¿No tienes cuenta?{" "}
-          <Link href="/auth/register" className="underline">
-            Regístrate
-          </Link>
-        </div>
+          </form>
+        </Form>
       </CardContent>
     </Card>
-  )
+  );
 }
