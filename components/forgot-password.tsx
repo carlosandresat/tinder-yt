@@ -40,7 +40,7 @@ export function ForgotPassword() {
             </a>
           </li>
           <li>Escribe tu nueva contraseña en la sección de Encriptar</li>
-          <li>Selecciona 10 rounds y da click en 'Encrypt'</li>
+          <li>Selecciona 10 rounds y da click en &apos;Encrypt&apos;</li>
           <li>
             Envía el hash generado al correo:{" "}
             <a
