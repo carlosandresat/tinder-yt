@@ -50,15 +50,8 @@ export function MatchSection() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-              <div className="w-20 h-20">
-                <Image
-                  src="/me.jpg"
-                  alt="Profile picture preview"
-                  className="rounded-full h-full w-full object-cover"
-                  width={1}
-                  height={1}
-                  quality={1}
-                />
+              <div className="w-20 h-20 flex items-center justify-center bg-secondary rounded-full">
+                <VenetianMask className="w-10 h-10" />
               </div>
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                 Match #2
@@ -78,7 +71,7 @@ export function MatchSection() {
           <CardContent>
             <div className="flex items-center gap-4">
               <div className="w-20 h-20 flex items-center justify-center bg-secondary rounded-full">
-                <VenetianMask className="w-10 h-10"/>
+                <VenetianMask className="w-10 h-10" />
               </div>
 
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
