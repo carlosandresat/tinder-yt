@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { VenetianMask } from "lucide-react";
+import { PaymentDialog } from "@/components/payment-dialog";
 
 export function MatchSection() {
   return (
@@ -59,7 +60,7 @@ export function MatchSection() {
             </div>
           </CardContent>
           <CardFooter className="justify-between">
-            <Button variant="secondary">Desbloquear</Button>
+            <PaymentDialog />
             <Button>Ver respuestas</Button>
           </CardFooter>
         </Card>
@@ -80,7 +81,7 @@ export function MatchSection() {
             </div>
           </CardContent>
           <CardFooter className="justify-between">
-            <Button variant="secondary">Desbloquear</Button>
+            <PaymentDialog />
             <Button>Ver respuestas</Button>
           </CardFooter>
         </Card>
