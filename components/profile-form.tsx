@@ -29,15 +29,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-interface FormData {
-  description: string;
-  profilePicture: File | null;
-  profilePicturePreview: string | null;
-  yesNoQuestion: string;
-  programmingLanguages: string[];
-  scaleQuestion: number;
-}
-
 export function ProfileForm() {
   const [isPending, startTransition] = useTransition();
 
@@ -82,14 +73,6 @@ export function ProfileForm() {
       }
     });
   }
-  const [formData, setFormData] = useState<FormData>({
-    description: "",
-    profilePicture: null,
-    profilePicturePreview: null,
-    yesNoQuestion: "",
-    programmingLanguages: [],
-    scaleQuestion: 5,
-  });
 
   const [picturePreview, setPicturePreview] = useState<string | undefined>(
     undefined
