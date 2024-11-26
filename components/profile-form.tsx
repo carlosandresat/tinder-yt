@@ -96,6 +96,7 @@ export function ProfileForm() {
             <FormField
               control={form.control}
               name="picture"
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
               render={({ field: { value, onChange, ...fieldProps } }) => (
                 <FormItem>
                   <FormLabel>Foto de Perfil</FormLabel>
