@@ -41,3 +41,28 @@ export const LoginSchema = z.object({
     .min(1, "Debes ingresar tu contraseña")
     .max(20, "Tu contraseña no puede poseer más de 20 caracteres"),
 });
+
+export const MatchFormSchema = z.object({
+  picture: z.instanceof(File).refine((file) => file.size < 4500000, {
+    message: 'Tu foto debe pesar menos de 4.5MB',
+  }),
+  description: z
+    .string({
+      required_error: "Tienes que subir una descripción",
+    })
+    .min(15, "Tienes que ingresar una descripción de al menos 15 caracteres")
+    .max(300, "Tu descripción no puede tener más de 300 caracteres"),
+  question1: z.number({
+    required_error: "Tienes que seleccionar una respuesta",
+  }),
+  question2: z
+    .array(z.number({ required_error: "Tienes que ingresar una respuesta" }))
+    .min(1, "Tienes que seleccionar al menos una opción")
+    .max(3, "Tienes que seleccionar 3 respuestas"),
+  question3: z
+    .number({
+      required_error: "Tienes que ingresar una respuesta",
+    })
+    .min(1, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?")
+    .max(5, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
+});
