@@ -1,9 +1,12 @@
+import { Countdown } from "@/components/countdown";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const releaseDate = new Date("2024-12-05T11:00");
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
       <div className="w-full max-w-screen-xl flex mt-8 px-8 absolute top-0"><ModeToggle /></div>
@@ -16,6 +19,9 @@ export default function Home() {
       <Button asChild className="mt-8">
         <Link href="/home">Entrar</Link>
       </Button>
+      <div className="mt-8">
+        <Countdown targetDate={releaseDate} />
+      </div>
     </main>
   );
 }

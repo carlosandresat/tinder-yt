@@ -1,3 +1,4 @@
+import { Countdown } from "@/components/countdown";
 import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ProfileForm } from "@/components/profile-form";
@@ -7,7 +8,7 @@ import Link from "next/link";
 
 export default function Page() {
   const isVerified = true;
-  const formDueDate = new Date("2024-11-28");
+  const matchsDate = new Date("2024-12-05T11:00");
   const isAppActive = true;
   const isFormAnswered = false;
 
@@ -44,7 +45,7 @@ export default function Page() {
         </main>
       );
     } else {
-      if (Date.now() < formDueDate.getTime()) {
+      if (Date.now() < matchsDate.getTime()) {
         if (!isFormAnswered) {
           return (
             <main className="flex min-h-screen flex-col items-center justify-center">
@@ -73,6 +74,9 @@ export default function Page() {
                   Gracias por responder la encuesta, próximamente podrás ver tus
                   matchs
                 </p>
+                <div className="mt-8">
+                  <Countdown targetDate={matchsDate} />
+                </div>
               </div>
             </main>
           );
