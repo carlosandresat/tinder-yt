@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { VenetianMask } from "lucide-react";
 import { PaymentDialog } from "@/components/payment-dialog";
+import { MatchAnswersDialog } from "@/components/match-answers-dialog";
 
 export function MatchSection() {
   return (
@@ -41,7 +42,7 @@ export function MatchSection() {
             </div>
           </CardContent>
           <CardFooter className="justify-end">
-            <Button>Ver respuestas</Button>
+            <MatchAnswersDialog />
           </CardFooter>
         </Card>
         <Card>
