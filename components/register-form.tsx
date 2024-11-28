@@ -27,6 +27,7 @@ import { useForm } from "react-hook-form";
 import { useTransition } from "react";
 import { toast } from "@/hooks/use-toast";
 import { register } from "@/actions/register";
+import { ToastAction } from "@/components/ui/toast";
 
 export function RegisterForm() {
   const [isPending, startTransition] = useTransition();
@@ -48,6 +49,8 @@ export function RegisterForm() {
       if (res.success) {
         toast({
           title: res.success,
+          description: "Ya puedes ingresar a TinderYT",
+          action: <ToastAction altText="Ingresa" asChild><Link href="/auth/login">Ingresa</Link></ToastAction>
         });
       }
       if (res.error) {
