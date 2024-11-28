@@ -55,7 +55,9 @@ export function RegisterForm() {
       }
       if (res.error) {
         toast({
-          title: res.error,
+          variant: "destructive",
+          title: "¡Error!",
+          description: res.error,
         });
       }
     });
