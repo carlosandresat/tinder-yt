@@ -26,6 +26,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useTransition } from "react";
 import { toast } from "@/hooks/use-toast";
+import { register } from "@/actions/register";
 
 export function RegisterForm() {
   const [isPending, startTransition] = useTransition();
@@ -43,25 +44,16 @@ export function RegisterForm() {
 
   function onSubmit(data: z.infer<typeof RegisterSchema>) {
     startTransition(async () => {
-      try {
+      const res = await register(data);
+      if (res.success) {
         toast({
-          title: "You submitted the following values:",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">
-                {JSON.stringify(data, null, 2)}
-              </code>
-            </pre>
-          ),
+          title: res.success,
         });
-      } catch (e) {
-        if (e instanceof Error) {
-          const message = e.message
-          toast({
-            title: "¡Error!",
-            description: message,
-          });
-        }
+      }
+      if (res.error) {
+        toast({
+          title: res.error,
+        });
       }
     });
   }
