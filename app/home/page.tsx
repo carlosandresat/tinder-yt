@@ -1,3 +1,4 @@
+import { signOut } from "@/auth";
 import { Countdown } from "@/components/countdown";
 import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -51,9 +52,15 @@ export default function Page() {
             <main className="flex min-h-screen flex-col items-center justify-center">
               <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
                 <ModeToggle />
-                <Button asChild>
-                  <Link href="/">Salir</Link>
-                </Button>
+                <form action={async ()=> {
+                  "use server";
+
+                  await signOut();
+                }}>
+                  <Button type="submit">
+                    Salir
+                  </Button>
+                </form>
               </div>
               <div className="w-full max-w-screen-xl p-8">
                 <ProfileForm />
