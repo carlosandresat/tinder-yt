@@ -25,6 +25,7 @@ import { LoginSchema } from "@/schemas";
 import { useTransition } from "react";
 import { toast } from "@/hooks/use-toast";
 import { ForgotPassword } from "@/components/forgot-password";
+import { login } from "@/actions/login";
 
 export function LoginForm() {
   const [isPending, startTransition] = useTransition();
@@ -39,25 +40,13 @@ export function LoginForm() {
 
   function onSubmit(data: z.infer<typeof LoginSchema>) {
     startTransition(async () => {
-      try {
+      const res = await login(data);
+      if (res?.error) {
         toast({
-          title: "Datos enviados:",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">
-                {JSON.stringify(data, null, 2)}
-              </code>
-            </pre>
-          ),
+          variant: "destructive",
+          title: "¡Error!",
+          description: res.error,
         });
-      } catch (e) {
-        if (e instanceof Error) {
-          const message = e.message
-          toast({
-            title: "¡Error!",
-            description: message,
-          });
-        }
       }
     });
   }
