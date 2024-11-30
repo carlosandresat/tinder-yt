@@ -9,18 +9,18 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id            String    @id @default(cuid())
-  fullname      String
-  email         String    @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  password      String
-  sex           Sex
+  id                String             @id @default(cuid())
+  fullname          String
+  email             String             @unique
+  emailVerified     DateTime?          @map("email_verified")
+  image             String?
+  password          String
+  sex               Sex
   verificationToken VerificationToken?
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -33,8 +33,8 @@ model VerificationToken {
   id               Int    @id @default(autoincrement())
   userId           String @unique @map("user_id")
   user             User   @relation(fields: [userId], references: [id])
-  verificationCode Int    @map("verification_code")
-  
+  verificationCode String @map("verification_code")
+
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("verification_tokens")
