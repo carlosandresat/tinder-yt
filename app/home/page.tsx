@@ -1,4 +1,5 @@
-import { signOut } from "@/auth";
+import { isVerified } from "@/actions/register";
+import { auth, signOut } from "@/auth";
 import { Countdown } from "@/components/countdown";
 import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -7,13 +8,14 @@ import { Button } from "@/components/ui/button";
 import { VerificationForm } from "@/components/verification-form";
 import Link from "next/link";
 
-export default function Page() {
-  const isVerified = true;
+export default async function Page() {
+  const session = await auth()
+  const isUserVerified = await isVerified(session?.user?.id)
   const matchsDate = new Date("2024-12-05T11:00");
   const isAppActive = true;
   const isFormAnswered = false;
 
-  if (!isVerified) {
+  if (!isUserVerified.verified) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center">
         <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8 absolute top-0">
