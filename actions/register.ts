@@ -44,3 +44,23 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
   return { success: "¡Usuario creado!" };
 };
+
+export const isVerified = async (id: string) => {
+  // Fetch the user's emailVerified field
+  const user = await db.user.findUnique({
+    where: { id },
+    select: { emailVerified: true },
+  });
+
+  // Check if the user exists
+  if (!user) {
+    return { error: "User not found" };
+  }
+
+  // Determine if the user is verified
+  if (user.emailVerified) {
+    return { verified: true };
+  } else {
+    return { verified: false };
+  }
+};
