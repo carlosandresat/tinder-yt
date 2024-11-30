@@ -21,11 +21,23 @@ model User {
   image         String?
   password      String
   sex           Sex
+  verificationToken VerificationToken?
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("users")
+}
+
+model VerificationToken {
+  id               Int    @id @default(autoincrement())
+  userId           String @unique @map("user_id")
+  user             User   @relation(fields: [userId], references: [id])
+  verificationCode Int    @map("verification_code")
+  
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("verification_tokens")
 }
 
 enum Sex {
