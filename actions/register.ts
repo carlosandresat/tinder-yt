@@ -23,12 +23,22 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: "Este email ya está registrado" };
   }
 
-  await db.user.create({
+  const user = await db.user.create({
     data: {
       fullname,
       email,
       password: hashedPassword,
       sex,
+    },
+  });
+
+  const verificationNumber = Math.floor(Math.random() * 1000000);
+  const verificationCode = verificationNumber.toString().padStart(6, "0");
+
+  await db.verificationToken.create({
+    data: {
+      userId: user.id,
+      verificationCode,
     },
   });
 
