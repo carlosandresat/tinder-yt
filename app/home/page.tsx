@@ -25,7 +25,7 @@ export default async function Page() {
           </Button>
         </div>
         <div className="w-full max-w-screen-xl p-8">
-          <VerificationForm />
+          <VerificationForm userId={session?.user?.id}/>
         </div>
       </main>
     );

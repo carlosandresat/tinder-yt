@@ -20,30 +20,45 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp"
- 
-const FormSchema = z.object({
-  pin: z.string().min(6, {
-    message: "Your one-time password must be 6 characters.",
-  }),
-})
- 
-export function VerificationForm() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+import { VerificationFormSchema } from "@/schemas"
+import { useTransition } from "react"
+import { verifyAccount } from "@/actions/register"
+  
+export function VerificationForm({userId}:{userId:string|undefined}) {
+  const [isPending, startTransition] = useTransition();
+
+  const form = useForm<z.infer<typeof VerificationFormSchema>>({
+    resolver: zodResolver(VerificationFormSchema),
     defaultValues: {
       pin: "",
     },
   })
  
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+  function onSubmit(data: z.infer<typeof VerificationFormSchema>) {
+    startTransition(async () => {
+      if (!userId) {
+        toast({
+          title: "¡Acción denegada!",
+          description: "No tienes una sesión valida",
+          variant: "destructive",
+        });
+      } else {
+        const result = await verifyAccount(userId, data);
+
+        if (result.error) {
+          toast({
+            title: "¡Error!",
+            description: result.error,
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "¡Verificación existosa!",
+            description: result.success,
+          });
+        }
+      }
+    });
   }
  
   return (
@@ -75,7 +90,7 @@ export function VerificationForm() {
           )}
         />
  
-        <Button type="submit">Verificar</Button>
+        <Button type="submit" disabled={isPending}>Verificar</Button>
       </form>
     </Form>
   )

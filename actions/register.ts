@@ -2,10 +2,11 @@
 
 import bcrypt from "bcryptjs";
 
-import { RegisterSchema } from "@/schemas";
+import { RegisterSchema, VerificationFormSchema } from "@/schemas";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
+import { revalidatePath } from "next/cache";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);
@@ -46,8 +47,8 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 };
 
 export const isVerified = async (id: string | undefined) => {
-  if(!id){
-    return { error: "User not found" }
+  if (!id) {
+    return { error: "User not found" };
   }
   // Fetch the user's emailVerified field
   const user = await db.user.findUnique({
@@ -65,5 +66,54 @@ export const isVerified = async (id: string | undefined) => {
     return { verified: true };
   } else {
     return { verified: false };
+  }
+};
+
+export const verifyAccount = async (
+  userId: string,
+  data: z.infer<typeof VerificationFormSchema>
+) => {
+  // Validate the input data using Zod
+  const parsedData = VerificationFormSchema.safeParse(data);
+
+  if (!parsedData.success) {
+    // Return validation errors
+    return { error: "Invalid input data" };
+  }
+
+  const { pin } = parsedData.data;
+
+  try {
+    // Fetch the verification token for the user
+    const verificationToken = await db.verificationToken.findUnique({
+      where: { userId },
+    });
+
+    // Check if the verification token exists
+    if (!verificationToken) {
+      return { error: "No se ha encontrado tu Token de verificación" };
+    }
+
+    // Compare the provided code with the stored verification code
+    if (verificationToken.verificationCode !== pin) {
+      return { error: "Código de verificación incorrecto" };
+    }
+
+    // Update the user's emailVerified field to the current date and time
+    await db.user.update({
+      where: { id: userId },
+      data: { emailVerified: new Date() },
+    });
+
+    // Delete the verification token since it's no longer needed
+    await db.verificationToken.delete({
+      where: { userId },
+    });
+
+    revalidatePath("/home")
+    return { success: "La verificación se ha completado correctamente" };
+  } catch (error) {
+    console.error("Error verifying account:", error);
+    return { error: "Ha ocurrido un error desconocido, por favor contáctate con el administrador" };
   }
 };
