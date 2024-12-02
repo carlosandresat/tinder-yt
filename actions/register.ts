@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import bcrypt from "bcryptjs";
 
@@ -96,7 +96,41 @@ export const verifyAccount = async (
 
     // Compare the provided code with the stored verification code
     if (verificationToken.verificationCode !== pin) {
-      return { error: "Código de verificación incorrecto" };
+      const newAttempts = verificationToken.attempts + 1;
+
+      if (newAttempts >= 3) {
+        // Reset attempts and generate a new verification code
+        const verificationNumber = Math.floor(Math.random() * 1000000);
+        const newVerificationCode = verificationNumber
+          .toString()
+          .padStart(6, "0");
+
+        // Update the verification token with the new code and reset attempts
+        await db.verificationToken.update({
+          where: { userId },
+          data: {
+            verificationCode: newVerificationCode,
+            attempts: 0,
+            createdAt: new Date(), // Optionally update the createdAt timestamp
+          },
+        });
+
+        console.error("Attemps excesed by: ", verificationToken.userId)
+        return {
+          error:
+            "Código incorrecto. Se ha generado un nuevo código y será enviado a tu correo electrónico.",
+        };
+      } else {
+        // Update the attempts count
+        await db.verificationToken.update({
+          where: { userId },
+          data: {
+            attempts: newAttempts,
+          },
+        });
+
+        return { error: "Código de verificación incorrecto" };
+      }
     }
 
     // Update the user's emailVerified field to the current date and time
@@ -110,10 +144,13 @@ export const verifyAccount = async (
       where: { userId },
     });
 
-    revalidatePath("/home")
+    revalidatePath("/home");
     return { success: "La verificación se ha completado correctamente" };
   } catch (error) {
     console.error("Error verifying account:", error);
-    return { error: "Ha ocurrido un error desconocido, por favor contáctate con el administrador" };
+    return {
+      error:
+        "Ha ocurrido un error desconocido, por favor contáctate con el administrador",
+    };
   }
 };
