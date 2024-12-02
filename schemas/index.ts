@@ -52,13 +52,22 @@ export const MatchFormSchema = z.object({
     })
     .min(15, "Tienes que ingresar una descripción de al menos 15 caracteres")
     .max(300, "Tu descripción no puede tener más de 300 caracteres"),
+  contact: z
+    .string({
+      required_error: "Tienes que poner algún contacto para tu match",
+    })
+    .min(5, "Tienes que ingresar un contacto (Minimo 5 caracteres)")
+    .max(100, "Tu información de contacto no puede tener más de 100 caracteres"),
+  sexPreference: z.enum(["m", "f", "both"], {
+    required_error: 'Debes elegir una opción',
+  }),
   question1: z.number({
     required_error: "Tienes que seleccionar una respuesta",
   }),
   question2: z
     .array(z.number({ required_error: "Tienes que ingresar una respuesta" }))
     .min(1, "Tienes que seleccionar al menos una opción")
-    .max(3, "Tienes que seleccionar 3 respuestas"),
+    .max(3, "Tienes que seleccionar máximo 3 respuestas"),
   question3: z
     .number({
       required_error: "Tienes que ingresar una respuesta",

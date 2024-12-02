@@ -36,6 +36,7 @@ export function ProfileForm() {
     resolver: zodResolver(MatchFormSchema),
     defaultValues: {
       description: "",
+      contact: "",
       question2: [],
       question3: 3,
     },
@@ -81,10 +82,9 @@ export function ProfileForm() {
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle>Crea tu perfil</CardTitle>
+        <CardTitle>Completa tu perfil</CardTitle>
         <CardDescription>
-          Responde las siguientes preguntas cuidadosamente y con sinceridad para
-          encontrar a tu match más compatible 💯
+          Crea tu perfil con los datos que se mostrarán a tu match cuando te desbloquee
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -142,13 +142,54 @@ export function ProfileForm() {
                   <FormControl>
                     <Textarea {...field} placeholder="Háblanos de ti" />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="contact"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Contacto</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Instagram, Facebook, Whatsapp..." />
+                  </FormControl>
                   <FormDescription>
-                    No incluyas datos personales como nombre o contacto
+                    Añade un método de contacto para tu match
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="sexPreference"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Matchear con</FormLabel>
+                  <FormControl>
+                    <ToggleGroup
+                      type="single"
+                      variant="outline"
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      className="flex-wrap"
+                    >
+                      <ToggleGroupItem value="m">Hombres</ToggleGroupItem>
+                      <ToggleGroupItem value="f">Mujeres</ToggleGroupItem>
+                      <ToggleGroupItem value="both">Ambos</ToggleGroupItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <CardHeader className="p-0">
+              <CardTitle>Preguntas para match</CardTitle>
+              <CardDescription>Responde las siguientes preguntas cuidadosamente y con sinceridad para
+              encontrar a tu match más compatible 💯</CardDescription>
+            </CardHeader>
             <FormField
               control={form.control}
               name="question1"
@@ -167,6 +208,9 @@ export function ProfileForm() {
                       <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
+                  <FormDescription>
+                    Selecciona 1 opción
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -177,7 +221,7 @@ export function ProfileForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Pregunta multiples opciones (Max. 3 opciones)
+                    Pregunta opción múltiple
                   </FormLabel>
                   <FormControl>
                     <ToggleGroup
@@ -196,6 +240,9 @@ export function ProfileForm() {
                       <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
+                  <FormDescription>
+                    Selecciona hasta 3 opciones
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
