@@ -1,9 +1,11 @@
 import { isVerified } from "@/actions/register";
 import { auth, signOut } from "@/auth";
 import { Countdown } from "@/components/countdown";
+import { LogoutButton } from "@/components/logout-button";
 import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ProfileForm } from "@/components/profile-form";
+import { Question1Chart } from "@/components/question1-chart";
 import { Button } from "@/components/ui/button";
 import { VerificationForm } from "@/components/verification-form";
 import Link from "next/link";
@@ -11,7 +13,7 @@ import Link from "next/link";
 export default async function Page() {
   const session = await auth()
   const isUserVerified = await isVerified(session?.user?.id)
-  const matchsDate = new Date("2024-12-05T11:00");
+  const matchsDate = new Date("2024-12-16T05:00");
   const isAppActive = true;
   const isFormAnswered = false;
 
@@ -20,9 +22,7 @@ export default async function Page() {
       <main className="flex min-h-screen flex-col items-center justify-center">
         <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8 absolute top-0">
           <ModeToggle />
-          <Button asChild>
-            <Link href="/">Salir</Link>
-          </Button>
+          <LogoutButton />
         </div>
         <div className="w-full max-w-screen-xl p-8">
           <VerificationForm userId={session?.user?.id}/>
@@ -51,21 +51,17 @@ export default async function Page() {
       if (Date.now() < matchsDate.getTime()) {
         if (!isFormAnswered) {
           return (
-            <main className="flex min-h-screen flex-col items-center justify-center">
+            <main className="flex min-h-screen flex-col items-center">
               <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
                 <ModeToggle />
-                <form action={async ()=> {
-                  "use server";
-
-                  await signOut();
-                }}>
-                  <Button type="submit">
-                    Salir
-                  </Button>
-                </form>
+                <LogoutButton />
               </div>
-              <div className="w-full max-w-screen-xl p-8">
-                <ProfileForm />
+              <div className="w-full flex flex-col max-w-screen-xl p-8 space-y-8">
+                <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
+                  Encuesta de la Semana
+                </h3>
+                {/*<ProfileForm />*/}
+                <Question1Chart />
               </div>
             </main>
           );
