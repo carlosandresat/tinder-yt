@@ -23,7 +23,7 @@ export default function Page() {
           <CardHeader>
             <CardTitle className="text-2xl">Entrar</CardTitle>
             <CardDescription>
-              Ingresa tus credenciales para entrar
+              Ingresa tus credenciales
             </CardDescription>
           </CardHeader>
           <CardContent>
