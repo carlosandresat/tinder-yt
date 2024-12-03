@@ -81,3 +81,9 @@ export const VerificationFormSchema = z.object({
     message: "Your one-time password must be 6 characters.",
   }),
 })
+
+export const WeeklyQuestionSchema = z.object({
+  answer: z.number({
+    required_error: "Tienes que seleccionar una respuesta",
+  }).min(1, "Tienes que seleccionar una respuesta"),
+})

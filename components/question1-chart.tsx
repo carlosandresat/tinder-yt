@@ -16,6 +16,15 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { useTransition } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+import { WeeklyQuestionSchema } from "@/schemas"
+import { toast } from "@/hooks/use-toast"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { Button } from "@/components/ui/button"
 const chartData = [
   { school: "ecbi", votes: 275, fill: "var(--color-ecbi)" },
   { school: "ecqi", votes: 200, fill: "var(--color-ecqi)" },
@@ -55,12 +64,43 @@ const chartConfig = {
     color: "rgb(0, 173, 170)",
   },
   unae: {
-    label: "Educación en Ciencias Experimentales (UNAE)",
+    label: "Educación en Ciencias Experimentales",
     color: "rgb(153, 51, 102)",
   },
 } satisfies ChartConfig
 
 export function Question1Chart() {
+  const [isPending, startTransition] = useTransition();
+
+  const form = useForm<z.infer<typeof WeeklyQuestionSchema>>({
+    resolver: zodResolver(WeeklyQuestionSchema),
+  });
+
+  function onSubmit(data: z.infer<typeof WeeklyQuestionSchema>) {
+    startTransition(async () => {
+      try {
+        toast({
+          title: "You submitted the following values:",
+          description: (
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <code className="text-white">
+                {JSON.stringify(data, null, 2)}
+              </code>
+            </pre>
+          ),
+        });
+      } catch (e) {
+        if (e instanceof Error) {
+          const message = e.message;
+          toast({
+            title: "¡Error!",
+            description: message,
+          });
+        }
+      }
+    });
+  }
+
   return (
     <Card className="max-w-2xl mx-auto w-full">
       <CardHeader>
@@ -93,10 +133,73 @@ export function Question1Chart() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="votes" layout="vertical" radius={5}/>
+            <Bar dataKey="votes" layout="vertical" radius={5} />
           </BarChart>
         </ChartContainer>
-      </CardContent>      
+      </CardContent>
+      <CardFooter>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-8 w-full"
+          >
+            <FormField
+              control={form.control}
+              name="answer"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Elige tu respuesta</FormLabel>
+                  <FormControl>
+                    <ToggleGroup
+                      type="single"
+                      variant="outline"
+                      value={field.value?.toString()}
+                      onValueChange={(value) => field.onChange(Number(value))}
+                      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
+                      size="xxxl"
+                    >
+                      <ToggleGroupItem value="1">
+                        Ciencias Biológicas e Ingeniería
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="2">
+                        Ciencias Químicas e Ingeniería
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="3">
+                        Ciencias Físicas y Nanotecnología
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="4">
+                        Ciencias Matemáticas y Computacionales
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="5">
+                        Ciencias de la Tierra, Energía y Ambiente
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="6">
+                        Ciencias Agropecuarias y AgroIndustriales
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="7">
+                        Educación en Ciencias Experimentales
+                      </ToggleGroupItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <FormDescription>
+                    Una vez enviado no podrás cambiar tu voto
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="w-full flex justify-center">
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="w-full sm:w-auto "
+              >
+                Vota
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </CardFooter>
     </Card>
-  )
+  );
 }
