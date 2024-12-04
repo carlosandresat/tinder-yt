@@ -54,7 +54,7 @@ export default async function Page() {
       if (Date.now() < matchsDate.getTime()) {
         if (!isFormAnswered) {
           return (
-            <main className="flex min-h-screen flex-col items-center">
+            <main className="flex min-h-screen flex-col items-center pb-24">
               <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
                 <ModeToggle />
                 <LogoutButton />
