@@ -1,11 +1,11 @@
-import { Countdown } from "@/components/countdown";
+/*import { Countdown } from "@/components/countdown";*/
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const releaseDate = new Date("2024-12-05T11:00");
+  {/*const releaseDate = new Date("2024-12-05T11:00");*/}
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
