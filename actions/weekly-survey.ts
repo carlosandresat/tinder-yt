@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/db";
 import { WeeklyMultipleQuestionSchema, WeeklyQuestionSchema } from "@/schemas";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 export const answerQuestionA = async (
@@ -24,6 +25,8 @@ export const answerQuestionA = async (
     },
   });
 
+  revalidatePath("/home")
+
   return { success: "Respuesta ingresada correctamente" };
 };
 
@@ -44,6 +47,8 @@ export const answerQuestionB = async (
       return { userId, weeklyQuestion: "B", answer: value };
     }),
   });
+
+  revalidatePath("/home")
 
   return { success: "Respuesta ingresada correctamente" };
 };
