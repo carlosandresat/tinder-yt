@@ -19,9 +19,9 @@ export default function Home() {
       <Button asChild className="mt-8">
         <Link href="/home">Entrar</Link>
       </Button>
-      <div className="mt-8">
+      {/*<div className="mt-8">
         <Countdown targetDate={releaseDate} />
-      </div>
+      </div>*/}
     </main>
   );
 }
