@@ -87,3 +87,16 @@ export const WeeklyQuestionSchema = z.object({
     required_error: "Tienes que seleccionar una respuesta",
   }).min(1, "Tienes que seleccionar una respuesta"),
 })
+
+export const WeeklyMultipleQuestionSchema = z.object({
+  answer: z
+    .array(z.number({ required_error: "Tienes que ingresar una respuesta" }))
+    .min(1, "Tienes que seleccionar al menos una opción")
+    .max(3, "Tienes que seleccionar máximo 3 respuestas"),
+}).refine(
+  (data) => !(data.answer.includes(4) && data.answer.length !== 1),
+  {
+    message: "Si seleccionas la opción 4, no puedes seleccionar más opciones",
+    path: ["answer"], // Path to the field causing the error
+  }
+)
