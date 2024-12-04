@@ -61,7 +61,7 @@ export default async function Page() {
                   Encuesta de la Semana
                 </h3>
                 {/*<ProfileForm />*/}
-                <Question1Chart />
+                <Question1Chart userId={session?.user?.id}/>
                 <Question2Chart />
               </div>
             </main>
