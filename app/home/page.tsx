@@ -62,7 +62,7 @@ export default async function Page() {
                 </h3>
                 {/*<ProfileForm />*/}
                 <Question1Chart userId={session?.user?.id}/>
-                <Question2Chart />
+                <Question2Chart userId={session?.user?.id}/>
               </div>
             </main>
           );

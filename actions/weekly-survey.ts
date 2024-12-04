@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { WeeklyQuestionSchema } from "@/schemas";
+import { WeeklyMultipleQuestionSchema, WeeklyQuestionSchema } from "@/schemas";
 import { z } from "zod";
 
 export const answerQuestionA = async (
@@ -22,6 +22,27 @@ export const answerQuestionA = async (
       weeklyQuestion: "A",
       answer,
     },
+  });
+
+  return { success: "Respuesta ingresada correctamente" };
+};
+
+export const answerQuestionB = async (
+  userId: string,
+  values: z.infer<typeof WeeklyMultipleQuestionSchema>
+) => {
+  const validatedFields = WeeklyMultipleQuestionSchema.safeParse(values);
+
+  if (!validatedFields.success) {
+    return { error: "Campos inválidos" };
+  }
+
+  const { answer } = validatedFields.data;
+
+  await db.weeklyAnswer.createMany({
+    data: answer.map((value) => {
+      return { userId, weeklyQuestion: "B", answer: value };
+    }),
   });
 
   return { success: "Respuesta ingresada correctamente" };

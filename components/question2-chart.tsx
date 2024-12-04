@@ -25,6 +25,7 @@ import { toast } from "@/hooks/use-toast"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Button } from "@/components/ui/button"
+import { answerQuestionB } from "@/actions/weekly-survey"
 const chartData = [
   { school: "option1", votes: 275, fill: "var(--color-option1)" },
   { school: "option2", votes: 200, fill: "var(--color-option2)" },
@@ -54,7 +55,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function Question2Chart() {
+export function Question2Chart({userId}:{userId:string|undefined}) {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof WeeklyMultipleQuestionSchema>>({
@@ -66,23 +67,25 @@ export function Question2Chart() {
 
   function onSubmit(data: z.infer<typeof WeeklyMultipleQuestionSchema>) {
     startTransition(async () => {
-      try {
+      if (!userId) {
         toast({
-          title: "You submitted the following values:",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">
-                {JSON.stringify(data, null, 2)}
-              </code>
-            </pre>
-          ),
+          title: "¡Acción denegada!",
+          description: "No tienes una sesión valida",
+          variant: "destructive",
         });
-      } catch (e) {
-        if (e instanceof Error) {
-          const message = e.message;
+      } else {
+        const result = await answerQuestionB(userId, data);
+
+        if (result.error) {
           toast({
             title: "¡Error!",
-            description: message,
+            description: result.error,
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "¡Gracias por tu respuesta!",
+            description: result.success,
           });
         }
       }
