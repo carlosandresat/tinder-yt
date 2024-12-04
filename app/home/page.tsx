@@ -1,10 +1,9 @@
 import { isVerified } from "@/actions/register";
-import { auth, signOut } from "@/auth";
+import { auth } from "@/auth";
 import { Countdown } from "@/components/countdown";
 import { LogoutButton } from "@/components/logout-button";
 import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
-import { ProfileForm } from "@/components/profile-form";
 import { Question1Chart } from "@/components/question1-chart";
 import { Question2Chart } from "@/components/question2-chart";
 import { Button } from "@/components/ui/button";
