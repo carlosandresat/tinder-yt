@@ -1,4 +1,5 @@
 import { isVerified } from "@/actions/register";
+import { getWeeklyAnswersData } from "@/actions/weekly-survey";
 import { auth } from "@/auth";
 import { Countdown } from "@/components/countdown";
 import { LogoutButton } from "@/components/logout-button";
@@ -16,7 +17,8 @@ export default async function Page() {
   const matchsDate = new Date("2024-12-16T05:00");
   const isAppActive = true;
   const isFormAnswered = false;
-
+  const weeklyData = await getWeeklyAnswersData();
+  
   if (!isUserVerified.verified) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center">
@@ -61,8 +63,8 @@ export default async function Page() {
                   Encuesta de la Semana
                 </h3>
                 {/*<ProfileForm />*/}
-                <Question1Chart userId={session?.user?.id}/>
-                <Question2Chart userId={session?.user?.id}/>
+                <Question1Chart userId={session?.user?.id} answersData={weeklyData.question1data}/>
+                <Question2Chart userId={session?.user?.id} answersData={weeklyData.question2data}/>
               </div>
             </main>
           );

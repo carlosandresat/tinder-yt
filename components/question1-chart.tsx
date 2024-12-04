@@ -26,15 +26,6 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Button } from "@/components/ui/button"
 import { answerQuestionA } from "@/actions/weekly-survey"
-const chartData = [
-  { school: "ecbi", votes: 275, fill: "var(--color-ecbi)" },
-  { school: "ecqi", votes: 200, fill: "var(--color-ecqi)" },
-  { school: "ecfn", votes: 187, fill: "var(--color-ecfn)" },
-  { school: "ecmc", votes: 173, fill: "var(--color-ecmc)" },
-  { school: "ectea", votes: 90, fill: "var(--color-ectea)" },
-  { school: "ecaa", votes: 187, fill: "var(--color-ecaa)" },
-  { school: "unae", votes: 173, fill: "var(--color-unae)" },
-]
 
 const chartConfig = {
   votes: {
@@ -70,8 +61,20 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function Question1Chart({userId}:{userId:string|undefined}) {
+export function Question1Chart({userId, answersData}:{userId:string|undefined, answersData:{
+  [key: string]: number;
+}}) {
   const [isPending, startTransition] = useTransition();
+
+  const chartData = [
+    { school: "ecbi", votes: answersData.option1, fill: "var(--color-ecbi)" },
+    { school: "ecqi", votes: answersData.option2, fill: "var(--color-ecqi)" },
+    { school: "ecfn", votes: answersData.option3, fill: "var(--color-ecfn)" },
+    { school: "ecmc", votes: answersData.option4, fill: "var(--color-ecmc)" },
+    { school: "ectea", votes: answersData.option5, fill: "var(--color-ectea)" },
+    { school: "ecaa", votes: answersData.option6, fill: "var(--color-ecaa)" },
+    { school: "unae", votes: answersData.option7, fill: "var(--color-unae)" },
+  ]
 
   const form = useForm<z.infer<typeof WeeklyQuestionSchema>>({
     resolver: zodResolver(WeeklyQuestionSchema),

@@ -26,12 +26,6 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Button } from "@/components/ui/button"
 import { answerQuestionB } from "@/actions/weekly-survey"
-const chartData = [
-  { school: "option1", votes: 275, fill: "var(--color-option1)" },
-  { school: "option2", votes: 200, fill: "var(--color-option2)" },
-  { school: "option3", votes: 187, fill: "var(--color-option3)" },
-  { school: "option4", votes: 173, fill: "var(--color-option4)" },
-]
 
 const chartConfig = {
   votes: {
@@ -55,8 +49,17 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function Question2Chart({userId}:{userId:string|undefined}) {
+export function Question2Chart({userId, answersData}:{userId:string|undefined, answersData:{
+  [key: string]: number;
+}}) {
   const [isPending, startTransition] = useTransition();
+
+  const chartData = [
+    { school: "option1", votes: answersData.option1, fill: "var(--color-option1)" },
+    { school: "option2", votes: answersData.option2, fill: "var(--color-option2)" },
+    { school: "option3", votes: answersData.option3, fill: "var(--color-option3)" },
+    { school: "option4", votes: answersData.option4, fill: "var(--color-option4)" },
+  ]
 
   const form = useForm<z.infer<typeof WeeklyMultipleQuestionSchema>>({
     resolver: zodResolver(WeeklyMultipleQuestionSchema),
