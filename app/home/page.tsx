@@ -6,6 +6,7 @@ import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ProfileForm } from "@/components/profile-form";
 import { Question1Chart } from "@/components/question1-chart";
+import { Question2Chart } from "@/components/question2-chart";
 import { Button } from "@/components/ui/button";
 import { VerificationForm } from "@/components/verification-form";
 import Link from "next/link";
@@ -62,6 +63,7 @@ export default async function Page() {
                 </h3>
                 {/*<ProfileForm />*/}
                 <Question1Chart />
+                <Question2Chart />
               </div>
             </main>
           );
