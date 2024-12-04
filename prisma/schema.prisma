@@ -22,6 +22,7 @@ model User {
   password          String
   sex               Sex
   verificationToken VerificationToken?
+  weeklyAnswer      WeeklyAnswer[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -41,7 +42,23 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
+model WeeklyAnswer {
+  id             Int            @id @default(autoincrement())
+  userId         String         @map("user_id")
+  user           User           @relation(fields: [userId], references: [id])
+  weeklyQuestion WeeklyQuestion @map("weekly_question")
+  answer         Int            @db.SmallInt
+  createdAt      DateTime       @default(now()) @map("created_at")
+
+  @@map("weekly_answers")
+}
+
 enum Sex {
   m
   f
+}
+
+enum WeeklyQuestion {
+  A
+  B
 }
