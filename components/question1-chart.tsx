@@ -61,9 +61,9 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function Question1Chart({userId, answersData}:{userId:string|undefined, answersData:{
+export function Question1Chart({userId, answersData, isAnswered}:{userId:string|undefined, answersData:{
   [key: string]: number;
-}}) {
+}, isAnswered:boolean}) {
   const [isPending, startTransition] = useTransition();
 
   const chartData = [
@@ -144,7 +144,7 @@ export function Question1Chart({userId, answersData}:{userId:string|undefined, a
         </ChartContainer>
       </CardContent>
       <CardFooter>
-        <Form {...form}>
+        {!isAnswered && <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-8 w-full"
@@ -204,7 +204,7 @@ export function Question1Chart({userId, answersData}:{userId:string|undefined, a
               </Button>
             </div>
           </form>
-        </Form>
+        </Form>}
       </CardFooter>
     </Card>
   );

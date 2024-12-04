@@ -25,7 +25,7 @@ export const answerQuestionA = async (
     },
   });
 
-  revalidatePath("/home")
+  revalidatePath("/home");
 
   return { success: "Respuesta ingresada correctamente" };
 };
@@ -48,7 +48,7 @@ export const answerQuestionB = async (
     }),
   });
 
-  revalidatePath("/home")
+  revalidatePath("/home");
 
   return { success: "Respuesta ingresada correctamente" };
 };
@@ -93,5 +93,40 @@ export const getWeeklyAnswersData = async () => {
   return {
     question1data,
     question2data,
+  };
+};
+
+export const getUserWeeklyAnswersStatus = async (userId: string | undefined) => {
+    
+  // Check if the user has answered question A
+  const answerA = await db.weeklyAnswer.findFirst({
+    where: {
+      userId: userId,
+      weeklyQuestion: "A",
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  const hasAnsweredQuestionA = answerA !== null;
+
+  // Check if the user has answered question B
+  const answerB = await db.weeklyAnswer.findFirst({
+    where: {
+      userId: userId,
+      weeklyQuestion: "B",
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  const hasAnsweredQuestionB = answerB !== null;
+
+  // Return the status as booleans
+  return {
+    hasAnsweredQuestionA,
+    hasAnsweredQuestionB,
   };
 };

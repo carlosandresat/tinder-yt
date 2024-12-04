@@ -1,5 +1,5 @@
 import { isVerified } from "@/actions/register";
-import { getWeeklyAnswersData } from "@/actions/weekly-survey";
+import { getUserWeeklyAnswersStatus, getWeeklyAnswersData } from "@/actions/weekly-survey";
 import { auth } from "@/auth";
 import { Countdown } from "@/components/countdown";
 import { LogoutButton } from "@/components/logout-button";
@@ -18,6 +18,7 @@ export default async function Page() {
   const isAppActive = true;
   const isFormAnswered = false;
   const weeklyData = await getWeeklyAnswersData();
+  const isWeeklyAnswered = await getUserWeeklyAnswersStatus(session?.user?.id)
   
   if (!isUserVerified.verified) {
     return (
@@ -63,8 +64,8 @@ export default async function Page() {
                   Encuesta de la Semana
                 </h3>
                 {/*<ProfileForm />*/}
-                <Question1Chart userId={session?.user?.id} answersData={weeklyData.question1data}/>
-                <Question2Chart userId={session?.user?.id} answersData={weeklyData.question2data}/>
+                <Question1Chart userId={session?.user?.id} answersData={weeklyData.question1data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionA}/>
+                <Question2Chart userId={session?.user?.id} answersData={weeklyData.question2data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionB}/>
               </div>
             </main>
           );
