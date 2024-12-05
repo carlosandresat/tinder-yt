@@ -17,7 +17,7 @@ export default function Home() {
         TinderYT
       </h1>
       <Button asChild className="mt-8">
-        <Link href="/home">Entrar</Link>
+        <Link href="/auth/register">Entrar</Link>
       </Button>
       {/*<div className="mt-8">
         <Countdown targetDate={releaseDate} />
