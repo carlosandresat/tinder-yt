@@ -12,7 +12,7 @@ import {
 
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col justify-center p-8 space-y-8">
+    <main className="flex min-h-screen flex-col justify-center p-8 space-y-8 pb-24">
       <div className="w-full flex items-center justify-between">
         <Link href="/">
           <ArrowBigLeft />
