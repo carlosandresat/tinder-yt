@@ -107,7 +107,7 @@ export function RegisterForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="email"/>
               </FormControl>
               <FormDescription>Usa tu correo institucional</FormDescription>
               <FormMessage />
