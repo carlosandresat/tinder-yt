@@ -13,8 +13,8 @@ import {
 import {
   ChartConfig,
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
+  //ChartTooltip,
+  //ChartTooltipContent,
 } from "@/components/ui/chart"
 import { useTransition } from "react"
 import { useForm } from "react-hook-form"
@@ -123,10 +123,10 @@ export function Question2Chart({userId, answersData, isAnswered}:{userId:string|
               width={110}
             />
             <XAxis dataKey="votes" type="number" hide />
-            <ChartTooltip
+            {/*<ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
-            />
+            />*/}
             <Bar dataKey="votes" layout="vertical" radius={5} />
           </BarChart>
         </ChartContainer>
