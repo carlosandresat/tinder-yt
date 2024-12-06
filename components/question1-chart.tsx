@@ -110,7 +110,7 @@ export function Question1Chart({userId, answersData, isAnswered}:{userId:string|
   return (
     <Card className="max-w-2xl mx-auto w-full">
       <CardHeader>
-        <CardTitle>Escuela más infiel</CardTitle>
+        <CardTitle className="text-lg">Escuela más infiel</CardTitle>
         <CardDescription>Terminemos con el debate. ¿Te han sido infiel desde una escuela en particular? ¿Tus panas de una cierta escuela son unos bandidos? Puedes ingresar tu opinión aquí sin ser juzgado por tu elección 😎</CardDescription>
       </CardHeader>
       <CardContent>
