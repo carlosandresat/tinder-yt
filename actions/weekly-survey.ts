@@ -159,9 +159,23 @@ export const getUserWeeklyAnswersStatus = async (userId: string | undefined) => 
 
   const hasAnsweredQuestionB = answerB !== null;
 
+  // Check if the user has answered question A
+  const answerC = await db.weeklyAnswer.findFirst({
+    where: {
+      userId: userId,
+      weeklyQuestion: "C",
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  const hasAnsweredQuestionC = answerC !== null;
+
   // Return the status as booleans
   return {
     hasAnsweredQuestionA,
     hasAnsweredQuestionB,
+    hasAnsweredQuestionC,
   };
 };
