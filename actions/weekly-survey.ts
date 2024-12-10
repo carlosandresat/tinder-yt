@@ -53,6 +53,31 @@ export const answerQuestionB = async (
   return { success: "Respuesta ingresada correctamente" };
 };
 
+export const answerQuestionC = async (
+  userId: string,
+  values: z.infer<typeof WeeklyQuestionSchema>
+) => {
+  const validatedFields = WeeklyQuestionSchema.safeParse(values);
+
+  if (!validatedFields.success) {
+    return { error: "Campos inválidos" };
+  }
+
+  const { answer } = validatedFields.data;
+
+  await db.weeklyAnswer.create({
+    data: {
+      userId,
+      weeklyQuestion: "C",
+      answer,
+    },
+  });
+
+  revalidatePath("/home");
+
+  return { success: "Respuesta ingresada correctamente" };
+};
+
 export const getWeeklyAnswersData = async () => {
   // Fetch counts for all questions
   const results = await db.weeklyAnswer.groupBy({
