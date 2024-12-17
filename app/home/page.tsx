@@ -16,7 +16,7 @@ export default async function Page() {
   const session = await auth()
   const isUserVerified = await isVerified(session?.user?.id)
   const matchsDate = new Date("2024-12-16T05:00");
-  const isAppActive = true;
+  const isAppActive = false;
   const isFormAnswered = false;
   
   if (!isUserVerified.verified) {
