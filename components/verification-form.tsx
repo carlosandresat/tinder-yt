@@ -1,11 +1,11 @@
-"use client"
- 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
- 
-import { toast } from "@/hooks/use-toast"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { toast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,17 +14,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "@/components/ui/input-otp"
-import { VerificationFormSchema } from "@/schemas"
-import { useTransition } from "react"
-import { verifyAccount } from "@/actions/register"
-  
-export function VerificationForm({userId}:{userId:string|undefined}) {
+} from "@/components/ui/input-otp";
+import { VerificationFormSchema } from "@/schemas";
+import { useTransition } from "react";
+import { verifyAccount } from "@/actions/register";
+
+export function VerificationForm({ userId }: { userId: string | undefined }) {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof VerificationFormSchema>>({
@@ -32,8 +32,8 @@ export function VerificationForm({userId}:{userId:string|undefined}) {
     defaultValues: {
       pin: "",
     },
-  })
- 
+  });
+
   function onSubmit(data: z.infer<typeof VerificationFormSchema>) {
     startTransition(async () => {
       if (!userId) {
@@ -60,10 +60,13 @@ export function VerificationForm({userId}:{userId:string|undefined}) {
       }
     });
   }
- 
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" items-center flex flex-col space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className=" items-center flex flex-col space-y-6"
+      >
         <FormField
           control={form.control}
           name="pin"
@@ -83,15 +86,18 @@ export function VerificationForm({userId}:{userId:string|undefined}) {
                 </InputOTP>
               </FormControl>
               <FormDescription>
-                Ingresa el código de verificación enviado a tu correo electrónico
+                Ingresa el código de verificación enviado a tu correo
+                electrónico
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
- 
-        <Button type="submit" disabled={isPending}>Verificar</Button>
+
+        <Button type="submit" disabled={isPending}>
+          Verificar
+        </Button>
       </form>
     </Form>
-  )
+  );
 }

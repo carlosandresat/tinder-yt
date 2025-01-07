@@ -84,7 +84,8 @@ export function ProfileForm() {
       <CardHeader>
         <CardTitle>Completa tu perfil</CardTitle>
         <CardDescription>
-          Crea tu perfil con los datos que se mostrarán a tu match cuando te desbloquee
+          Crea tu perfil con los datos que se mostrarán a tu match cuando te
+          desbloquee
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -96,7 +97,7 @@ export function ProfileForm() {
             <FormField
               control={form.control}
               name="picture"
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               render={({ field: { value, onChange, ...fieldProps } }) => (
                 <FormItem>
                   <FormLabel>Foto de Perfil</FormLabel>
@@ -153,7 +154,10 @@ export function ProfileForm() {
                 <FormItem>
                   <FormLabel>Contacto</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Instagram, Facebook, Whatsapp..." />
+                    <Input
+                      {...field}
+                      placeholder="Instagram, Facebook, Whatsapp..."
+                    />
                   </FormControl>
                   <FormDescription>
                     Añade un método de contacto para tu match
@@ -187,8 +191,10 @@ export function ProfileForm() {
             />
             <CardHeader className="p-0">
               <CardTitle>Preguntas para match</CardTitle>
-              <CardDescription>Responde las siguientes preguntas cuidadosamente y con sinceridad para
-              encontrar a tu match más compatible 💯</CardDescription>
+              <CardDescription>
+                Responde las siguientes preguntas cuidadosamente y con
+                sinceridad para encontrar a tu match más compatible 💯
+              </CardDescription>
             </CardHeader>
             <FormField
               control={form.control}
@@ -208,9 +214,7 @@ export function ProfileForm() {
                       <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
-                  <FormDescription>
-                    Selecciona 1 opción
-                  </FormDescription>
+                  <FormDescription>Selecciona 1 opción</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -220,9 +224,7 @@ export function ProfileForm() {
               name="question2"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    Pregunta opción múltiple
-                  </FormLabel>
+                  <FormLabel>Pregunta opción múltiple</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="multiple"
@@ -240,9 +242,7 @@ export function ProfileForm() {
                       <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
-                  <FormDescription>
-                    Selecciona hasta 3 opciones
-                  </FormDescription>
+                  <FormDescription>Selecciona hasta 3 opciones</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
