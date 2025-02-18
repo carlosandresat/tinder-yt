@@ -19,7 +19,8 @@ export default function Page() {
         </Link>
         <ModeToggle />
       </div>
-        <Card className="m-auto max-w-sm">
+      <div className="flex w-full flex-1 justify-center items-center">
+        <Card className="w-full max-w-sm">
           <CardHeader>
             <CardTitle className="text-2xl">Entrar</CardTitle>
             <CardDescription>
@@ -30,6 +31,7 @@ export default function Page() {
             <LoginForm />
           </CardContent>
         </Card>
+        </div>
     </main>
   );
 }
