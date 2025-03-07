@@ -5,6 +5,7 @@ import { Countdown } from "@/components/countdown";
 import { LogoutButton } from "@/components/logout-button";
 import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
+import { ProfileForm } from "@/components/profile-form";
 import { Question1Chart } from "@/components/question1-chart";
 import { Question2Chart } from "@/components/question2-chart";
 import { Question3Chart } from "@/components/question3-chart";
@@ -15,8 +16,8 @@ import Link from "next/link";
 export default async function Page() {
   const session = await auth()
   const isUserVerified = await isVerified(session?.user?.id)
-  const matchsDate = new Date("2024-12-16T05:00");
-  const isAppActive = false;
+  const matchsDate = new Date("2025-03-12T05:00");
+  const isAppActive = true;
   const isFormAnswered = false;
   
   if (!isUserVerified.verified) {
@@ -51,8 +52,8 @@ export default async function Page() {
       );
     } else {
       if (Date.now() < matchsDate.getTime()) {
-        const weeklyData = await getWeeklyAnswersData();
-        const isWeeklyAnswered = await getUserWeeklyAnswersStatus(session?.user?.id)
+        //const weeklyData = await getWeeklyAnswersData();
+        //const isWeeklyAnswered = await getUserWeeklyAnswersStatus(session?.user?.id)
       
         if (!isFormAnswered) {
           return (
@@ -65,13 +66,13 @@ export default async function Page() {
                 <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
                   Encuesta de la Semana
                 </h3>
-                {/*<ProfileForm />*/}
-                <Question3Chart userId={session?.user?.id} answersData={weeklyData.question3data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionC}/>
+                <ProfileForm username={session?.user?.email?.split("@")[0].replace(".", "-") ?? ""}/>
+                {/*<Question3Chart userId={session?.user?.id} answersData={weeklyData.question3data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionC}/>
                 <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
                   Encuesta de la Semana anterior (Tiempo Yapa)
                 </h3>
                 <Question1Chart userId={session?.user?.id} answersData={weeklyData.question1data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionA}/>
-                <Question2Chart userId={session?.user?.id} answersData={weeklyData.question2data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionB}/>
+                <Question2Chart userId={session?.user?.id} answersData={weeklyData.question2data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionB}/>*/}
               </div>
             </main>
           );

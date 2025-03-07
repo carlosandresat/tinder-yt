@@ -28,8 +28,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { upload } from '@vercel/blob/client';
 
-export function ProfileForm() {
+export function ProfileForm({username}: {username: string}) {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof MatchFormSchema>>({
@@ -53,6 +54,13 @@ export function ProfileForm() {
   function onSubmit(data: z.infer<typeof MatchFormSchema>) {
     startTransition(async () => {
       try {
+        const newBlob = await upload(`tinder-yt/${username}`, data.picture, {
+          access: 'public',
+          handleUploadUrl: '/api/avatar/upload',
+        });
+
+        console.log(newBlob.url);
+
         toast({
           title: "You submitted the following values:",
           description: (
