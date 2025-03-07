@@ -1,14 +1,10 @@
 import { isVerified } from "@/actions/register";
-import { getUserWeeklyAnswersStatus, getWeeklyAnswersData } from "@/actions/weekly-survey";
 import { auth } from "@/auth";
 import { Countdown } from "@/components/countdown";
 import { LogoutButton } from "@/components/logout-button";
 import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ProfileForm } from "@/components/profile-form";
-import { Question1Chart } from "@/components/question1-chart";
-import { Question2Chart } from "@/components/question2-chart";
-import { Question3Chart } from "@/components/question3-chart";
 import { Button } from "@/components/ui/button";
 import { VerificationForm } from "@/components/verification-form";
 import Link from "next/link";
@@ -67,12 +63,6 @@ export default async function Page() {
                   Encuesta de la Semana
                 </h3>
                 <ProfileForm username={session?.user?.email?.split("@")[0].replace(".", "-") ?? ""}/>
-                {/*<Question3Chart userId={session?.user?.id} answersData={weeklyData.question3data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionC}/>
-                <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
-                  Encuesta de la Semana anterior (Tiempo Yapa)
-                </h3>
-                <Question1Chart userId={session?.user?.id} answersData={weeklyData.question1data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionA}/>
-                <Question2Chart userId={session?.user?.id} answersData={weeklyData.question2data} isAnswered={isWeeklyAnswered.hasAnsweredQuestionB}/>*/}
               </div>
             </main>
           );
