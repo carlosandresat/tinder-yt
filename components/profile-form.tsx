@@ -29,6 +29,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { upload } from '@vercel/blob/client';
+import { updateImage } from "@/actions/match-data";
 
 export function ProfileForm({username}: {username: string}) {
   const [isPending, startTransition] = useTransition();
@@ -59,7 +60,7 @@ export function ProfileForm({username}: {username: string}) {
           handleUploadUrl: '/api/avatar/upload',
         });
 
-        console.log(newBlob.url);
+        await updateImage(newBlob.url);
 
         toast({
           title: "You submitted the following values:",

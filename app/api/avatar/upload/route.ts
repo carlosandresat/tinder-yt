@@ -1,7 +1,7 @@
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { db } from "@/lib/db";
+//import { db } from "@/lib/db";
 
 export async function POST(request: Request): Promise<NextResponse> {
   const session = await auth();
@@ -44,12 +44,12 @@ export async function POST(request: Request): Promise<NextResponse> {
         try {
           // Run any logic after the file upload completed
           // const { userId } = JSON.parse(tokenPayload);
-          await db.user.update({
+          /*await db.user.update({
             where: { id: userId },
             data: {
               image: blob.url,
             },
-          });
+          });*/
         } catch (error) {
           console.error("Could not update user", (error as Error).message);
           throw new Error("Could not update user");
