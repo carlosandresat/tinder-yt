@@ -18,7 +18,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       body,
       request,
       onBeforeGenerateToken: async (
-        pathname
+        //pathname
         /* clientPayload */
       ) => {
         // Generate a client token for the browser to upload the file
@@ -51,6 +51,7 @@ export async function POST(request: Request): Promise<NextResponse> {
             },
           });
         } catch (error) {
+          console.error("Could not update user", (error as Error).message);
           throw new Error("Could not update user");
         }
       },
