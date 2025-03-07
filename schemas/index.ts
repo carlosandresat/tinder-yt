@@ -43,8 +43,8 @@ export const LoginSchema = z.object({
 });
 
 export const MatchFormSchema = z.object({
-  picture: z.instanceof(File).refine((file) => file.size < 4500000, {
-    message: 'Tu foto debe pesar menos de 4.5MB',
+  picture: z.instanceof(File).refine((file) => file.size < 2000000, {
+    message: 'Tu foto debe pesar menos de 2MB. Puedes reducir su tamaño tomándole una captura de pantalla y recortándola en cuadrado.',
   }),
   description: z
     .string({
