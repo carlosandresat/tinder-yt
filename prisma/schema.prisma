@@ -23,11 +23,24 @@ model User {
   sex               Sex
   verificationToken VerificationToken?
   weeklyAnswer      WeeklyAnswer[]
+  responses         Response[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("users")
+}
+
+model UserProfile {
+  id               Int    @id @default(autoincrement())
+  userId           String @unique @map("user_id")
+  description      String
+  contact          String
+  sexPreference    SexPreference @map("sex_preference")
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user_profile")
 }
 
 model VerificationToken {
@@ -53,13 +66,67 @@ model WeeklyAnswer {
   @@map("weekly_answers")
 }
 
+model Question {
+  id        Int       @id @default(autoincrement())
+  type      QuestionType
+  options   Option[]  // Only applicable for single & multiple choice questions
+  responses Response[]
+
+  @@map("question")
+}
+
+model Option {
+  id         Int       @id @default(autoincrement())
+  questionId Int       @map("question_id")
+  text       String
+  question   Question  @relation(fields: [questionId], references: [id])
+  responsesOption ResponseOption[]
+
+  @@map("option")
+}
+
+model Response {
+  id               Int       @id @default(autoincrement())
+  userId           String    @map("user_id")
+  questionId       Int       @map("question_id")
+  scaleValue       Int?      @map("scale_value") // Used only for scale-based questions (e.g., 1-5)
+  selectedOptionId Int?      @map("selected_option_id") // For single-choice questions
+  user             User      @relation(fields: [userId], references: [id])
+  question         Question  @relation(fields: [questionId], references: [id])
+  multipleChoices  ResponseOption[]
+
+  @@map("response")
+}
+
+model ResponseOption {
+  id         Int       @id @default(autoincrement())
+  responseId Int       @map("response_id")
+  optionId   Int       @map("option_id")
+  response   Response  @relation(fields: [responseId], references: [id])
+  option     Option    @relation(fields: [optionId], references: [id])
+
+  @@map("response_option")
+}
+
 enum Sex {
   m
   f
+}
+
+enum SexPreference {
+  m
+  f
+  both
 }
 
 enum WeeklyQuestion {
   A
   B
   C
+}
+
+enum QuestionType {
+  SINGLE_CHOICE
+  MULTIPLE_CHOICE
+  SCALE_BASED
 }
