@@ -35,9 +35,7 @@ export default async function Page() {
         <main className="flex min-h-screen flex-col items-center justify-center">
           <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8 absolute top-0">
             <ModeToggle />
-            <Button asChild>
-              <Link href="/">Salir</Link>
-            </Button>
+            <LogoutButton />
           </div>
           <div className="w-full max-w-screen-xl p-8">
             <p className="text-xl text-muted-foreground text-center">
@@ -69,14 +67,12 @@ export default async function Page() {
           );
         } else {
           return (
-            <main className="flex min-h-screen flex-col items-center justify-center">
-              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8 absolute top-0">
+            <main className="flex min-h-screen flex-col items-center">
+              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
                 <ModeToggle />
-                <Button asChild>
-                  <Link href="/">Salir</Link>
-                </Button>
+                <LogoutButton />
               </div>
-              <div className="w-full max-w-screen-xl p-8">
+              <div className="absolute h-full w-full flex flex-col justify-center max-w-screen-xl p-8 -z-10">
                 <p className="text-xl text-muted-foreground text-center justify-center">
                   Gracias por responder la encuesta, próximamente podrás ver tus
                   matchs
@@ -91,14 +87,12 @@ export default async function Page() {
       } else {
         if (!isFormAnswered) {
           return (
-            <main className="flex min-h-screen flex-col items-center justify-center">
-              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8 absolute top-0">
+            <main className="flex min-h-screen flex-col items-center">
+              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
                 <ModeToggle />
-                <Button asChild>
-                  <Link href="/">Salir</Link>
-                </Button>
+                <LogoutButton />
               </div>
-              <div className="w-full max-w-screen-xl p-8">
+              <div className="absolute h-full w-full flex flex-col justify-center max-w-screen-xl p-8 -z-10">
                 <p className="text-xl text-muted-foreground text-center">
                   Ya se realizaron los matchs. ¡Contesta con tiempo la encuesta
                   para la próxima ronda!
@@ -108,12 +102,10 @@ export default async function Page() {
           );
         } else {
           return (
-            <main className="flex min-h-screen flex-col items-center justify-center">
-              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8 absolute top-0">
+            <main className="flex min-h-screen flex-col items-center pb-24">
+              <div className="w-full max-w-screen-xl flex items-center justify-between mt-8 px-8">
                 <ModeToggle />
-                <Button asChild>
-                  <Link href="/">Salir</Link>
-                </Button>
+                <LogoutButton />
               </div>
 
               <div className="w-full max-w-screen-xl p-8">
