@@ -86,3 +86,16 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
     return { error: "Error al guardar las respuestas" };
   }
 }
+
+export async function isAlreadyAnswered() {
+  const userId = session?.user?.id;
+  if (!userId) {
+    throw new Error("User not authenticated");
+  }
+
+  const response = await db.response.findFirst({
+    where: { userId },
+  });
+
+  return response !== null;
+}
