@@ -11,7 +11,7 @@ export function Footer() {
       </p>
       <div className="flex space-x-2">
         <Button asChild variant="outline" className="rounded-full h-8 w-8">
-          <a href="https://carlosarevalo.vercel.app/" target={"_blank"}>
+          <a href="https://carlosarevalo.dev/" target={"_blank"}>
             <Globe />
           </a>
         </Button>
