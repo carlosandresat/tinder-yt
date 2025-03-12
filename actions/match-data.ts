@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { auth } from "@/auth";
 import { z } from "zod";
 import { MatchFormSchema } from "@/schemas";
+import { revalidatePath } from "next/cache";
 
 const session = await auth()
 
@@ -80,6 +81,7 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
         });
       }
     }
+    revalidatePath("/home");
     return { success: true };
   } catch (error) {
     console.error("Error inserting survey data:", error);
