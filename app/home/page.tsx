@@ -61,7 +61,7 @@ export default async function Page() {
               </div>
               <div className="w-full flex flex-col max-w-screen-xl p-8 space-y-8">
                 <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
-                  Encuesta de la Semana
+                  Formulario TinderYT
                 </h3>
                 <ProfileForm username={session?.user?.email?.split("@")[0].replace(".", "-") ?? ""}/>
               </div>
