@@ -29,7 +29,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { upload } from '@vercel/blob/client';
-import { updateImage } from "@/actions/match-data";
+import { insertMatchData, updateImage } from "@/actions/match-data";
 
 export function ProfileForm({username}: {username: string}) {
   const [isPending, startTransition] = useTransition();
@@ -62,16 +62,14 @@ export function ProfileForm({username}: {username: string}) {
 
         await updateImage(newBlob.url);
 
-        toast({
-          title: "You submitted the following values:",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">
-                {JSON.stringify(data, null, 2)}
-              </code>
-            </pre>
-          ),
-        });
+        const res = await insertMatchData(data)
+
+        if (res.success) {
+          toast({
+            title: "¡Respuestas ingresadas!",
+            description: "Tus respuestas han sido ingresadas correctamente",
+          });
+        }
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
@@ -244,11 +242,11 @@ export function ProfileForm({username}: {username: string}) {
                       }
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
-                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
-                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
-                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Respuesta 1</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Respuesta 2</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Respuesta 3</ToggleGroupItem>
+                      <ToggleGroupItem value="6">Respuesta 4</ToggleGroupItem>
+                      <ToggleGroupItem value="7">Respuesta 5</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona hasta 3 opciones</FormDescription>
