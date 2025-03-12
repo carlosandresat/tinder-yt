@@ -1,3 +1,4 @@
+import { isAlreadyAnswered } from "@/actions/match-data";
 import { isVerified } from "@/actions/register";
 import { auth } from "@/auth";
 import { Countdown } from "@/components/countdown";
@@ -14,7 +15,7 @@ export default async function Page() {
   const isUserVerified = await isVerified(session?.user?.id)
   const matchsDate = new Date("2025-03-12T05:00");
   const isAppActive = true;
-  const isFormAnswered = false;
+  const isFormAnswered = await isAlreadyAnswered();
   
   if (!isUserVerified.verified) {
     return (
