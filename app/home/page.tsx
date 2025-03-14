@@ -6,9 +6,7 @@ import { LogoutButton } from "@/components/logout-button";
 import { MatchSection } from "@/components/match-section";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ProfileForm } from "@/components/profile-form";
-import { Button } from "@/components/ui/button";
 import { VerificationForm } from "@/components/verification-form";
-import Link from "next/link";
 
 export default async function Page() {
   const session = await auth()
