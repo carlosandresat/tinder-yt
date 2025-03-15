@@ -24,6 +24,8 @@ model User {
   verificationToken VerificationToken?
   weeklyAnswer      WeeklyAnswer[]
   responses         Response[]
+  matchUser1        Match[]           @relation("User1")
+  matchUser2        Match[]           @relation("User2")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -108,6 +110,22 @@ model ResponseOption {
   @@map("response_option")
 }
 
+model Match {
+  id       Int     @id @default(autoincrement())
+  userId1  String  @map("user_id_1")
+  userId2  String  @map("user_id_2")
+  score    Int     @map("score")
+  unlockedFor MatchUnlockedFor @map("unlocked_for") @default(NONE)
+
+  user1    User    @relation(name: "User1", fields: [userId1], references: [id])
+  user2    User    @relation(name: "User2", fields: [userId2], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([userId1, userId2])
+  @@map("matches")
+}
+
 enum Sex {
   m
   f
@@ -129,4 +147,11 @@ enum QuestionType {
   SINGLE_CHOICE
   MULTIPLE_CHOICE
   SCALE_BASED
+}
+
+enum MatchUnlockedFor {
+  NONE
+  USER1
+  USER2
+  BOTH
 }
