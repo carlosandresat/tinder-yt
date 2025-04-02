@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      <div className="w-full max-w-screen-xl flex mt-8 px-8 absolute top-0"><ModeToggle /></div>
+      <div className="w-full flex mt-8 px-8 absolute top-0"><ModeToggle /></div>
       <div className="w-40 h-40 rounded-full">
       <Image src="/logo.webp" width={800} height={800} alt="TinderYT Logo" className="rounded-full"></Image>
       </div>
