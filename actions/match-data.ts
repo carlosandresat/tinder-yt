@@ -92,7 +92,8 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
 export async function isAlreadyAnswered() {
   const userId = session?.user?.id;
   if (!userId) {
-    throw new Error("User not authenticated");
+    console.error("User not authenticated");
+    return false;
   }
 
   const response = await db.response.findFirst({
