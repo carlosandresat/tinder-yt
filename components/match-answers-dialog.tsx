@@ -13,7 +13,21 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { PaymentDialog } from "@/components/payment-dialog";
 
-export function MatchAnswersDialog() {
+interface MatchAnswers {
+  tier: number;
+  name: string | null;
+  question1: string;
+  question2: string[];
+  question3: number;
+}
+
+export function MatchAnswersDialog({
+  tier,
+  name,
+  question1,
+  question2,
+  question3
+}: MatchAnswers) {
   const question3options = [
     "Mensaje de opción 1",
     "Mensaje de opción 2",
@@ -29,7 +43,7 @@ export function MatchAnswersDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Match #1</DialogTitle>
+          <DialogTitle>{name ? name : `Match #${tier}`}</DialogTitle>
           <DialogDescription>
             Estas fueron las respuestas de tu match
           </DialogDescription>
@@ -41,7 +55,7 @@ export function MatchAnswersDialog() {
               type="single"
               variant="outline"
               className="flex-wrap"
-              value="2"
+              value={question1}
               id="question1"
             >
               <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
@@ -54,7 +68,7 @@ export function MatchAnswersDialog() {
               type="multiple"
               variant="outline"
               className="flex-wrap"
-              value={["1", "2", "5"]}
+              value={question2}
               id="question2"
             >
               <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
@@ -68,10 +82,10 @@ export function MatchAnswersDialog() {
             <Label>Pregunta 3</Label>
             <div className="flex gap-6 w-full items-center justify-between">
               <p>1</p>
-              <Slider min={1} max={5} step={1} value={[4]}/>
+              <Slider min={1} max={5} step={1} value={[question3]}/>
               <p>5</p>
             </div>
-            <div className="text-center text-sm">{question3options[3]}</div>
+            <div className="text-center text-sm">{question3options[question3-1]}</div>
           </div>
         </div>
         <DialogFooter>
