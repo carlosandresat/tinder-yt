@@ -10,7 +10,7 @@ export function MatchSection() {
       description: "This is a generic description lol equisde ajio ajio ajio, a veces quisiera comer tartas con limón.",
       contact: "Instagram: @carlosandresat",
       answers: {
-        question1: 2,
+        question1: "2",
         question2: ["1", "2", "5"],
         question3: 3
       }
@@ -23,7 +23,7 @@ export function MatchSection() {
       description: null,
       contact: null,
       answers: {
-        question1: 1,
+        question1: "1",
         question2: ["3", "4", "5"],
         question3: 5
       }
@@ -36,7 +36,7 @@ export function MatchSection() {
       description: null,
       contact: null,
       answers: {
-        question1: 1,
+        question1: "1",
         question2: ["1", "2", "4"],
         question3: 1
       }
