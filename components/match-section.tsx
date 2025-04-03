@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { VenetianMask } from "lucide-react";
+import { VenetianMask, LockKeyhole } from "lucide-react";
 import { PaymentDialog } from "@/components/payment-dialog";
 import { MatchAnswersDialog } from "@/components/match-answers-dialog";
 
@@ -35,7 +35,6 @@ export function MatchSection() {
                   height={500}
                 />
               </div>
-
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                 Carlos Arévalo
               </h4>
@@ -44,8 +43,18 @@ export function MatchSection() {
           <CardFooter className="justify-end">
             <MatchAnswersDialog />
           </CardFooter>
+          <div className="flex flex-col p-6 border-t">
+            <p className="leading-normal mt-2">
+              This is a generic description lol equisde ajio ajio ajio, a veces
+              quisiera comer tartas con limón.
+            </p>
+            <h4 className="scroll-m-20 text-lg font-semibold tracking-tight mt-2">
+              Redes sociales
+            </h4>
+            <p className="leading-normal">Intagram: @carlosandresat</p>
+          </div>
         </Card>
-        <Card>
+        <Card className="flex flex-col">
           <CardHeader>
             <CardTitle>#2</CardTitle>
             <CardDescription>85% compatible</CardDescription>
@@ -64,8 +73,13 @@ export function MatchSection() {
             <PaymentDialog />
             <Button>Ver respuestas</Button>
           </CardFooter>
+          <div className="flex flex-col p-6 border-t justify-center items-center flex-grow space-y-2">
+            <LockKeyhole />
+            <p className="text-sm text-muted-foreground text-center">Desbloquea este match para conocer su nombre, descripción y redes sociales</p>
+          </div>
+
         </Card>
-        <Card>
+        <Card className="flex flex-col">
           <CardHeader>
             <CardTitle>#3</CardTitle>
             <CardDescription>78% compatible</CardDescription>
@@ -85,6 +99,10 @@ export function MatchSection() {
             <PaymentDialog />
             <Button>Ver respuestas</Button>
           </CardFooter>
+          <div className="flex flex-col p-6 border-t justify-center items-center flex-grow space-y-2">
+            <LockKeyhole />
+            <p className="text-sm text-muted-foreground text-center">Desbloquea este match para conocer su nombre, descripción y redes sociales</p>
+          </div>
         </Card>
       </div>
     </div>
