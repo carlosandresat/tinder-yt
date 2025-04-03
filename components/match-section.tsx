@@ -1,16 +1,3 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { VenetianMask, LockKeyhole } from "lucide-react";
-import { PaymentDialog } from "@/components/payment-dialog";
-import { MatchAnswersDialog } from "@/components/match-answers-dialog";
 import { MatchCard } from "@/components/match-card";
 
 export function MatchSection() {
