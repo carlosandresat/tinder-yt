@@ -101,3 +101,101 @@ export async function isAlreadyAnswered() {
 
   return response !== null;
 }
+
+async function calculateMatchScore(userId1: string, userId2: string) {
+  const questionsCount = 15; // Total number of questions in the survey
+  const maxScore = 1000;
+
+  // Fetch responses for both users
+  const responses1 = await db.response.findMany({
+    where: { userId: userId1 },
+    include: { multipleChoices: true },
+  });
+
+  const responses2 = await db.response.findMany({
+    where: { userId: userId2 },
+    include: { multipleChoices: true },
+  });
+
+  let totalPoints = 0;
+
+  for (let i = 0; i < questionsCount; i++) {
+    const response1 = responses1.find((r) => r.questionId === i + 1);
+    const response2 = responses2.find((r) => r.questionId === i + 1);
+
+    if (!response1 || !response2) continue; // Skip unanswered questions
+
+    if (response1.selectedOptionId !== null && response2.selectedOptionId !== null) {
+      // SINGLE CHOICE QUESTION: 1 point if answers match
+      if (response1.selectedOptionId === response2.selectedOptionId) {
+        totalPoints += 1;
+      }
+    } else if (response1.multipleChoices.length > 0 && response2.multipleChoices.length > 0) {
+      // MULTIPLE CHOICE QUESTION: Partial points based on matching options
+      const options1 = new Set(response1.multipleChoices.map((r) => r.optionId));
+      const options2 = new Set(response2.multipleChoices.map((r) => r.optionId));
+
+      const intersection = [...options1].filter((opt) => options2.has(opt)).length;
+      const maxOptions = Math.max(options1.size, options2.size);
+
+      if (maxOptions > 0) {
+        totalPoints += intersection / maxOptions;
+      }
+    } else if (response1.scaleValue !== null && response2.scaleValue !== null) {
+      // SCALE BASED QUESTION: Reduced points based on difference
+      const diff = Math.abs(response1.scaleValue - response2.scaleValue);
+      totalPoints += (6 - diff) / 6; // 1 point if equal, decreasing by 1/6 per difference
+    }
+  }
+
+  // Convert to 1000-point scale
+  const finalScore = Math.round((totalPoints / questionsCount) * maxScore);
+
+  // Store match result
+  await db.match.upsert({
+    where: { userId1_userId2: { userId1, userId2 } },
+    update: { score: finalScore },
+    create: { userId1, userId2, score: finalScore },
+  });
+
+  return finalScore;
+}
+
+export async function calculateAllMatches () {
+  // Fetch all users with their profiles (to access sex & sexPreference)
+  const users = await db.user.findMany({
+    select: {
+      id: true,
+      sex: true,
+      userProfile: { select: { sexPreference: true } },
+    },
+  });
+
+  // Get all valid user pairs based on sex and sexPreference
+  const validPairs: [string, string][] = [];
+
+  for (let i = 0; i < users.length; i++) {
+    for (let j = i + 1; j < users.length; j++) {
+      const userA = users[i];
+      const userB = users[j];
+
+      // Check if userA is interested in userB
+      const aLikesB =
+        userA.userProfile?.sexPreference === "both" ||
+        userA.userProfile?.sexPreference === userB.sex;
+
+      // Check if userB is interested in userA
+      const bLikesA =
+        userB.userProfile?.sexPreference === "both" ||
+        userB.userProfile?.sexPreference === userA.sex;
+
+      // Only match if both users are interested in each other
+      if (aLikesB && bLikesA) {
+        validPairs.push([userA.id, userB.id]);
+      }
+    }
+  }
+
+  // Compute and store matches in parallel
+  await Promise.all(validPairs.map(([userId1, userId2]) => calculateMatchScore(userId1, userId2)));
+}
