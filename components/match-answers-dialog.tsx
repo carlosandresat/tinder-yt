@@ -16,9 +16,9 @@ import { PaymentDialog } from "@/components/payment-dialog";
 interface MatchAnswers {
   tier: number;
   name: string | null;
-  question1: string;
+  question1: string | null;
   question2: string[];
-  question3: number;
+  question3: number | null;
 }
 
 export function MatchAnswersDialog({
@@ -26,7 +26,7 @@ export function MatchAnswersDialog({
   name,
   question1,
   question2,
-  question3
+  question3,
 }: MatchAnswers) {
   const question3options = [
     "Mensaje de opción 1",
@@ -51,16 +51,22 @@ export function MatchAnswersDialog({
         <div className="flex flex-col space-y-8">
           <div className="space-y-2">
             <Label htmlFor="question2">Pregunta 1</Label>
-            <ToggleGroup
-              type="single"
-              variant="outline"
-              className="flex-wrap"
-              value={question1}
-              id="question1"
-            >
-              <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
-              <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
-            </ToggleGroup>
+            {question1 ? (
+              <ToggleGroup
+                type="single"
+                variant="outline"
+                className="flex-wrap"
+                value={question1}
+                id="question1"
+              >
+                <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
+                <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
+              </ToggleGroup>
+            ) : (
+              <p className="text-sm text-muted-foreground text-center">
+                Este usuario no ha respondido a esta pregunta
+              </p>
+            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="question2">Pregunta 2</Label>
@@ -80,12 +86,22 @@ export function MatchAnswersDialog({
           </div>
           <div className="space-y-2">
             <Label>Pregunta 3</Label>
-            <div className="flex gap-6 w-full items-center justify-between">
-              <p>1</p>
-              <Slider min={1} max={5} step={1} value={[question3]}/>
-              <p>5</p>
-            </div>
-            <div className="text-center text-sm">{question3options[question3-1]}</div>
+            {question3 ? (
+              <>
+                <div className="flex gap-6 w-full items-center justify-between">
+                  <p>1</p>
+                  <Slider min={1} max={5} step={1} value={[question3]} />
+                  <p>5</p>
+                </div>
+                <div className="text-center text-sm">
+                  {question3options[question3 - 1]}
+                </div>
+              </>
+            ) : (
+              <p className="text-sm text-muted-foreground text-center">
+                Este usuario no ha respondido a esta pregunta
+              </p>
+            )}
           </div>
         </div>
         <DialogFooter>

@@ -36,9 +36,9 @@ export function MatchSection() {
       description: null,
       contact: null,
       answers: {
-        question1: "1",
+        question1: null,
         question2: ["1", "2", "4"],
-        question3: 1
+        question3: null
       }
     }
   ]

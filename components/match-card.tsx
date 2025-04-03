@@ -20,9 +20,9 @@ interface MatchData {
   description: string | null;
   contact: string | null;
   answers: {
-    question1: string;
+    question1: string | null;
     question2: string[];
-    question3: number;
+    question3: number | null;
   };
 }
 
