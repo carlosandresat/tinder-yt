@@ -7,6 +7,7 @@ import { z } from "zod";
 import { db } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
 import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);
@@ -154,3 +155,19 @@ export const verifyAccount = async (
     };
   }
 };
+
+export async function isAlreadyAnswered() {
+  const session = await auth()
+
+  const userId = session?.user?.id;
+  if (!userId) {
+    console.error("User not authenticated");
+    return false;
+  }
+
+  const response = await db.response.findFirst({
+    where: { userId },
+  });
+
+  return response !== null;
+}

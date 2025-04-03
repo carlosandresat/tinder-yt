@@ -1,4 +1,4 @@
-import { isAlreadyAnswered } from "@/actions/match-data";
+import { isAlreadyAnswered } from "@/actions/register";
 import { isVerified } from "@/actions/register";
 import { auth } from "@/auth";
 import { Countdown } from "@/components/countdown";
