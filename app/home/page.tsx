@@ -1,5 +1,5 @@
-import { isAlreadyAnswered } from "@/actions/match-data";
-import { isVerified } from "@/actions/register";
+//import { isAlreadyAnswered } from "@/actions/match-data";
+//import { isVerified } from "@/actions/register";
 import { auth } from "@/auth";
 import { Countdown } from "@/components/countdown";
 import { LogoutButton } from "@/components/logout-button";
@@ -10,10 +10,10 @@ import { VerificationForm } from "@/components/verification-form";
 
 export default async function Page() {
   const session = await auth()
-  const isUserVerified = await isVerified(session?.user?.id)
-  const matchsDate = new Date("2025-04-03T09:30");
+  const isUserVerified = {verified: true};
+  const matchsDate = new Date("2025-04-03T19:30");
   const isAppActive = true;
-  const isFormAnswered = await isAlreadyAnswered();
+  const isFormAnswered = false;
   
   if (!isUserVerified.verified) {
     return (
