@@ -60,9 +60,9 @@ export function MatchCard({
             </div>
           )}
 
-          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          <h2 className="scroll-m-20 text-xl font-semibold tracking-tight">
             {unlocked ? name : `Match #${tier}`}
-          </h4>
+          </h2>
         </div>
       </CardContent>
       <CardFooter className={unlocked ? "justify-end" : "justify-between"}>
@@ -72,9 +72,9 @@ export function MatchCard({
       {unlocked ? (
         <div className="flex flex-col p-6 border-t">
           <p className="leading-normal mt-2">{description}</p>
-          <h4 className="scroll-m-20 text-lg font-semibold tracking-tight mt-2">
+          <p className="scroll-m-20 text-lg font-semibold tracking-tight mt-2">
             Redes sociales
-          </h4>
+          </p>
           <p className="leading-normal">{contact}</p>
         </div>
       ) : (
