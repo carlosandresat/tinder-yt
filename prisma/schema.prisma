@@ -23,6 +23,7 @@ model User {
   sex               Sex
   verificationToken VerificationToken?
   weeklyAnswer      WeeklyAnswer[]
+  userProfile       UserProfile?
   responses         Response[]
   matchUser1        Match[]           @relation("User1")
   matchUser2        Match[]           @relation("User2")
@@ -36,6 +37,7 @@ model User {
 model UserProfile {
   id               Int    @id @default(autoincrement())
   userId           String @unique @map("user_id")
+  user             User   @relation(fields: [userId], references: [id])
   description      String
   contact          String
   sexPreference    SexPreference @map("sex_preference")
