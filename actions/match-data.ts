@@ -90,6 +90,8 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
 }
 
 export async function isAlreadyAnswered() {
+  const session = await auth()
+
   const userId = session?.user?.id;
   if (!userId) {
     console.error("User not authenticated");
