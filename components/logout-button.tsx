@@ -7,7 +7,7 @@ export function LogoutButton() {
       action={async () => {
         "use server";
 
-        await signOut({redirectTo: "/auth/login"});
+        await signOut({redirectTo: "/"});
       }}
     >
       <Button type="submit">Salir</Button>
