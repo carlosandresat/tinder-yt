@@ -264,14 +264,14 @@ export async function getTopMatches() {
       score: match.score,
       image: unlocked ? otherUser.image : null,
       name: unlocked ? otherUser.fullname : null,
-      description: unlocked ? otherUser.userProfile?.description : null,
-      contact: unlocked ? otherUser.userProfile?.contact : null,
+      description: unlocked && otherUser.userProfile ? otherUser.userProfile.description : null,
+      contact: unlocked && otherUser.userProfile ? otherUser.userProfile.contact : null,
       answers: {
         question1: question1Response?.selectedOptionId
-          ? question1Response.multipleChoices[0]?.option.text
+          ? question1Response.selectedOptionId.toString()
           : null,
         question2: question2Response
-          ? question2Response.multipleChoices.map((choice) => choice.option.text)
+          ? question2Response.multipleChoices.map((choice) => choice.optionId.toString())
           : [],
         question3: question3Response?.scaleValue ?? null,
       },
