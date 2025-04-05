@@ -6,9 +6,8 @@ import { z } from "zod";
 import { MatchFormSchema } from "@/schemas";
 import { revalidatePath } from "next/cache";
 
-const session = await auth()
-
 export async function updateImage(url:string){
+  const session = await auth()
   const userId = session?.user?.id;
   if (!userId) {
     throw new Error("User not authenticated");
@@ -28,6 +27,7 @@ export async function updateImage(url:string){
 }
 
 export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
+  const session = await auth()
   const userId = session?.user?.id;
   if (!userId) {
     throw new Error("User not authenticated");
