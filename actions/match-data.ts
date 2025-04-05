@@ -204,6 +204,8 @@ export async function calculateAllMatches () {
 }
 
 export async function getTopMatches() {
+  const session = await auth()
+
   const userId = session?.user?.id;
   if (!userId) {
     throw new Error("User not authenticated");
