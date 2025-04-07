@@ -50,8 +50,8 @@ export const MatchFormSchema = z.object({
     .string({
       required_error: "Tienes que subir una descripción",
     })
-    .min(15, "Tienes que ingresar una descripción de al menos 15 caracteres")
-    .max(300, "Tu descripción no puede tener más de 300 caracteres"),
+    .min(150, "Tienes que ingresar una descripción de al menos 150 caracteres")
+    .max(500, "Tu descripción no puede tener más de 500 caracteres"),
   contact: z
     .string({
       required_error: "Tienes que poner algún contacto para tu match",
