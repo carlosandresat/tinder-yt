@@ -21,8 +21,20 @@ interface MatchData {
   contact: string | null;
   answers: {
     question1: string | null;
-    question2: string[];
-    question3: number | null;
+    question2: string | null;
+    question3: string | null;
+    question4: string | null;
+    question5: string[];
+    question6: string[];
+    question7: string[];
+    question8: string[];
+    question9: number | null;
+    question10: number | null;
+    question11: number | null;
+    question12: number | null;
+    question13: number | null;
+    question14: number | null;
+    question15: number | null;
   };
 }
 
