@@ -46,6 +46,18 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
     question1,
     question2,
     question3,
+    question4,
+    question5,
+    question6,
+    question7,
+    question8,
+    question9,
+    question10,
+    question11,
+    question12,
+    question13,
+    question14,
+    question15,
   } = validatedFields.data;
 
   try {
@@ -58,8 +70,20 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
 
     const questions = [
       { id: 1, value: question1, type: "SINGLE_CHOICE" },
-      { id: 2, value: question2, type: "MULTIPLE_CHOICE" },
-      { id: 3, value: question3, type: "SCALE_BASED" },
+      { id: 2, value: question2, type: "SINGLE_CHOICE" },
+      { id: 3, value: question3, type: "SINGLE_CHOICE" },
+      { id: 4, value: question4, type: "SINGLE_CHOICE" },
+      { id: 5, value: question5, type: "MULTIPLE_CHOICE" },
+      { id: 6, value: question6, type: "MULTIPLE_CHOICE" },
+      { id: 7, value: question7, type: "MULTIPLE_CHOICE" },
+      { id: 8, value: question8, type: "MULTIPLE_CHOICE" },
+      { id: 9, value: question9, type: "SCALE_BASED" },
+      { id: 10, value: question10, type: "SCALE_BASED" },
+      { id: 11, value: question11, type: "SCALE_BASED" },
+      { id: 12, value: question12, type: "SCALE_BASED" },
+      { id: 13, value: question13, type: "SCALE_BASED" },
+      { id: 14, value: question14, type: "SCALE_BASED" },
+      { id: 15, value: question15, type: "SCALE_BASED" },
     ];
     for (const question of questions) {
       if (question.value === undefined || question.value === null) continue;
