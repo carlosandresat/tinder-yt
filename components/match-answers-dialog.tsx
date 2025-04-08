@@ -15,6 +15,7 @@ import { PaymentDialog } from "@/components/payment-dialog";
 
 interface MatchAnswers {
   tier: number;
+  unlocked: boolean;
   name: string | null;
   question1: string | null;
   question2: string[];
@@ -23,6 +24,7 @@ interface MatchAnswers {
 
 export function MatchAnswersDialog({
   tier,
+  unlocked,
   name,
   question1,
   question2,
@@ -104,9 +106,11 @@ export function MatchAnswersDialog({
             )}
           </div>
         </div>
-        <DialogFooter>
-          <PaymentDialog />
-        </DialogFooter>
+        {!unlocked && (
+          <DialogFooter>
+            <PaymentDialog />
+          </DialogFooter>
+        )}
       </DialogContent>
     </Dialog>
   );
