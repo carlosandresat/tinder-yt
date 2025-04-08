@@ -249,7 +249,7 @@ export async function getTopMatches() {
           fullname: true,
           userProfile: { select: { description: true, contact: true } },
           responses: {
-            where: { questionId: { in: [1, 2, 3] } },
+            where: { questionId: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] } },
             include: { multipleChoices: { include: { option: true } }, question: true },
           },
         },
@@ -261,7 +261,7 @@ export async function getTopMatches() {
           fullname: true,
           userProfile: { select: { description: true, contact: true } },
           responses: {
-            where: { questionId: { in: [1, 2, 3] } },
+            where: { questionId: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] } },
             include: { multipleChoices: { include: { option: true } }, question: true },
           },
         },
@@ -283,6 +283,18 @@ export async function getTopMatches() {
     const question1Response = otherUser.responses.find((r) => r.questionId === 1);
     const question2Response = otherUser.responses.find((r) => r.questionId === 2);
     const question3Response = otherUser.responses.find((r) => r.questionId === 3);
+    const question4Response = otherUser.responses.find((r) => r.questionId === 4);
+    const question5Response = otherUser.responses.find((r) => r.questionId === 5);
+    const question6Response = otherUser.responses.find((r) => r.questionId === 6);
+    const question7Response = otherUser.responses.find((r) => r.questionId === 7);
+    const question8Response = otherUser.responses.find((r) => r.questionId === 8);
+    const question9Response = otherUser.responses.find((r) => r.questionId === 9);
+    const question10Response = otherUser.responses.find((r) => r.questionId === 10);
+    const question11Response = otherUser.responses.find((r) => r.questionId === 11);
+    const question12Response = otherUser.responses.find((r) => r.questionId === 12);
+    const question13Response = otherUser.responses.find((r) => r.questionId === 13);
+    const question14Response = otherUser.responses.find((r) => r.questionId === 14);
+    const question15Response = otherUser.responses.find((r) => r.questionId === 15);
 
     return {
       tier: index + 1,
@@ -296,10 +308,34 @@ export async function getTopMatches() {
         question1: question1Response?.selectedOptionId
           ? question1Response.selectedOptionId.toString()
           : null,
-        question2: question2Response
-          ? question2Response.multipleChoices.map((choice) => choice.optionId.toString())
+        question2: question2Response?.selectedOptionId
+          ? question2Response.selectedOptionId.toString()
+          : null,
+        question3: question3Response?.selectedOptionId   
+          ? question3Response.selectedOptionId.toString()
+          : null,
+        question4: question4Response?.selectedOptionId
+          ? question4Response.selectedOptionId.toString()
+          : null,
+        question5: question5Response
+          ? question5Response.multipleChoices.map((choice) => choice.optionId.toString())
           : [],
-        question3: question3Response?.scaleValue ?? null,
+        question6: question6Response
+          ? question6Response.multipleChoices.map((choice) => choice.optionId.toString())
+          : [],
+        question7: question7Response
+          ? question7Response.multipleChoices.map((choice) => choice.optionId.toString())
+          : [],
+        question8: question8Response
+          ? question8Response.multipleChoices.map((choice) => choice.optionId.toString())
+          : [],
+        question9: question9Response?.scaleValue ?? null,
+        question10: question10Response?.scaleValue ?? null,
+        question11: question11Response?.scaleValue ?? null,
+        question12: question12Response?.scaleValue ?? null,
+        question13: question13Response?.scaleValue ?? null,
+        question14: question14Response?.scaleValue ?? null,
+        question15: question15Response?.scaleValue ?? null,
       },
     };
   });
