@@ -64,16 +64,73 @@ export const MatchFormSchema = z.object({
   question1: z.number({
     required_error: "Tienes que seleccionar una respuesta",
   }),
-  question2: z
+  question2: z.number({
+    required_error: "Tienes que seleccionar una respuesta",
+  }),
+  question3: z.number({
+    required_error: "Tienes que seleccionar una respuesta",
+  }),
+  question4: z.number({
+    required_error: "Tienes que seleccionar una respuesta",
+  }),
+  question5: z
     .array(z.number({ required_error: "Tienes que ingresar una respuesta" }))
     .min(1, "Tienes que seleccionar al menos una opción")
     .max(3, "Tienes que seleccionar máximo 3 respuestas"),
-  question3: z
+  question6: z
+    .array(z.number({ required_error: "Tienes que ingresar una respuesta" }))
+    .min(1, "Tienes que seleccionar al menos una opción")
+    .max(3, "Tienes que seleccionar máximo 3 respuestas"),
+  question7: z
+    .array(z.number({ required_error: "Tienes que ingresar una respuesta" }))
+    .min(1, "Tienes que seleccionar al menos una opción")
+    .max(3, "Tienes que seleccionar máximo 3 respuestas"),
+  question8: z
+  .array(z.number({ required_error: "Tienes que ingresar una respuesta" }))
+  .min(1, "Tienes que seleccionar al menos una opción")
+  .max(3, "Tienes que seleccionar máximo 3 respuestas"),
+  question9: z
     .number({
       required_error: "Tienes que ingresar una respuesta",
     })
     .min(1, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?")
-    .max(5, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
+    .max(7, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
+  question10: z
+    .number({
+      required_error: "Tienes que ingresar una respuesta",
+    })
+    .min(1, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?")
+    .max(7, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
+  question11: z
+    .number({
+      required_error: "Tienes que ingresar una respuesta",
+    })
+    .min(1, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?")
+    .max(7, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
+  question12: z
+    .number({
+      required_error: "Tienes que ingresar una respuesta",
+    })
+    .min(1, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?")
+    .max(7, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
+  question13: z
+    .number({
+      required_error: "Tienes que ingresar una respuesta",
+    })
+    .min(1, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?")
+    .max(7, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
+  question14: z
+    .number({
+      required_error: "Tienes que ingresar una respuesta",
+    })
+    .min(1, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?")
+    .max(7, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
+  question15: z
+    .number({
+      required_error: "Tienes que ingresar una respuesta",
+    })
+    .min(1, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?")
+    .max(7, "¿Cómo seleccionaste eso? ¿Acaso eres hacker?"),
 });
 
 export const VerificationFormSchema = z.object({

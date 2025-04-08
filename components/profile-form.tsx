@@ -39,8 +39,17 @@ export function ProfileForm({username}: {username: string}) {
     defaultValues: {
       description: "",
       contact: "",
-      question2: [],
-      question3: 3,
+      question5: [],
+      question6: [],
+      question7: [],
+      question8: [],
+      question9: 5,
+      question10: 5,
+      question11: 5,
+      question12: 5,
+      question13: 5,
+      question14: 5,
+      question15: 5,
     },
   });
 
@@ -50,6 +59,8 @@ export function ProfileForm({username}: {username: string}) {
     "Mensaje de opción 3",
     "Mensaje de opción 4",
     "Mensaje de opción 5",
+    "Mensaje de opción 6",
+    "Mensaje de opción 7"
   ];
 
   function onSubmit(data: z.infer<typeof MatchFormSchema>) {
@@ -231,6 +242,75 @@ export function ProfileForm({username}: {username: string}) {
               name="question2"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel>Pregunta una opción</FormLabel>
+                  <FormControl>
+                    <ToggleGroup
+                      type="single"
+                      variant="outline"
+                      value={field.value?.toString()}
+                      onValueChange={(value) => field.onChange(Number(value))}
+                      className="flex-wrap"
+                    >
+                      <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <FormDescription>Selecciona 1 opción</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question3"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta una opción</FormLabel>
+                  <FormControl>
+                    <ToggleGroup
+                      type="single"
+                      variant="outline"
+                      value={field.value?.toString()}
+                      onValueChange={(value) => field.onChange(Number(value))}
+                      className="flex-wrap"
+                    >
+                      <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <FormDescription>Selecciona 1 opción</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question4"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta una opción</FormLabel>
+                  <FormControl>
+                    <ToggleGroup
+                      type="single"
+                      variant="outline"
+                      value={field.value?.toString()}
+                      onValueChange={(value) => field.onChange(Number(value))}
+                      className="flex-wrap"
+                    >
+                      <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <FormDescription>Selecciona 1 opción</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question5"
+              render={({ field }) => (
+                <FormItem>
                   <FormLabel>Pregunta opción múltiple</FormLabel>
                   <FormControl>
                     <ToggleGroup
@@ -242,11 +322,11 @@ export function ProfileForm({username}: {username: string}) {
                       }
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="3">Respuesta 1</ToggleGroupItem>
-                      <ToggleGroupItem value="4">Respuesta 2</ToggleGroupItem>
-                      <ToggleGroupItem value="5">Respuesta 3</ToggleGroupItem>
-                      <ToggleGroupItem value="6">Respuesta 4</ToggleGroupItem>
-                      <ToggleGroupItem value="7">Respuesta 5</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona hasta 3 opciones</FormDescription>
@@ -256,7 +336,91 @@ export function ProfileForm({username}: {username: string}) {
             />
             <FormField
               control={form.control}
-              name="question3"
+              name="question6"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta opción múltiple</FormLabel>
+                  <FormControl>
+                    <ToggleGroup
+                      type="multiple"
+                      variant="outline"
+                      value={field.value.map((answer) => answer.toString())}
+                      onValueChange={(values) =>
+                        field.onChange(values.map((value) => Number(value)))
+                      }
+                      className="flex-wrap"
+                    >
+                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <FormDescription>Selecciona hasta 3 opciones</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question7"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta opción múltiple</FormLabel>
+                  <FormControl>
+                    <ToggleGroup
+                      type="multiple"
+                      variant="outline"
+                      value={field.value.map((answer) => answer.toString())}
+                      onValueChange={(values) =>
+                        field.onChange(values.map((value) => Number(value)))
+                      }
+                      className="flex-wrap"
+                    >
+                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <FormDescription>Selecciona hasta 3 opciones</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question8"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta opción múltiple</FormLabel>
+                  <FormControl>
+                    <ToggleGroup
+                      type="multiple"
+                      variant="outline"
+                      value={field.value.map((answer) => answer.toString())}
+                      onValueChange={(values) =>
+                        field.onChange(values.map((value) => Number(value)))
+                      }
+                      className="flex-wrap"
+                    >
+                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <FormDescription>Selecciona hasta 3 opciones</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question9"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Pregunta de escala</FormLabel>
@@ -265,16 +429,172 @@ export function ProfileForm({username}: {username: string}) {
                     <FormControl>
                       <Slider
                         min={1}
-                        max={5}
+                        max={7}
                         step={1}
                         value={[field.value]}
                         onValueChange={(value) => field.onChange(value[0])}
                       />
                     </FormControl>
-                    <p>5</p>
+                    <p>7</p>
                   </div>
                   <div className="text-center text-sm" aria-live="polite">
-                    {question3options[form.watch("question3") - 1]}
+                    {question3options[form.watch("question9") - 1]}
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question10"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta de escala</FormLabel>
+                  <div className="flex gap-6 w-full items-center justify-between">
+                    <p>1</p>
+                    <FormControl>
+                      <Slider
+                        min={1}
+                        max={7}
+                        step={1}
+                        value={[field.value]}
+                        onValueChange={(value) => field.onChange(value[0])}
+                      />
+                    </FormControl>
+                    <p>7</p>
+                  </div>
+                  <div className="text-center text-sm" aria-live="polite">
+                    {question3options[form.watch("question10") - 1]}
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question11"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta de escala</FormLabel>
+                  <div className="flex gap-6 w-full items-center justify-between">
+                    <p>1</p>
+                    <FormControl>
+                      <Slider
+                        min={1}
+                        max={7}
+                        step={1}
+                        value={[field.value]}
+                        onValueChange={(value) => field.onChange(value[0])}
+                      />
+                    </FormControl>
+                    <p>7</p>
+                  </div>
+                  <div className="text-center text-sm" aria-live="polite">
+                    {question3options[form.watch("question11") - 1]}
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question12"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta de escala</FormLabel>
+                  <div className="flex gap-6 w-full items-center justify-between">
+                    <p>1</p>
+                    <FormControl>
+                      <Slider
+                        min={1}
+                        max={7}
+                        step={1}
+                        value={[field.value]}
+                        onValueChange={(value) => field.onChange(value[0])}
+                      />
+                    </FormControl>
+                    <p>7</p>
+                  </div>
+                  <div className="text-center text-sm" aria-live="polite">
+                    {question3options[form.watch("question12") - 1]}
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question13"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta de escala</FormLabel>
+                  <div className="flex gap-6 w-full items-center justify-between">
+                    <p>1</p>
+                    <FormControl>
+                      <Slider
+                        min={1}
+                        max={7}
+                        step={1}
+                        value={[field.value]}
+                        onValueChange={(value) => field.onChange(value[0])}
+                      />
+                    </FormControl>
+                    <p>7</p>
+                  </div>
+                  <div className="text-center text-sm" aria-live="polite">
+                    {question3options[form.watch("question13") - 1]}
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question14"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta de escala</FormLabel>
+                  <div className="flex gap-6 w-full items-center justify-between">
+                    <p>1</p>
+                    <FormControl>
+                      <Slider
+                        min={1}
+                        max={7}
+                        step={1}
+                        value={[field.value]}
+                        onValueChange={(value) => field.onChange(value[0])}
+                      />
+                    </FormControl>
+                    <p>7</p>
+                  </div>
+                  <div className="text-center text-sm" aria-live="polite">
+                    {question3options[form.watch("question14") - 1]}
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="question15"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pregunta de escala</FormLabel>
+                  <div className="flex gap-6 w-full items-center justify-between">
+                    <p>1</p>
+                    <FormControl>
+                      <Slider
+                        min={1}
+                        max={7}
+                        step={1}
+                        value={[field.value]}
+                        onValueChange={(value) => field.onChange(value[0])}
+                      />
+                    </FormControl>
+                    <p>7</p>
+                  </div>
+                  <div className="text-center text-sm" aria-live="polite">
+                    {question3options[form.watch("question15") - 1]}
                   </div>
                   <FormMessage />
                 </FormItem>
