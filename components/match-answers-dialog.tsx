@@ -69,7 +69,7 @@ export function MatchAnswersDialog({
       <DialogTrigger asChild>
         <Button>Ver respuestas</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="sm:max-w-2xl overflow-y-scroll max-h-[80%]">
         <DialogHeader>
           <DialogTitle>{name ? name : `Match #${tier}`}</DialogTitle>
           <DialogDescription>
