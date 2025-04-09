@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { ReactElement } from "react";
 
-export function PaymentDialog({children}: {children: ReactElement}) {
+export function PaymentDialog({ children }: { children: ReactElement }) {
   const pricingOptions = [
     {
       matches: 1,
@@ -46,9 +45,7 @@ export function PaymentDialog({children}: {children: ReactElement}) {
   ];
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        {children}
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">Precios y Pagos</DialogTitle>
