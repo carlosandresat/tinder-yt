@@ -83,7 +83,11 @@ export function MatchCard({
         </div>
       </CardContent>
       <CardFooter className={unlocked ? "justify-end" : "justify-between"}>
-        {!unlocked ? <UnlockMatchDialog matchId={matchId} /> : null}
+        {!unlocked && hasAvailableUnlocks ? (
+          <UnlockMatchDialog matchId={matchId} />
+        ) : !unlocked && !hasAvailableUnlocks ? (
+          <PaymentDialog />
+        ) : null}
         <MatchAnswersDialog tier={tier} name={name} {...answers} />
       </CardFooter>
       {unlocked ? (
