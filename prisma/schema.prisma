@@ -27,6 +27,7 @@ model User {
   responses         Response[]
   matchUser1        Match[]           @relation("User1")
   matchUser2        Match[]           @relation("User2")
+  availableUnlocks  Int               @default(0) @map("available_unlocks")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
