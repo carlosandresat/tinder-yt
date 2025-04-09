@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -11,11 +12,9 @@ import {
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { PaymentDialog } from "@/components/payment-dialog";
 
 interface MatchAnswers {
   tier: number;
-  unlocked: boolean;
   name: string | null;
   question1: string | null;
   question2: string | null;
@@ -36,7 +35,6 @@ interface MatchAnswers {
 
 export function MatchAnswersDialog({
   tier,
-  unlocked,
   name,
   question1,
   question2,
@@ -351,11 +349,13 @@ export function MatchAnswersDialog({
             )}
           </div>
         </div>
-        {!unlocked && (
-          <DialogFooter>
-            <PaymentDialog />
-          </DialogFooter>
-        )}
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Cerrar
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

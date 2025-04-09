@@ -82,7 +82,7 @@ export function MatchCard({
       </CardContent>
       <CardFooter className={unlocked ? "justify-end" : "justify-between"}>
         {!unlocked ? <UnlockMatchDialog matchId={matchId} /> : null}
-        <MatchAnswersDialog tier={tier} unlocked={unlocked} name={name} {...answers} />
+        <MatchAnswersDialog tier={tier} name={name} {...answers} />
       </CardFooter>
       {unlocked ? (
         <div className="flex flex-col p-6 border-t">
