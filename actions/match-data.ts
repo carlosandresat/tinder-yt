@@ -297,6 +297,7 @@ export async function getTopMatches() {
     const question15Response = otherUser.responses.find((r) => r.questionId === 15);
 
     return {
+      matchId: match.id,
       tier: index + 1,
       unlocked,
       score: match.score,

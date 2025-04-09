@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 
-export function UnlockMatchDialog() {
+export function UnlockMatchDialog({ matchId }: { matchId: number }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>

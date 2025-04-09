@@ -12,7 +12,8 @@ export async function MatchSection() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full">
         {matches.map((match, index) => (
           <MatchCard
-            key={index}
+            key={match.matchId}
+            matchId={match.matchId}
             tier={index + 1}
             unlocked={match.unlocked}
             score={match.score}
