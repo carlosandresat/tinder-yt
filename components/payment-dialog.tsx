@@ -11,8 +11,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
+import { ReactElement } from "react";
 
-export function PaymentDialog() {
+export function PaymentDialog({children}: {children: ReactElement}) {
   const pricingOptions = [
     {
       matches: 1,
@@ -46,7 +47,7 @@ export function PaymentDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary">Desbloquear</Button>
+        {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>

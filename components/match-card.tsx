@@ -10,7 +10,8 @@ import Image from "next/image";
 import { LockKeyhole, VenetianMask } from "lucide-react";
 import { PaymentDialog } from "@/components/payment-dialog";
 import { MatchAnswersDialog } from "@/components/match-answers-dialog";
-import { UnlockMatchDialog } from "./unlock-match-dialog";
+import { UnlockMatchDialog } from "@/components/unlock-match-dialog";
+import { Button } from "@/components/ui/button";
 
 interface MatchData {
   matchId: number;
@@ -86,7 +87,9 @@ export function MatchCard({
         {!unlocked && hasAvailableUnlocks ? (
           <UnlockMatchDialog matchId={matchId} />
         ) : !unlocked && !hasAvailableUnlocks ? (
-          <PaymentDialog />
+          <PaymentDialog>
+            <Button variant="secondary">Desbloquear</Button>
+          </PaymentDialog>
         ) : null}
         <MatchAnswersDialog tier={tier} name={name} {...answers} />
       </CardFooter>
