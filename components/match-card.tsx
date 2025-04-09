@@ -38,6 +38,7 @@ interface MatchData {
     question14: number | null;
     question15: number | null;
   };
+  hasAvailableUnlocks: boolean;
 }
 
 export function MatchCard({
@@ -50,6 +51,7 @@ export function MatchCard({
   description,
   contact,
   answers,
+  hasAvailableUnlocks,
 }: MatchData) {
   return (
     <Card className="flex flex-col">

@@ -4,6 +4,7 @@ import { MatchCard } from "@/components/match-card";
 export async function MatchSection() {
   const matches = await getTopMatches();
   const availableUnlocks = await getAvailableUnlocks();
+  const hasAvailableUnlocks = availableUnlocks > 0;
 
   return (
     <div className="flex flex-col w-full">
@@ -24,6 +25,7 @@ export async function MatchSection() {
             description={match.description}
             contact={match.contact}
             answers={match.answers}
+            hasAvailableUnlocks={hasAvailableUnlocks}
           />
         ))}
       </div>
