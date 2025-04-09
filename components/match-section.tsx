@@ -1,5 +1,7 @@
 import { getAvailableUnlocks, getTopMatches } from "@/actions/match-data";
 import { MatchCard } from "@/components/match-card";
+import { PaymentDialog } from "@/components/payment-dialog";
+import { Button } from "@/components/ui/button";
 
 export async function MatchSection() {
   const matches = await getTopMatches();
@@ -9,6 +11,9 @@ export async function MatchSection() {
   return (
     <div className="flex flex-col w-full">
       <div className="text-lg font-semibold self-end">Desbloqueos disponibles: {availableUnlocks}</div>
+      <PaymentDialog>
+        <Button variant="secondary" className="self-end mt-2">¿Quieres más desbloqueos?</Button>
+      </PaymentDialog>
       <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight self-center mt-6">
         Tus Matchs
       </h1>
