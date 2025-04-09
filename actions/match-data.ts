@@ -419,3 +419,26 @@ export async function unlockMatch(matchId: number) {
     throw new Error("Error unlocking match");
   }
 }
+
+export async function getAvailableUnlocks() {
+  const session = await auth();
+
+  const userId = session?.user?.id;
+  if (!userId) {
+    throw new Error("User not authenticated");
+  }
+
+  try {
+    const user = await db.user.findUnique({
+      where: { id: userId },
+      select: { availableUnlocks: true },
+    });
+    if (!user) {
+      throw new Error("User not found");
+    }
+    return user.availableUnlocks;
+  } catch (error) {
+    console.error("Error fetching available unlocks:", error);
+    throw new Error("Error fetching available unlocks");
+  }
+}
