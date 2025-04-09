@@ -1,3 +1,4 @@
+import { unlockMatch } from "@/actions/match-data";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -27,7 +28,17 @@ export function UnlockMatchDialog({ matchId }: { matchId: number }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction>Desbloquear</AlertDialogAction>
+          <form
+            action={async () => {
+              "use server";
+
+              await unlockMatch(matchId);
+            }}
+          >
+            <AlertDialogAction type="submit" className="w-full md:w-auto">
+              Desbloquear
+            </AlertDialogAction>
+          </form>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

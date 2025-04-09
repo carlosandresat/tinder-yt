@@ -341,3 +341,81 @@ export async function getTopMatches() {
     };
   });
 }
+
+export async function unlockMatch(matchId: number) {
+  const session = await auth();
+
+  const userId = session?.user?.id;
+  if (!userId) {
+    throw new Error("User not authenticated");
+  }
+
+  try {
+    const user = await db.user.findUnique({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new Error("User not found");
+    }
+    if (user.availableUnlocks <= 0) {
+      throw new Error("No unlocks available");
+    }
+
+    // Check if user is user1 or user2 in the match, and update the unlockedFor field accordingly
+    const match = await db.match.findUnique({
+      where: { id: matchId },
+    });
+    if (!match) {
+      throw new Error("Match not found");
+    }
+    const isUser1 = match.userId1 === userId;
+    const isUser2 = match.userId2 === userId;
+    if (!isUser1 && !isUser2) {
+      throw new Error("User not part of the match");
+    }
+    if (match.unlockedFor === "BOTH") {
+      throw new Error("Match already unlocked for both users");
+    }
+    if (isUser1 && match.unlockedFor === "USER1") {
+      throw new Error("Match already unlocked for you");
+    }
+    if (isUser2 && match.unlockedFor === "USER2") {
+      throw new Error("Match already unlocked for you");
+    }
+    if (isUser1 && match.unlockedFor === "USER2") {
+      await db.match.update({
+        where: { id: matchId },
+        data: { unlockedFor: "BOTH" },
+      });
+    }
+    if (isUser2 && match.unlockedFor === "USER1") {
+      await db.match.update({
+        where: { id: matchId },
+        data: { unlockedFor: "BOTH" },
+      });
+    }
+    if (isUser1 && match.unlockedFor === "NONE") {
+      await db.match.update({
+        where: { id: matchId },
+        data: { unlockedFor: "USER1" },
+      });
+    }
+    if (isUser2 && match.unlockedFor === "NONE") {
+      await db.match.update({
+        where: { id: matchId },
+        data: { unlockedFor: "USER2" },
+      });
+    }
+
+    // Deduct a unlock from the user
+    await db.user.update({
+      where: { id: userId },
+      data: { availableUnlocks: user.availableUnlocks - 1 },
+    });
+
+    revalidatePath("/home");
+  } catch (error) {
+    console.error("Error unlocking match:", error);
+    throw new Error("Error unlocking match");
+  }
+}
