@@ -9,7 +9,7 @@ export async function MatchSection() {
   const hasAvailableUnlocks = availableUnlocks > 0;
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full max-w-screen-xl p-8">
       <div className="text-lg font-semibold self-end">Desbloqueos disponibles: {availableUnlocks}</div>
       <PaymentDialog>
         <Button variant="secondary" className="self-end mt-2">¿Quieres más desbloqueos?</Button>

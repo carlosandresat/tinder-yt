@@ -106,9 +106,7 @@ export default async function Page() {
                 <LogoutButton />
               </div>
 
-              <div className="w-full max-w-screen-xl p-8">
-                <MatchSection />
-              </div>
+              <MatchSection />
             </main>
           );
         }
