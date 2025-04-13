@@ -67,9 +67,9 @@ export function ProfileForm({username}: {username: string}) {
     "Para nada, la vida es incierta",
     "Poco importante, uno tiene que vivir el presente",
     "Algo importante, pero no es lo más relevante",
-    "Depende de la situación que se presente",
-    "Importante, pero no es lo más relevante",
-    "Muy importante, me gusta tener un plan",
+    "A veces lo considero, pero no siempre me preocupa",
+    "Me gusta tener metas, aunque no siempre son rígidas",
+    "Muy importante, me esfuerzo por tener un plan claro para mi futuro",
     "Esencial, me gusta tener un plan y saber que todo está bajo control",
   ];
 
