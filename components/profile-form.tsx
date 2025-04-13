@@ -123,16 +123,6 @@ export function ProfileForm({username}: {username: string}) {
     "Lo enfrento de inmediato: Siempre busco resolver los conflictos apenas surgen, sin postergarlos."
   ];
 
-  const question3options = [
-    "Mensaje de opción 1",
-    "Mensaje de opción 2",
-    "Mensaje de opción 3",
-    "Mensaje de opción 4",
-    "Mensaje de opción 5",
-    "Mensaje de opción 6",
-    "Mensaje de opción 7"
-  ];
-
   function onSubmit(data: z.infer<typeof MatchFormSchema>) {
     startTransition(async () => {
       try {
