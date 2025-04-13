@@ -53,6 +53,76 @@ export function ProfileForm({username}: {username: string}) {
     },
   });
 
+  const question9options = [
+    "No le doy importancia, prefiero la variedad emocional.",
+    "Poco importante, vivo intensamente mis altibajos.",
+    "Algo importante, aunque me dejo llevar por el momento.",
+    "Valoro la estabilidad, pero también la emoción.",
+    "Bastante importante, busco serenidad en mis emociones.",
+    "Muy importante, priorizo un ambiente emocional constante.",
+    "Esencial, necesito estabilidad para sentirme seguro y equilibrado.",
+  ];
+
+  const question10options = [
+    "Para nada, la vida es incierta",
+    "Poco importante, uno tiene que vivir el presente",
+    "Algo importante, pero no es lo más relevante",
+    "Depende de la situación que se presente",
+    "Importante, pero no es lo más relevante",
+    "Muy importante, me gusta tener un plan",
+    "Esencial, me gusta tener un plan y saber que todo está bajo control",
+  ];
+
+  const question11options = [
+    "Evito los riesgos a toda costa; prefiero la seguridad",
+    "Muy cauteloso, solo asumo riesgos mínimos",
+    "Poco arriesgado, solo tomo riesgos calculados en ocasiones",
+    "Tomo riesgos cuando veo una oportunidad",
+    "Bastante arriesgado, me gusta probar mis límites",
+    "Muy aventurero, asumo grandes riesgos frecuentemente",
+    "Extremadamente arriesgado, vivo para apostar y desafiar lo seguro",
+  ];
+
+  const question12options = [
+    "Muy reservado; prefiero la tranquilidad y la soledad.",
+    "Bastante introvertido; disfruto de espacios reducidos.",
+    "Mayormente tranquilo, socializo en grupos pequeños.",
+    "Me gusta socializar sin perder mi espacio personal.",
+    "Disfruto conversar y reunirme con amigos.",
+    "Me energiza la interacción constante.",
+    "Extrovertido en exceso, siempre busco grandes encuentros sociales."
+  ];
+
+  const question13options = [
+    "No le doy ninguna importancia a mi estado físico.",
+    "Casi no me preocupo por mantenerme en forma.",
+    "Reconozco la importancia, pero la cuido de manera esporádica.",
+    "Intento mantenerme activo, aunque no es mi prioridad principal.",
+    "Trabajo regularmente en mi condición física y me esfuerzo por estar en forma.",
+    "La actividad física es fundamental para mi bienestar y la practico con frecuencia.",
+    "No pain, no gain",
+  ];
+
+  const question14options = [
+    "Siempre veo el lado negativo de todo.",
+    "Rara vez encuentro motivos para el optimismo.",
+    "Tiendo a ver dificultades aunque reconozco lo positivo en ocasiones.",
+    "Reconozco tanto los desafíos como las oportunidades.",
+    "Soy optimista y veo el vaso medio lleno.",
+    "Confío en que las cosas saldrán bien la mayoría de las veces.",
+    "Soy extremadamente optimista y tengo una visión positiva e inspiradora de la vida."
+  ];
+
+  const question15options = [
+    "Evitarlo por completo: Hago todo lo posible por no tener conflictos, incluso si eso implica callar mis opiniones.",
+    "Evitarlo en lo posible: Trato de evitar el conflicto la mayor parte del tiempo, incluso cuando algo me molesta.",
+    "Prefiero evitarlo, pero lo enfrento si es necesario: Me incomodan los conflictos, pero si no hay otra opción, los enfrento.",
+    "Depende de la situación: Mi reacción ante el conflicto varía según el contexto o la persona.",
+    "Prefiero enfrentarlo, aunque con cuidado: Suelo abordar los conflictos cuando ocurren, pero trato de hacerlo con calma.",
+    "Suelo enfrentar el conflicto directamente: No me gusta dejar asuntos sin resolver y normalmente los enfrento rápidamente.",
+    "Lo enfrento de inmediato: Siempre busco resolver los conflictos apenas surgen, sin postergarlos."
+  ];
+
   const question3options = [
     "Mensaje de opción 1",
     "Mensaje de opción 2",
@@ -219,7 +289,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question1"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta una opción</FormLabel>
+                  <FormLabel>¿Qué buscas conocer en TinderYT?</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="single"
@@ -228,8 +298,10 @@ export function ProfileForm({username}: {username: string}) {
                       onValueChange={(value) => field.onChange(Number(value))}
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Amistad</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Amor</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Vacile</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Que fluya lo que tenga que fluyar</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona 1 opción</FormDescription>
@@ -242,7 +314,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question2"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta una opción</FormLabel>
+                  <FormLabel>¿Prefieres las aventuras espontáneas o las salidas planificadas?</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="single"
@@ -251,8 +323,8 @@ export function ProfileForm({username}: {username: string}) {
                       onValueChange={(value) => field.onChange(Number(value))}
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Espontáneas</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Planificadas</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona 1 opción</FormDescription>
@@ -265,7 +337,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question3"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta una opción</FormLabel>
+                  <FormLabel>¿Qué es más importante para ti en una relación?</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="single"
@@ -274,8 +346,9 @@ export function ProfileForm({username}: {username: string}) {
                       onValueChange={(value) => field.onChange(Number(value))}
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Intereses compartidos</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Conversaciones profundas</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Independencia mutua</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona 1 opción</FormDescription>
@@ -288,7 +361,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question4"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta una opción</FormLabel>
+                  <FormLabel>¿Cuál es tu modo preferido de comunicación cuando no estás presente?</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="single"
@@ -297,8 +370,8 @@ export function ProfileForm({username}: {username: string}) {
                       onValueChange={(value) => field.onChange(Number(value))}
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta2</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Mensajes</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Llamadas</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona 1 opción</FormDescription>
@@ -311,7 +384,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question5"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta opción múltiple</FormLabel>
+                  <FormLabel>¿Qué temas de conversación te emocionan más?</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="multiple"
@@ -322,11 +395,13 @@ export function ProfileForm({username}: {username: string}) {
                       }
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
-                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
-                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
-                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Viajes</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Tecnología</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Arte</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Eventos actuales</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Filosofía</ToggleGroupItem>
+                      <ToggleGroupItem value="6">Deportes</ToggleGroupItem>
+                      <ToggleGroupItem value="7">Chisme</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona hasta 3 opciones</FormDescription>
@@ -339,7 +414,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question6"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta opción múltiple</FormLabel>
+                  <FormLabel>¿Qué cualidades valoras más en una pareja?</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="multiple"
@@ -350,14 +425,15 @@ export function ProfileForm({username}: {username: string}) {
                       }
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
-                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
-                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
-                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Honestidad</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Humor</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Ambición</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Compasión</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Lealtad</ToggleGroupItem>
+                      <ToggleGroupItem value="6">Independencia</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
-                  <FormDescription>Selecciona hasta 3 opciones</FormDescription>
+                  <FormDescription>Selecciona hasta 3 opciones. Nota: pilas que lealtad y fidelidad son distintas. Fidelidad: exclusividad y cumplimiento de promesas o deberes. Lealtad: apoyo incondicional y la defensa de los intereses del otro. La fidelidad ya debería venir por defecto xd</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -367,7 +443,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question7"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta opción múltiple</FormLabel>
+                  <FormLabel>¿Qué tipo de cocina te gusta más?</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="multiple"
@@ -378,11 +454,13 @@ export function ProfileForm({username}: {username: string}) {
                       }
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
-                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
-                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
-                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Ecuatoriana (Costa)</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Ecuatoriana (Sierra)</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Mexicana</ToggleGroupItem>
+                      <ToggleGroupItem value="4">Asiática</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Italiana</ToggleGroupItem>
+                      <ToggleGroupItem value="6">Estadounidense</ToggleGroupItem>
+                      <ToggleGroupItem value="7">Vegetariana</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona hasta 3 opciones</FormDescription>
@@ -395,7 +473,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question8"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta opción múltiple</FormLabel>
+                  <FormLabel>¿Cuál sería tu reacción más sincera al conocer que la persona que te gusta tiene un super mejor amig@ del sexo opuesto?</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="multiple"
@@ -406,11 +484,12 @@ export function ProfileForm({username}: {username: string}) {
                       }
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Respuesta 1</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Respuesta 2</ToggleGroupItem>
-                      <ToggleGroupItem value="3">Respuesta 3</ToggleGroupItem>
-                      <ToggleGroupItem value="4">Respuesta 4</ToggleGroupItem>
-                      <ToggleGroupItem value="5">Respuesta 5</ToggleGroupItem>
+                      <ToggleGroupItem value="1">Yo también tengo</ToggleGroupItem>
+                      <ToggleGroupItem value="2">Las relaciones de amistad son igual de importantes que las románticas 🤓☝</ToggleGroupItem>
+                      <ToggleGroupItem value="3">Mientras haya límites</ToggleGroupItem>
+                      <ToggleGroupItem value="4">¿Amig@ o amiguit@? 🤨</ToggleGroupItem>
+                      <ToggleGroupItem value="5">Tu pareja debería ser tu mejor amig@</ToggleGroupItem>
+                      <ToggleGroupItem value="6">Prefiero evitarme ese evento canónico</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona hasta 3 opciones</FormDescription>
@@ -423,7 +502,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question9"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta de escala</FormLabel>
+                  <FormLabel>¿Qué tan importante es para ti la estabilidad emocional?</FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -438,7 +517,7 @@ export function ProfileForm({username}: {username: string}) {
                     <p>7</p>
                   </div>
                   <div className="text-center text-sm" aria-live="polite">
-                    {question3options[form.watch("question9") - 1]}
+                    {question9options[form.watch("question9") - 1]}
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -449,7 +528,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question10"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta de escala</FormLabel>
+                  <FormLabel>¿Qué tan importante es saber dónde estarás en 5 años?</FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -464,7 +543,7 @@ export function ProfileForm({username}: {username: string}) {
                     <p>7</p>
                   </div>
                   <div className="text-center text-sm" aria-live="polite">
-                    {question3options[form.watch("question10") - 1]}
+                    {question10options[form.watch("question10") - 1]}
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -475,7 +554,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question11"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta de escala</FormLabel>
+                  <FormLabel>¿Qué tan arriesgado eres al tomar decisiones?</FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -490,7 +569,7 @@ export function ProfileForm({username}: {username: string}) {
                     <p>7</p>
                   </div>
                   <div className="text-center text-sm" aria-live="polite">
-                    {question3options[form.watch("question11") - 1]}
+                    {question11options[form.watch("question11") - 1]}
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -501,7 +580,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question12"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta de escala</FormLabel>
+                  <FormLabel>¿Qué tan introvertido-extrovertido te consideras?</FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -516,7 +595,7 @@ export function ProfileForm({username}: {username: string}) {
                     <p>7</p>
                   </div>
                   <div className="text-center text-sm" aria-live="polite">
-                    {question3options[form.watch("question12") - 1]}
+                    {question12options[form.watch("question12") - 1]}
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -527,7 +606,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question13"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta de escala</FormLabel>
+                  <FormLabel>¿Qué tan importante es la condición física en tu vida?</FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -542,7 +621,7 @@ export function ProfileForm({username}: {username: string}) {
                     <p>7</p>
                   </div>
                   <div className="text-center text-sm" aria-live="polite">
-                    {question3options[form.watch("question13") - 1]}
+                    {question13options[form.watch("question13") - 1]}
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -553,7 +632,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question14"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta de escala</FormLabel>
+                  <FormLabel>¿Qué tan optimista eres acerca de la vida?</FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -568,7 +647,7 @@ export function ProfileForm({username}: {username: string}) {
                     <p>7</p>
                   </div>
                   <div className="text-center text-sm" aria-live="polite">
-                    {question3options[form.watch("question14") - 1]}
+                    {question14options[form.watch("question14") - 1]}
                   </div>
                   <FormMessage />
                 </FormItem>
@@ -579,7 +658,7 @@ export function ProfileForm({username}: {username: string}) {
               name="question15"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pregunta de escala</FormLabel>
+                  <FormLabel>¿Cuál es tu modo de responder al conflicto en una relación?</FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -594,7 +673,7 @@ export function ProfileForm({username}: {username: string}) {
                     <p>7</p>
                   </div>
                   <div className="text-center text-sm" aria-live="polite">
-                    {question3options[form.watch("question15") - 1]}
+                    {question15options[form.watch("question15") - 1]}
                   </div>
                   <FormMessage />
                 </FormItem>
