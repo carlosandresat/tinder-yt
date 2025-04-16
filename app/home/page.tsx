@@ -11,7 +11,7 @@ import { VerificationForm } from "@/components/verification-form";
 export default async function Page() {
   const session = await auth()
   const isUserVerified = await isVerified(session?.user?.id)
-  const matchsDate = new Date("2025-04-17T01:00");
+  const matchsDate = new Date("2025-04-18T01:00");
   const isAppActive = true;
   const isFormAnswered = await isAlreadyAnswered();
   
