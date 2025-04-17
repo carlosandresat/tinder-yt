@@ -52,14 +52,74 @@ export function MatchAnswersDialog({
   question14,
   question15,
 }: MatchAnswers) {
-  const question3options = [
-    "Mensaje de opción 1",
-    "Mensaje de opción 2",
-    "Mensaje de opción 3",
-    "Mensaje de opción 4",
-    "Mensaje de opción 5",
-    "Mensaje de opción 6",
-    "Mensaje de opción 7"
+  const question9options = [
+    "No le doy importancia, prefiero la variedad emocional.",
+    "Poco importante, vivo intensamente mis altibajos.",
+    "Algo importante, aunque me dejo llevar por el momento.",
+    "Valoro la estabilidad, pero también la emoción.",
+    "Bastante importante, busco serenidad en mis emociones.",
+    "Muy importante, priorizo un ambiente emocional constante.",
+    "Esencial, necesito estabilidad para sentirme seguro y equilibrado.",
+  ];
+
+  const question10options = [
+    "Para nada, la vida es incierta",
+    "Poco importante, uno tiene que vivir el presente",
+    "Algo importante, pero no es lo más relevante",
+    "A veces lo considero, pero no siempre me preocupa",
+    "Me gusta tener metas, aunque no siempre son rígidas",
+    "Muy importante, me esfuerzo por tener un plan claro para mi futuro",
+    "Esencial, me gusta tener un plan y saber que todo está bajo control",
+  ];
+
+  const question11options = [
+    "Evito los riesgos a toda costa; prefiero la seguridad",
+    "Muy cauteloso, solo asumo riesgos mínimos",
+    "Poco arriesgado, solo tomo riesgos calculados en ocasiones",
+    "Tomo riesgos cuando veo una oportunidad",
+    "Bastante arriesgado, me gusta probar mis límites",
+    "Muy aventurero, asumo grandes riesgos frecuentemente",
+    "Extremadamente arriesgado, vivo para apostar y desafiar lo seguro",
+  ];
+
+  const question12options = [
+    "Muy reservado; prefiero la tranquilidad y la soledad.",
+    "Bastante introvertido; disfruto de espacios reducidos.",
+    "Mayormente tranquilo, socializo en grupos pequeños.",
+    "Me gusta socializar sin perder mi espacio personal.",
+    "Disfruto conversar y reunirme con amigos.",
+    "Me energiza la interacción constante.",
+    "Extrovertido en exceso, siempre busco grandes encuentros sociales."
+  ];
+
+  const question13options = [
+    "No le doy ninguna importancia a mi estado físico.",
+    "Casi no me preocupo por mantenerme en forma.",
+    "Reconozco la importancia, pero la cuido de manera esporádica.",
+    "Intento mantenerme activo, aunque no es mi prioridad principal.",
+    "Trabajo regularmente en mi condición física y me esfuerzo por estar en forma.",
+    "La actividad física es fundamental para mi bienestar y la practico con frecuencia.",
+    "No pain, no gain",
+  ];
+
+  const question14options = [
+    "Siempre veo el lado negativo de todo.",
+    "Rara vez encuentro motivos para el optimismo.",
+    "Tiendo a ver dificultades aunque reconozco lo positivo en ocasiones.",
+    "Reconozco tanto los desafíos como las oportunidades.",
+    "Soy optimista y veo el vaso medio lleno.",
+    "Confío en que las cosas saldrán bien la mayoría de las veces.",
+    "Soy extremadamente optimista y tengo una visión positiva e inspiradora de la vida."
+  ];
+
+  const question15options = [
+    "Evitarlo por completo: Hago todo lo posible por no tener conflictos, incluso si eso implica callar mis opiniones.",
+    "Evitarlo en lo posible: Trato de evitar el conflicto la mayor parte del tiempo, incluso cuando algo me molesta.",
+    "Prefiero evitarlo, pero lo enfrento si es necesario: Me incomodan los conflictos, pero si no hay otra opción, los enfrento.",
+    "Depende de la situación: Mi reacción ante el conflicto varía según el contexto o la persona.",
+    "Prefiero enfrentarlo, aunque con cuidado: Suelo abordar los conflictos cuando ocurren, pero trato de hacerlo con calma.",
+    "Suelo enfrentar el conflicto directamente: No me gusta dejar asuntos sin resolver y normalmente los enfrento rápidamente.",
+    "Lo enfrento de inmediato: Siempre busco resolver los conflictos apenas surgen, sin postergarlos."
   ];
 
   return (
@@ -234,7 +294,7 @@ export function MatchAnswersDialog({
                   <p>7</p>
                 </div>
                 <div className="text-center text-sm">
-                  {question3options[question9 - 1]}
+                  {question9options[question9 - 1]}
                 </div>
               </>
             ) : (
@@ -253,7 +313,7 @@ export function MatchAnswersDialog({
                   <p>7</p>
                 </div>
                 <div className="text-center text-sm">
-                  {question3options[question10 - 1]}
+                  {question10options[question10 - 1]}
                 </div>
               </>
             ) : (
@@ -272,7 +332,7 @@ export function MatchAnswersDialog({
                   <p>7</p>
                 </div>
                 <div className="text-center text-sm">
-                  {question3options[question11 - 1]}
+                  {question11options[question11 - 1]}
                 </div>
               </>
             ) : (
@@ -291,7 +351,7 @@ export function MatchAnswersDialog({
                   <p>7</p>
                 </div>
                 <div className="text-center text-sm">
-                  {question3options[question12 - 1]}
+                  {question12options[question12 - 1]}
                 </div>
               </>
             ) : (
@@ -310,7 +370,7 @@ export function MatchAnswersDialog({
                   <p>7</p>
                 </div>
                 <div className="text-center text-sm">
-                  {question3options[question13 - 1]}
+                  {question13options[question13 - 1]}
                 </div>
               </>
             ) : (
@@ -329,7 +389,7 @@ export function MatchAnswersDialog({
                   <p>7</p>
                 </div>
                 <div className="text-center text-sm">
-                  {question3options[question14 - 1]}
+                  {question14options[question14 - 1]}
                 </div>
               </>
             ) : (
@@ -348,7 +408,7 @@ export function MatchAnswersDialog({
                   <p>7</p>
                 </div>
                 <div className="text-center text-sm">
-                  {question3options[question15 - 1]}
+                  {question15options[question15 - 1]}
                 </div>
               </>
             ) : (
