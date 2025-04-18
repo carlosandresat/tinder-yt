@@ -99,7 +99,7 @@ export function MatchCard({
           <p className="scroll-m-20 text-lg font-semibold tracking-tight mt-2">
             Redes sociales
           </p>
-          <p className="leading-normal">{contact}</p>
+          <p className="leading-normal break-words">{contact}</p>
         </div>
       ) : (
         <div className="flex flex-col p-6 border-t justify-center items-center flex-grow space-y-2">
