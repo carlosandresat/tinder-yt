@@ -188,6 +188,57 @@ async function calculateMatchScore(userId1: string, userId2: string) {
   return finalScore;
 }
 
+export async function calculateMatchScoreForUser() {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("User not authenticated");
+  }
+  const userId = session.user.id;
+  // Fetch all users except the current user
+  const users = await db.user.findMany({
+    where: { id: { not: userId } },
+    select: {
+      id: true,
+      sex: true,
+      userProfile: { select: { sexPreference: true } },
+    },
+  });
+
+  // Get all valid user pairs based on sex and sexPreference
+  const validPairs: [string, string][] = [];
+  const userA = users.find((user) => user.id === userId);
+  if (!userA) return; // Skip if userA not found
+  for (let i = 0; i < users.length; i++) {
+    const userB = users[i];
+    if (!userB) continue; // Skip if userB not found
+    if (userA.id === userB?.id) continue; // Skip if same user
+
+    // Check if userA is interested in userB
+    const aLikesB =
+      userA.userProfile?.sexPreference === "both" ||
+      userA.userProfile?.sexPreference === userB.sex;
+
+    // Check if userB is interested in userA
+    const bLikesA =
+      userB.userProfile?.sexPreference === "both" ||
+      userB.userProfile?.sexPreference === userA.sex;
+
+    // Only match if both users are interested in each other
+    if (aLikesB && bLikesA) {
+      validPairs.push([userA.id, userB.id]);
+    }
+  }
+
+  // Compute and store matches in parallel
+  await Promise.all(
+    validPairs.map(([userId1, userId2]) =>
+      calculateMatchScore(userId1, userId2)
+    )
+  );
+  // Revalidate the path to ensure the latest data is fetched
+  revalidatePath("/home");
+}
+
 export async function calculateAllMatches () {
   // Fetch all users with their profiles (to access sex & sexPreference)
   const users = await db.user.findMany({
