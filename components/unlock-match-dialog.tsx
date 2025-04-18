@@ -22,8 +22,7 @@ export function UnlockMatchDialog({ matchId }: { matchId: number }) {
         <AlertDialogHeader>
           <AlertDialogTitle>Confirmar desbloqueo</AlertDialogTitle>
           <AlertDialogDescription>
-            Revelar este match gastará uno de tus desbloqueos disponibles. Si
-            estás seguro de que quieres desbloquearlo, porfa confirma.
+            Revelar este match gastará uno de tus desbloqueos disponibles. Recuerda mantener el respeto al contactar con tu match. No te lo tomes personal si no te responde, así es la vida. Puedes comenzar la conversación hablando de sus respuestas en común. Suerte con tu match y que formen una memorable conexión 🌟
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
