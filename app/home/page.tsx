@@ -44,7 +44,7 @@ export default async function Page() {
         </main>
       );
     } else {
-      if (Date.now() < matchsDate.getTime() || session?.user?.email === "ruth.villafuerte@yachaytech.edu.ec") {
+      if (Date.now() < matchsDate.getTime()) {
         //const weeklyData = await getWeeklyAnswersData();
         //const isWeeklyAnswered = await getUserWeeklyAnswersStatus(session?.user?.id)
       
