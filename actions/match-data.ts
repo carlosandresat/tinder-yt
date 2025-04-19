@@ -105,7 +105,6 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
         });
       }
     }
-    revalidatePath("/home");
     return { success: true };
   } catch (error) {
     console.error("Error inserting survey data:", error);
