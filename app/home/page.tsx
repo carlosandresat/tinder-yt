@@ -13,7 +13,6 @@ export default async function Page() {
   const isUserVerified = await isVerified(session?.user?.id)
   const matchsDate = new Date("2025-04-18T01:00");
   const isAppActive = true;
-  const isFormAnswered = await isAlreadyAnswered();
   
   if (!isUserVerified.verified) {
     return (
@@ -44,6 +43,7 @@ export default async function Page() {
         </main>
       );
     } else {
+      const isFormAnswered = await isAlreadyAnswered();
       //const weeklyData = await getWeeklyAnswersData();
       //const isWeeklyAnswered = await getUserWeeklyAnswersStatus(session?.user?.id)
 
