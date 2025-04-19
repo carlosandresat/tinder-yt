@@ -216,7 +216,6 @@ export async function calculateMatchScoreForUser() {
   const userId = session.user.id;
   // Fetch all users except the current user
   const users = await db.user.findMany({
-    where: { id: { not: userId } },
     select: {
       id: true,
       sex: true,
