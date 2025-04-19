@@ -299,7 +299,7 @@ export async function getTopMatches() {
           fullname: true,
           userProfile: { select: { description: true, contact: true } },
           responses: {
-            where: { questionId: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] } },
+            where: { questionId: { in: Array.from({ length: 15 }, (_, i) => i + 1) } },
             include: { multipleChoices: { include: { option: true } }, question: true },
           },
         },
@@ -311,7 +311,7 @@ export async function getTopMatches() {
           fullname: true,
           userProfile: { select: { description: true, contact: true } },
           responses: {
-            where: { questionId: { in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] } },
+            where: { questionId: { in: Array.from({ length: 15 }, (_, i) => i + 1) } },
             include: { multipleChoices: { include: { option: true } }, question: true },
           },
         },
