@@ -677,7 +677,7 @@ export function ProfileForm({username}: {username: string}) {
                 disabled={isPending}
                 className="w-full sm:w-auto "
               >
-                Ingresar respuestas
+                {isPending ? "Ingresando respuestas..." : "Ingresar respuestas"}
               </Button>
             </div>
           </form>
