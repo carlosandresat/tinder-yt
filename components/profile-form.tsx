@@ -29,7 +29,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { upload } from '@vercel/blob/client';
-import { insertMatchData, updateImage } from "@/actions/match-data";
+import { calculateMatchScoreForUser, insertMatchData, updateImage } from "@/actions/match-data";
 
 export function ProfileForm({username}: {username: string}) {
   const [isPending, startTransition] = useTransition();
@@ -134,6 +134,8 @@ export function ProfileForm({username}: {username: string}) {
         await updateImage(newBlob.url);
 
         const res = await insertMatchData(data)
+
+        await calculateMatchScoreForUser();
 
         if (res.success) {
           toast({
