@@ -304,44 +304,73 @@ export async function getTopMatches() {
   if (!userId) {
     throw new Error("User not authenticated");
   }
+
+  const matchInclude = {
+    user1: {
+      select: {
+        id: true,
+        image: true,
+        fullname: true,
+        userProfile: { select: { description: true, contact: true } },
+        responses: {
+          where: { questionId: { in: Array.from({ length: 15 }, (_, i) => i + 1) } },
+          include: { multipleChoices: { include: { option: true } }, question: true },
+        },
+      },
+    },
+    user2: {
+      select: {
+        id: true,
+        image: true,
+        fullname: true,
+        userProfile: { select: { description: true, contact: true } },
+        responses: {
+          where: { questionId: { in: Array.from({ length: 15 }, (_, i) => i + 1) } },
+          include: { multipleChoices: { include: { option: true } }, question: true },
+        },
+      },
+    },
+  };
+  
   // Fetch the top 15 matches for the user
-  const matches = await db.match.findMany({
+  const topMatches = await db.match.findMany({
     where: {
       OR: [{ userId1: userId }, { userId2: userId }],
     },
     orderBy: { score: "desc" },
     take: 15,
-    include: {
-      user1: {
-        select: {
-          id: true,
-          image: true,
-          fullname: true,
-          userProfile: { select: { description: true, contact: true } },
-          responses: {
-            where: { questionId: { in: Array.from({ length: 15 }, (_, i) => i + 1) } },
-            include: { multipleChoices: { include: { option: true } }, question: true },
-          },
-        },
-      },
-      user2: {
-        select: {
-          id: true,
-          image: true,
-          fullname: true,
-          userProfile: { select: { description: true, contact: true } },
-          responses: {
-            where: { questionId: { in: Array.from({ length: 15 }, (_, i) => i + 1) } },
-            include: { multipleChoices: { include: { option: true } }, question: true },
-          },
-        },
-      },
-    },
+    include: matchInclude,
   });
 
+  // Get all unlocked matches not already in topMatches
+  const unlockedMatches = await db.match.findMany({
+    where: {
+      OR: [
+        { userId1: userId },
+        { userId2: userId },
+      ],
+      AND: [
+        {
+          OR: [
+            { unlockedFor: "BOTH" },
+            { userId1: userId, unlockedFor: "USER1" },
+            { userId2: userId, unlockedFor: "USER2" },
+          ],
+        },
+        {
+          id: {
+            notIn: topMatches.map((match) => match.id),
+          },
+        },
+      ],
+    },
+    orderBy: { score: "desc" },
+    include: matchInclude,
+  });
 
-  return matches.map((match, index) => {
-    // Determine the other user and unlock status
+  const combinedMatches = [...topMatches, ...unlockedMatches];
+
+  return combinedMatches.map((match, index) => {
     const isUser1 = match.userId1 === userId;
     const otherUser = isUser1 ? match.user2 : match.user1;
     const unlocked =
@@ -349,22 +378,11 @@ export async function getTopMatches() {
       (isUser1 && match.unlockedFor === "USER1") ||
       (!isUser1 && match.unlockedFor === "USER2");
 
-    // Retrieve answers from responses
-    const question1Response = otherUser.responses.find((r) => r.questionId === 1);
-    const question2Response = otherUser.responses.find((r) => r.questionId === 2);
-    const question3Response = otherUser.responses.find((r) => r.questionId === 3);
-    const question4Response = otherUser.responses.find((r) => r.questionId === 4);
-    const question5Response = otherUser.responses.find((r) => r.questionId === 5);
-    const question6Response = otherUser.responses.find((r) => r.questionId === 6);
-    const question7Response = otherUser.responses.find((r) => r.questionId === 7);
-    const question8Response = otherUser.responses.find((r) => r.questionId === 8);
-    const question9Response = otherUser.responses.find((r) => r.questionId === 9);
-    const question10Response = otherUser.responses.find((r) => r.questionId === 10);
-    const question11Response = otherUser.responses.find((r) => r.questionId === 11);
-    const question12Response = otherUser.responses.find((r) => r.questionId === 12);
-    const question13Response = otherUser.responses.find((r) => r.questionId === 13);
-    const question14Response = otherUser.responses.find((r) => r.questionId === 14);
-    const question15Response = otherUser.responses.find((r) => r.questionId === 15);
+    const getResponse = (qId: number) =>
+      otherUser.responses.find((r) => r.questionId === qId);
+
+    const getMCOptions = (qId: number) =>
+      getResponse(qId)?.multipleChoices.map((choice) => choice.optionId.toString()) ?? [];
 
     return {
       matchId: match.id,
@@ -376,37 +394,21 @@ export async function getTopMatches() {
       description: unlocked && otherUser.userProfile ? otherUser.userProfile.description : null,
       contact: unlocked && otherUser.userProfile ? otherUser.userProfile.contact : null,
       answers: {
-        question1: question1Response?.selectedOptionId
-          ? question1Response.selectedOptionId.toString()
-          : null,
-        question2: question2Response?.selectedOptionId
-          ? question2Response.selectedOptionId.toString()
-          : null,
-        question3: question3Response?.selectedOptionId   
-          ? question3Response.selectedOptionId.toString()
-          : null,
-        question4: question4Response?.selectedOptionId
-          ? question4Response.selectedOptionId.toString()
-          : null,
-        question5: question5Response
-          ? question5Response.multipleChoices.map((choice) => choice.optionId.toString())
-          : [],
-        question6: question6Response
-          ? question6Response.multipleChoices.map((choice) => choice.optionId.toString())
-          : [],
-        question7: question7Response
-          ? question7Response.multipleChoices.map((choice) => choice.optionId.toString())
-          : [],
-        question8: question8Response
-          ? question8Response.multipleChoices.map((choice) => choice.optionId.toString())
-          : [],
-        question9: question9Response?.scaleValue ?? null,
-        question10: question10Response?.scaleValue ?? null,
-        question11: question11Response?.scaleValue ?? null,
-        question12: question12Response?.scaleValue ?? null,
-        question13: question13Response?.scaleValue ?? null,
-        question14: question14Response?.scaleValue ?? null,
-        question15: question15Response?.scaleValue ?? null,
+        question1: getResponse(1)?.selectedOptionId?.toString() ?? null,
+        question2: getResponse(2)?.selectedOptionId?.toString() ?? null,
+        question3: getResponse(3)?.selectedOptionId?.toString() ?? null,
+        question4: getResponse(4)?.selectedOptionId?.toString() ?? null,
+        question5: getMCOptions(5),
+        question6: getMCOptions(6),
+        question7: getMCOptions(7),
+        question8: getMCOptions(8),
+        question9: getResponse(9)?.scaleValue ?? null,
+        question10: getResponse(10)?.scaleValue ?? null,
+        question11: getResponse(11)?.scaleValue ?? null,
+        question12: getResponse(12)?.scaleValue ?? null,
+        question13: getResponse(13)?.scaleValue ?? null,
+        question14: getResponse(14)?.scaleValue ?? null,
+        question15: getResponse(15)?.scaleValue ?? null,
       },
     };
   });
