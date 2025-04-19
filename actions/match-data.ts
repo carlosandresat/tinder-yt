@@ -105,6 +105,26 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
         });
       }
     }
+    // add dynamically available unlocks to user (add 1 for male, add 2 for female)
+    const user = await db.user.findUnique({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new Error("User not found");
+    }
+    if (user.sex === "f") {
+      await db.user.update({
+        where: { id: userId },
+        data: { availableUnlocks: user.availableUnlocks + 2 },
+      });
+    }
+    if (user.sex === "m") {
+      await db.user.update({
+        where: { id: userId },
+        data: { availableUnlocks: user.availableUnlocks + 1 },
+      });
+    }
+
     return { success: true };
   } catch (error) {
     console.error("Error inserting survey data:", error);
