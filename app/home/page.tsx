@@ -44,26 +44,30 @@ export default async function Page() {
         </main>
       );
     } else {
-      if (Date.now() < matchsDate.getTime()) {
-        //const weeklyData = await getWeeklyAnswersData();
-        //const isWeeklyAnswered = await getUserWeeklyAnswersStatus(session?.user?.id)
-      
-        if (!isFormAnswered) {
-          return (
-            <main className="flex min-h-screen flex-col items-center pb-24">
-              <div className="w-full flex items-center justify-between mt-8 px-8">
-                <ModeToggle />
-                <LogoutButton />
-              </div>
-              <div className="w-full flex flex-col max-w-screen-xl p-8 space-y-8">
-                <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
-                  Formulario TinderYT
-                </h3>
-                <ProfileForm username={session?.user?.email?.split("@")[0].replace(".", "-") ?? ""}/>
-              </div>
-            </main>
-          );
-        } else {
+      //const weeklyData = await getWeeklyAnswersData();
+      //const isWeeklyAnswered = await getUserWeeklyAnswersStatus(session?.user?.id)
+
+      if (!isFormAnswered) {
+        return (
+          <main className="flex min-h-screen flex-col items-center pb-24">
+            <div className="w-full flex items-center justify-between mt-8 px-8">
+              <ModeToggle />
+              <LogoutButton />
+            </div>
+            <div className="w-full flex flex-col max-w-screen-xl p-8 space-y-8">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
+                Formulario TinderYT
+              </h3>
+              <ProfileForm
+                username={
+                  session?.user?.email?.split("@")[0].replace(".", "-") ?? ""
+                }
+              />
+            </div>
+          </main>
+        );
+      } else {
+        if (Date.now() < matchsDate.getTime()) {
           return (
             <main className="flex min-h-screen flex-col items-center">
               <div className="w-full flex items-center justify-between mt-8 px-8">
@@ -78,23 +82,6 @@ export default async function Page() {
                 <div className="mt-8">
                   <Countdown targetDate={matchsDate} />
                 </div>
-              </div>
-            </main>
-          );
-        }
-      } else {
-        if (!isFormAnswered) {
-          return (
-            <main className="flex min-h-screen flex-col items-center">
-              <div className="w-full flex items-center justify-between mt-8 px-8">
-                <ModeToggle />
-                <LogoutButton />
-              </div>
-              <div className="absolute h-full w-full flex flex-col justify-center max-w-screen-xl p-8 -z-10">
-                <p className="text-xl text-muted-foreground text-center">
-                  Ya se realizaron los matchs. ¡Contesta con tiempo la encuesta
-                  para la próxima ronda!
-                </p>
               </div>
             </main>
           );
