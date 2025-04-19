@@ -18,7 +18,7 @@ export async function MatchSection() {
         Tus Matchs
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full">
-        {matches.map((match, index) => (
+        {matches.slice(0, 15).map((match, index) => (
           <MatchCard
             key={match.matchId}
             matchId={match.matchId}
@@ -34,6 +34,30 @@ export async function MatchSection() {
           />
         ))}
       </div>
+      {matches.length > 15 && (
+        <>
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight self-center mt-6">
+            Matchs desbloqueados que ya no están en tu Top 15
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full">
+            {matches.slice(15).map((match, index) => (
+              <MatchCard
+                key={match.matchId}
+                matchId={match.matchId}
+                tier={index + 16}
+                unlocked={match.unlocked}
+                score={match.score}
+                image={match.image}
+                name={match.name}
+                description={match.description}
+                contact={match.contact}
+                answers={match.answers}
+                hasAvailableUnlocks={hasAvailableUnlocks}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
