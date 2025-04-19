@@ -124,6 +124,7 @@ export async function insertMatchData(values: z.infer<typeof MatchFormSchema>) {
         data: { availableUnlocks: user.availableUnlocks + 1 },
       });
     }
+    revalidatePath("/home");
 
     return { success: true };
   } catch (error) {
