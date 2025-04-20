@@ -95,7 +95,7 @@ export function MatchCard({
       </CardFooter>
       {unlocked ? (
         <div className="flex flex-col p-6 border-t">
-          <p className="leading-normal mt-2">{description}</p>
+          <p className="leading-normal mt-2 break-words">{description}</p>
           <p className="scroll-m-20 text-lg font-semibold tracking-tight mt-2">
             Redes sociales
           </p>
