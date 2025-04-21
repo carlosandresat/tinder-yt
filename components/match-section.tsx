@@ -39,11 +39,7 @@ export async function MatchSection() {
                 </p>
               </Badge>
             </div>
-          ) : (
-            <p className="text-sm text-muted-foreground">
-              ¡El descuento ha terminado!
-            </p>
-          )
+          ) : null  
         }
         <PaymentDialog>
           <Button variant="secondary">¿Quieres más desbloqueos?</Button>
