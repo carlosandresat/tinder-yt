@@ -3,6 +3,7 @@ import { MatchCard } from "@/components/match-card";
 import { PaymentDialog } from "@/components/payment-dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { FreeMatchesDialog } from "@/components/free-matches-dialog";
 
 export async function MatchSection() {
   const matches = await getTopMatches();
@@ -15,7 +16,8 @@ export async function MatchSection() {
       <div className="text-lg font-semibold self-end">
         Desbloqueos disponibles: {availableUnlocks}
       </div>
-      <div className=" flex flex-col md:flex-row space-x-4 self-end mt-2 space-y-4 md:space-y-0">
+      <div className=" flex flex-col md:flex-row md:space-x-4 self-end mt-2 space-y-4 md:space-y-0">
+        <FreeMatchesDialog />
         {
           //Time left with discount in hours and minutes with a countdown
           timeLeft > 0 ? (
