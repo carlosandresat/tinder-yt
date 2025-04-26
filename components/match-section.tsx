@@ -9,7 +9,7 @@ export async function MatchSection() {
   const matches = await getTopMatches();
   const availableUnlocks = await getAvailableUnlocks();
   const hasAvailableUnlocks = availableUnlocks > 0;
-  const timeLeft = new Date("2025-04-21T17:00").getTime() - new Date().getTime();
+  const timeLeft = new Date("2025-04-28T05:00").getTime() - new Date().getTime();
 
   return (
     <div className="flex flex-col w-full max-w-screen-xl p-8">
