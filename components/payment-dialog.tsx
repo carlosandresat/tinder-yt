@@ -73,20 +73,20 @@ export function PaymentDialog({ children }: { children: ReactElement }) {
                   <CardContent className="flex-1">
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
-                        <span>Precio{/* Regular*/}:</span>
+                        <span>Precio Regular:</span>
                         <span className="font-medium">
                           ${option.regularPrice.toFixed(2)}
                         </span>
                       </div>
-                     {/* <div className="flex justify-between items-center text-green-600">
+                     <div className="flex justify-between items-center text-green-600">
                         <span>Con Descuento:</span>
                         <span className="font-bold">
                           ${option.discountedPrice.toFixed(2)}
                         </span>
                       </div>
                       <div className="text-sm text-muted-foreground mt-2">
-                        ¡Ahorra 50% con nuestro descuento de lanzamiento!
-                      </div>*/}
+                        ¡Ahorra 50% con nuestro descuento de fin de lanzamiento!
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
