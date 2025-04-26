@@ -10,9 +10,9 @@ export function Countdown({ targetDate }: { targetDate: Date }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4">
+    <div className="flex flex-col items-center justify-center space-y-4 px-8">
       <h2 className="text-2xl font-bold text-center">
-        Los match se realizarán en:
+        Esta ronda de matches terminará en:
       </h2>
       <div className="flex space-x-4">
         {Object.entries(timeLeft).map(([unit, value]) => (

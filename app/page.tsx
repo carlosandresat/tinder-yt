@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const releaseDate = new Date("2025-04-18T01:00");
+  const releaseDate = new Date("2025-04-28T05:00");
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
