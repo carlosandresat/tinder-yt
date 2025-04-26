@@ -44,9 +44,6 @@ export default async function Page() {
       );
     } else {
       const isFormAnswered = await isAlreadyAnswered();
-      //const weeklyData = await getWeeklyAnswersData();
-      //const isWeeklyAnswered = await getUserWeeklyAnswersStatus(session?.user?.id)
-
       if (!isFormAnswered) {
         return (
           <main className="flex min-h-screen flex-col items-center pb-24">
