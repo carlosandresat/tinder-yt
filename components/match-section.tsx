@@ -16,13 +16,13 @@ export async function MatchSection() {
       <div className="text-lg font-semibold self-end">
         Desbloqueos disponibles: {availableUnlocks}
       </div>
-      <div className=" flex flex-col md:flex-row md:space-x-4 self-end mt-2 space-y-4 md:space-y-0">
+      <div className=" flex flex-col md:flex-row md:space-x-4 items-end md:items-center md:justify-end mt-2 space-y-4 md:space-y-0">
         <FreeMatchesDialog />
         {
           //Time left with discount in hours and minutes with a countdown
           timeLeft > 0 ? (
             <div className="flex flex-col md:flex-row items-end md:items-center justify-center md:space-x-2">
-              <h2 className="font-semibold text-center">
+              <h2 className="font-semibold text-right">
                 ¡Descuento del 50% en desbloqueos! Quedan
               </h2>
               <Badge className="space-x-4">
@@ -44,7 +44,7 @@ export async function MatchSection() {
           ) : null  
         }
         <PaymentDialog>
-          <Button variant="secondary">¿Quieres más desbloqueos?</Button>
+          <Button variant="secondary" className="w-fit">¿Quieres más desbloqueos?</Button>
         </PaymentDialog>
       </div>
       <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight self-center mt-6">
