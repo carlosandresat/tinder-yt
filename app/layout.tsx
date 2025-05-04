@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@vercel/analytics/react"
 import { Footer } from "@/components/footer";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const inter = Chakra_Petch({ subsets: ["latin"], weight: "500" });
 
@@ -27,19 +29,23 @@ export default function RootLayout({
           inter.className
         )}
       >
+                            <SidebarProvider>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          <AppSidebar />
           {children}
           <Toaster />
           <Analytics />
-          <div className="absolute w-full">
+          <div className="absolute bottom-0 w-full">
             <Footer />
           </div>
         </ThemeProvider>
+        </SidebarProvider>
       </body>
     </html>
   );
