@@ -80,9 +80,31 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="flex-row items-center justify-between">
-        <LogoutButton />
-        <ModeToggle />
+      <SidebarFooter className="px-[6px]">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              className="group-data-[collapsible=icon]:!p-0 hover:bg-transparent active:bg-transparent"
+            >
+              <div className="flex gap-2 items-center px-0">
+                <ModeToggle />
+                <span>¡Cambia de modo!</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              className="group-data-[collapsible=icon]:!p-0 hover:bg-transparent active:bg-transparent"
+            >
+              <div className="flex gap-2 items-center px-0">
+                <LogoutButton />
+                <span>Cerrar Sesión</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );
