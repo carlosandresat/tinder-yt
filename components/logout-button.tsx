@@ -10,8 +10,9 @@ export function LogoutButton() {
 
         await signOut({redirectTo: "/"});
       }}
+      className="px-0 py-0 max-w-fit"
     >
-      <Button type="submit">
+      <Button type="submit" size="icon" variant="secondary" className="flex items-center justify-center">
         <Power />
       </Button>
     </form>
