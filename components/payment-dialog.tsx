@@ -78,7 +78,7 @@ export function PaymentDialog({ children }: { children: ReactElement }) {
                           ${option.regularPrice.toFixed(2)}
                         </span>
                       </div>
-                     <div className="flex justify-between items-center text-green-600">
+                      <div className="flex justify-between items-center text-green-600">
                         <span>Con Descuento:</span>
                         <span className="font-bold">
                           ${option.discountedPrice.toFixed(2)}

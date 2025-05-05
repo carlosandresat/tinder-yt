@@ -8,11 +8,16 @@ export function LogoutButton() {
       action={async () => {
         "use server";
 
-        await signOut({redirectTo: "/"});
+        await signOut({ redirectTo: "/" });
       }}
       className="px-0 py-0 max-w-fit"
     >
-      <Button type="submit" size="icon" variant="secondary" className="flex items-center justify-center">
+      <Button
+        type="submit"
+        size="icon"
+        variant="secondary"
+        className="flex items-center justify-center"
+      >
         <Power />
       </Button>
     </form>

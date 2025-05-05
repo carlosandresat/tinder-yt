@@ -89,7 +89,7 @@ export function MatchAnswersDialog({
     "Me gusta socializar sin perder mi espacio personal.",
     "Disfruto conversar y reunirme con amigos.",
     "Me energiza la interacción constante.",
-    "Extrovertido en exceso, siempre busco grandes encuentros sociales."
+    "Extrovertido en exceso, siempre busco grandes encuentros sociales.",
   ];
 
   const question13options = [
@@ -109,7 +109,7 @@ export function MatchAnswersDialog({
     "Reconozco tanto los desafíos como las oportunidades.",
     "Soy optimista y veo el vaso medio lleno.",
     "Confío en que las cosas saldrán bien la mayoría de las veces.",
-    "Soy extremadamente optimista y tengo una visión positiva e inspiradora de la vida."
+    "Soy extremadamente optimista y tengo una visión positiva e inspiradora de la vida.",
   ];
 
   const question15options = [
@@ -119,7 +119,7 @@ export function MatchAnswersDialog({
     "Depende de la situación: Mi reacción ante el conflicto varía según el contexto o la persona.",
     "Prefiero enfrentarlo, aunque con cuidado: Suelo abordar los conflictos cuando ocurren, pero trato de hacerlo con calma.",
     "Suelo enfrentar el conflicto directamente: No me gusta dejar asuntos sin resolver y normalmente los enfrento rápidamente.",
-    "Lo enfrento de inmediato: Siempre busco resolver los conflictos apenas surgen, sin postergarlos."
+    "Lo enfrento de inmediato: Siempre busco resolver los conflictos apenas surgen, sin postergarlos.",
   ];
 
   return (
@@ -148,7 +148,9 @@ export function MatchAnswersDialog({
                 <ToggleGroupItem value="1">Amistad</ToggleGroupItem>
                 <ToggleGroupItem value="2">Amor</ToggleGroupItem>
                 <ToggleGroupItem value="3">Vacile</ToggleGroupItem>
-                <ToggleGroupItem value="4">Que fluya lo que tenga que fluyar</ToggleGroupItem>
+                <ToggleGroupItem value="4">
+                  Que fluya lo que tenga que fluyar
+                </ToggleGroupItem>
               </ToggleGroup>
             ) : (
               <p className="text-sm text-muted-foreground text-center">
@@ -157,7 +159,9 @@ export function MatchAnswersDialog({
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="question2">¿Prefieres las aventuras espontáneas o las salidas planificadas?</Label>
+            <Label htmlFor="question2">
+              ¿Prefieres las aventuras espontáneas o las salidas planificadas?
+            </Label>
             {question2 ? (
               <ToggleGroup
                 type="single"
@@ -176,7 +180,9 @@ export function MatchAnswersDialog({
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="question3">¿Qué es más importante para ti en una relación?</Label>
+            <Label htmlFor="question3">
+              ¿Qué es más importante para ti en una relación?
+            </Label>
             {question3 ? (
               <ToggleGroup
                 type="single"
@@ -185,8 +191,12 @@ export function MatchAnswersDialog({
                 value={question3}
                 id="question3"
               >
-                <ToggleGroupItem value="1">Intereses compartidos</ToggleGroupItem>
-                <ToggleGroupItem value="2">Conversaciones profundas</ToggleGroupItem>
+                <ToggleGroupItem value="1">
+                  Intereses compartidos
+                </ToggleGroupItem>
+                <ToggleGroupItem value="2">
+                  Conversaciones profundas
+                </ToggleGroupItem>
                 <ToggleGroupItem value="3">Independencia mutua</ToggleGroupItem>
               </ToggleGroup>
             ) : (
@@ -196,7 +206,10 @@ export function MatchAnswersDialog({
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="question4">¿Cuál es tu modo preferido de comunicación cuando no estás presente?</Label>
+            <Label htmlFor="question4">
+              ¿Cuál es tu modo preferido de comunicación cuando no estás
+              presente?
+            </Label>
             {question4 ? (
               <ToggleGroup
                 type="single"
@@ -215,7 +228,9 @@ export function MatchAnswersDialog({
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="question5">¿Qué temas de conversación te emocionan más?</Label>
+            <Label htmlFor="question5">
+              ¿Qué temas de conversación te emocionan más?
+            </Label>
             <ToggleGroup
               type="multiple"
               variant="outline"
@@ -224,16 +239,18 @@ export function MatchAnswersDialog({
               id="question5"
             >
               <ToggleGroupItem value="1">Viajes</ToggleGroupItem>
-                <ToggleGroupItem value="2">Tecnología</ToggleGroupItem>
-                <ToggleGroupItem value="3">Arte</ToggleGroupItem>
-                <ToggleGroupItem value="4">Eventos actuales</ToggleGroupItem>
-                <ToggleGroupItem value="5">Filosofía</ToggleGroupItem>
-                <ToggleGroupItem value="6">Deportes</ToggleGroupItem>
-                <ToggleGroupItem value="7">Chisme</ToggleGroupItem>
+              <ToggleGroupItem value="2">Tecnología</ToggleGroupItem>
+              <ToggleGroupItem value="3">Arte</ToggleGroupItem>
+              <ToggleGroupItem value="4">Eventos actuales</ToggleGroupItem>
+              <ToggleGroupItem value="5">Filosofía</ToggleGroupItem>
+              <ToggleGroupItem value="6">Deportes</ToggleGroupItem>
+              <ToggleGroupItem value="7">Chisme</ToggleGroupItem>
             </ToggleGroup>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="question6">¿Qué cualidades valoras más en una pareja?</Label>
+            <Label htmlFor="question6">
+              ¿Qué cualidades valoras más en una pareja?
+            </Label>
             <ToggleGroup
               type="multiple"
               variant="outline"
@@ -268,7 +285,10 @@ export function MatchAnswersDialog({
             </ToggleGroup>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="question8">¿Cuál sería tu reacción más sincera al conocer que la persona que te gusta tiene un super mejor amig@ del sexo opuesto?</Label>
+            <Label htmlFor="question8">
+              ¿Cuál sería tu reacción más sincera al conocer que la persona que
+              te gusta tiene un super mejor amig@ del sexo opuesto?
+            </Label>
             <ToggleGroup
               type="multiple"
               variant="outline"
@@ -277,15 +297,24 @@ export function MatchAnswersDialog({
               id="question8"
             >
               <ToggleGroupItem value="1">Yo también tengo</ToggleGroupItem>
-              <ToggleGroupItem value="2">Las relaciones de amistad son igual de importantes que las románticas 🤓☝</ToggleGroupItem>
+              <ToggleGroupItem value="2">
+                Las relaciones de amistad son igual de importantes que las
+                románticas 🤓☝
+              </ToggleGroupItem>
               <ToggleGroupItem value="3">Mientras haya límites</ToggleGroupItem>
               <ToggleGroupItem value="4">¿Amig@ o amiguit@? 🤨</ToggleGroupItem>
-              <ToggleGroupItem value="5">Tu pareja debería ser tu mejor amig@</ToggleGroupItem>
-              <ToggleGroupItem value="6">Prefiero evitarme ese evento canónico</ToggleGroupItem>
+              <ToggleGroupItem value="5">
+                Tu pareja debería ser tu mejor amig@
+              </ToggleGroupItem>
+              <ToggleGroupItem value="6">
+                Prefiero evitarme ese evento canónico
+              </ToggleGroupItem>
             </ToggleGroup>
           </div>
           <div className="space-y-2">
-            <Label>¿Qué tan importante es para ti la estabilidad emocional?</Label>
+            <Label>
+              ¿Qué tan importante es para ti la estabilidad emocional?
+            </Label>
             {question9 ? (
               <>
                 <div className="flex gap-6 w-full items-center justify-between">
@@ -361,7 +390,9 @@ export function MatchAnswersDialog({
             )}
           </div>
           <div className="space-y-2">
-            <Label>¿Qué tan importante es la condición física en tu vida?</Label>
+            <Label>
+              ¿Qué tan importante es la condición física en tu vida?
+            </Label>
             {question13 ? (
               <>
                 <div className="flex gap-6 w-full items-center justify-between">
@@ -399,7 +430,9 @@ export function MatchAnswersDialog({
             )}
           </div>
           <div className="space-y-2">
-            <Label>¿Cuál es tu modo de responder al conflicto en una relación?</Label>
+            <Label>
+              ¿Cuál es tu modo de responder al conflicto en una relación?
+            </Label>
             {question15 ? (
               <>
                 <div className="flex gap-6 w-full items-center justify-between">

@@ -26,25 +26,21 @@ export async function MatchSection() {
                 ¡Descuento del 50% en desbloqueos! Quedan
               </h2>
               <Badge className="space-x-4">
-                <p
-                  aria-live="polite"
-                  suppressHydrationWarning
-                >
+                <p aria-live="polite" suppressHydrationWarning>
                   {Math.floor(timeLeft / (1000 * 60 * 60))} horas
                 </p>
-                <p
-                  aria-live="polite"
-                  suppressHydrationWarning
-                >
+                <p aria-live="polite" suppressHydrationWarning>
                   {Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))}{" "}
                   minutos
                 </p>
               </Badge>
             </div>
-          ) : null  
+          ) : null
         }
         <PaymentDialog>
-          <Button variant="secondary" className="w-fit">¿Quieres más desbloqueos?</Button>
+          <Button variant="secondary" className="w-fit">
+            ¿Quieres más desbloqueos?
+          </Button>
         </PaymentDialog>
       </div>
       <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight self-center mt-6">

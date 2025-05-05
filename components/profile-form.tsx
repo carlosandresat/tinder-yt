@@ -28,10 +28,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { upload } from '@vercel/blob/client';
-import { calculateMatchScoreForUser, insertMatchData, updateImage } from "@/actions/match-data";
+import { upload } from "@vercel/blob/client";
+import {
+  calculateMatchScoreForUser,
+  insertMatchData,
+  updateImage,
+} from "@/actions/match-data";
 
-export function ProfileForm({username}: {username: string}) {
+export function ProfileForm({ username }: { username: string }) {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof MatchFormSchema>>({
@@ -90,7 +94,7 @@ export function ProfileForm({username}: {username: string}) {
     "Me gusta socializar sin perder mi espacio personal.",
     "Disfruto conversar y reunirme con amigos.",
     "Me energiza la interacción constante.",
-    "Extrovertido en exceso, siempre busco grandes encuentros sociales."
+    "Extrovertido en exceso, siempre busco grandes encuentros sociales.",
   ];
 
   const question13options = [
@@ -110,7 +114,7 @@ export function ProfileForm({username}: {username: string}) {
     "Reconozco tanto los desafíos como las oportunidades.",
     "Soy optimista y veo el vaso medio lleno.",
     "Confío en que las cosas saldrán bien la mayoría de las veces.",
-    "Soy extremadamente optimista y tengo una visión positiva e inspiradora de la vida."
+    "Soy extremadamente optimista y tengo una visión positiva e inspiradora de la vida.",
   ];
 
   const question15options = [
@@ -120,20 +124,20 @@ export function ProfileForm({username}: {username: string}) {
     "Depende de la situación: Mi reacción ante el conflicto varía según el contexto o la persona.",
     "Prefiero enfrentarlo, aunque con cuidado: Suelo abordar los conflictos cuando ocurren, pero trato de hacerlo con calma.",
     "Suelo enfrentar el conflicto directamente: No me gusta dejar asuntos sin resolver y normalmente los enfrento rápidamente.",
-    "Lo enfrento de inmediato: Siempre busco resolver los conflictos apenas surgen, sin postergarlos."
+    "Lo enfrento de inmediato: Siempre busco resolver los conflictos apenas surgen, sin postergarlos.",
   ];
 
   function onSubmit(data: z.infer<typeof MatchFormSchema>) {
     startTransition(async () => {
       try {
         const newBlob = await upload(`tinder-yt/${username}`, data.picture, {
-          access: 'public',
-          handleUploadUrl: '/api/avatar/upload',
+          access: "public",
+          handleUploadUrl: "/api/avatar/upload",
         });
 
         await updateImage(newBlob.url);
 
-        const res = await insertMatchData(data)
+        const res = await insertMatchData(data);
 
         await calculateMatchScoreForUser();
 
@@ -293,7 +297,9 @@ export function ProfileForm({username}: {username: string}) {
                       <ToggleGroupItem value="1">Amistad</ToggleGroupItem>
                       <ToggleGroupItem value="2">Amor</ToggleGroupItem>
                       <ToggleGroupItem value="3">Vacile</ToggleGroupItem>
-                      <ToggleGroupItem value="4">Que fluya lo que tenga que fluyar</ToggleGroupItem>
+                      <ToggleGroupItem value="4">
+                        Que fluya lo que tenga que fluyar
+                      </ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona 1 opción</FormDescription>
@@ -306,7 +312,10 @@ export function ProfileForm({username}: {username: string}) {
               name="question2"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Prefieres las aventuras espontáneas o las salidas planificadas?</FormLabel>
+                  <FormLabel>
+                    ¿Prefieres las aventuras espontáneas o las salidas
+                    planificadas?
+                  </FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="single"
@@ -329,7 +338,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question3"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué es más importante para ti en una relación?</FormLabel>
+                  <FormLabel>
+                    ¿Qué es más importante para ti en una relación?
+                  </FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="single"
@@ -338,9 +349,15 @@ export function ProfileForm({username}: {username: string}) {
                       onValueChange={(value) => field.onChange(Number(value))}
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Intereses compartidos</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Conversaciones profundas</ToggleGroupItem>
-                      <ToggleGroupItem value="3">Independencia mutua</ToggleGroupItem>
+                      <ToggleGroupItem value="1">
+                        Intereses compartidos
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="2">
+                        Conversaciones profundas
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="3">
+                        Independencia mutua
+                      </ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona 1 opción</FormDescription>
@@ -353,7 +370,10 @@ export function ProfileForm({username}: {username: string}) {
               name="question4"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Cuál es tu modo preferido de comunicación cuando no estás presente?</FormLabel>
+                  <FormLabel>
+                    ¿Cuál es tu modo preferido de comunicación cuando no estás
+                    presente?
+                  </FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="single"
@@ -376,7 +396,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question5"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué temas de conversación te emocionan más?</FormLabel>
+                  <FormLabel>
+                    ¿Qué temas de conversación te emocionan más?
+                  </FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="multiple"
@@ -390,7 +412,9 @@ export function ProfileForm({username}: {username: string}) {
                       <ToggleGroupItem value="1">Viajes</ToggleGroupItem>
                       <ToggleGroupItem value="2">Tecnología</ToggleGroupItem>
                       <ToggleGroupItem value="3">Arte</ToggleGroupItem>
-                      <ToggleGroupItem value="4">Eventos actuales</ToggleGroupItem>
+                      <ToggleGroupItem value="4">
+                        Eventos actuales
+                      </ToggleGroupItem>
                       <ToggleGroupItem value="5">Filosofía</ToggleGroupItem>
                       <ToggleGroupItem value="6">Deportes</ToggleGroupItem>
                       <ToggleGroupItem value="7">Chisme</ToggleGroupItem>
@@ -406,7 +430,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question6"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué cualidades valoras más en una pareja?</FormLabel>
+                  <FormLabel>
+                    ¿Qué cualidades valoras más en una pareja?
+                  </FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="multiple"
@@ -425,7 +451,13 @@ export function ProfileForm({username}: {username: string}) {
                       <ToggleGroupItem value="6">Independencia</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
-                  <FormDescription>Selecciona hasta 3 opciones. Nota: pilas que lealtad y fidelidad son distintas. Fidelidad: exclusividad y cumplimiento de promesas o deberes. Lealtad: apoyo incondicional y la defensa de los intereses del otro. La fidelidad ya debería venir por defecto xd</FormDescription>
+                  <FormDescription>
+                    Selecciona hasta 3 opciones. Nota: pilas que lealtad y
+                    fidelidad son distintas. Fidelidad: exclusividad y
+                    cumplimiento de promesas o deberes. Lealtad: apoyo
+                    incondicional y la defensa de los intereses del otro. La
+                    fidelidad ya debería venir por defecto xd
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -446,12 +478,18 @@ export function ProfileForm({username}: {username: string}) {
                       }
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Ecuatoriana (Costa)</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Ecuatoriana (Sierra)</ToggleGroupItem>
+                      <ToggleGroupItem value="1">
+                        Ecuatoriana (Costa)
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="2">
+                        Ecuatoriana (Sierra)
+                      </ToggleGroupItem>
                       <ToggleGroupItem value="3">Mexicana</ToggleGroupItem>
                       <ToggleGroupItem value="4">Asiática</ToggleGroupItem>
                       <ToggleGroupItem value="5">Italiana</ToggleGroupItem>
-                      <ToggleGroupItem value="6">Estadounidense</ToggleGroupItem>
+                      <ToggleGroupItem value="6">
+                        Estadounidense
+                      </ToggleGroupItem>
                       <ToggleGroupItem value="7">Vegetariana</ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
@@ -465,7 +503,11 @@ export function ProfileForm({username}: {username: string}) {
               name="question8"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Cuál sería tu reacción más sincera al conocer que la persona que te gusta tiene un super mejor amig@ del sexo opuesto?</FormLabel>
+                  <FormLabel>
+                    ¿Cuál sería tu reacción más sincera al conocer que la
+                    persona que te gusta tiene un super mejor amig@ del sexo
+                    opuesto?
+                  </FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="multiple"
@@ -476,12 +518,25 @@ export function ProfileForm({username}: {username: string}) {
                       }
                       className="flex-wrap"
                     >
-                      <ToggleGroupItem value="1">Yo también tengo</ToggleGroupItem>
-                      <ToggleGroupItem value="2">Las relaciones de amistad son igual de importantes que las románticas 🤓☝</ToggleGroupItem>
-                      <ToggleGroupItem value="3">Mientras haya límites</ToggleGroupItem>
-                      <ToggleGroupItem value="4">¿Amig@ o amiguit@? 🤨</ToggleGroupItem>
-                      <ToggleGroupItem value="5">Tu pareja debería ser tu mejor amig@</ToggleGroupItem>
-                      <ToggleGroupItem value="6">Prefiero evitarme ese evento canónico</ToggleGroupItem>
+                      <ToggleGroupItem value="1">
+                        Yo también tengo
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="2">
+                        Las relaciones de amistad son igual de importantes que
+                        las románticas 🤓☝
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="3">
+                        Mientras haya límites
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="4">
+                        ¿Amig@ o amiguit@? 🤨
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="5">
+                        Tu pareja debería ser tu mejor amig@
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="6">
+                        Prefiero evitarme ese evento canónico
+                      </ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>
                   <FormDescription>Selecciona hasta 3 opciones</FormDescription>
@@ -494,7 +549,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question9"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué tan importante es para ti la estabilidad emocional?</FormLabel>
+                  <FormLabel>
+                    ¿Qué tan importante es para ti la estabilidad emocional?
+                  </FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -520,7 +577,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question10"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué tan importante es saber dónde estarás en 5 años?</FormLabel>
+                  <FormLabel>
+                    ¿Qué tan importante es saber dónde estarás en 5 años?
+                  </FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -546,7 +605,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question11"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué tan arriesgado eres al tomar decisiones?</FormLabel>
+                  <FormLabel>
+                    ¿Qué tan arriesgado eres al tomar decisiones?
+                  </FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -572,7 +633,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question12"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué tan introvertido-extrovertido te consideras?</FormLabel>
+                  <FormLabel>
+                    ¿Qué tan introvertido-extrovertido te consideras?
+                  </FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -598,7 +661,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question13"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué tan importante es la condición física en tu vida?</FormLabel>
+                  <FormLabel>
+                    ¿Qué tan importante es la condición física en tu vida?
+                  </FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -624,7 +689,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question14"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué tan optimista eres acerca de la vida?</FormLabel>
+                  <FormLabel>
+                    ¿Qué tan optimista eres acerca de la vida?
+                  </FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>
@@ -650,7 +717,9 @@ export function ProfileForm({username}: {username: string}) {
               name="question15"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Cuál es tu modo de responder al conflicto en una relación?</FormLabel>
+                  <FormLabel>
+                    ¿Cuál es tu modo de responder al conflicto en una relación?
+                  </FormLabel>
                   <div className="flex gap-6 w-full items-center justify-between">
                     <p>1</p>
                     <FormControl>

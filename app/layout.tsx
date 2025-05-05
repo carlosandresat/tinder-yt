@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
 import { Chakra_Petch } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster"
-import { Analytics } from "@vercel/analytics/react"
+import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "@/components/footer";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 
 const inter = Chakra_Petch({ subsets: ["latin"], weight: "500" });
 

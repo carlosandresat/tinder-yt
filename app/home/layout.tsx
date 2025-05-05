@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <AppSidebar />
 
       <main className="flex min-h-screen flex-col items-center w-full">
-        <SidebarTrigger className="self-start m-8" variant="default"/>
+        <SidebarTrigger className="self-start m-8" variant="default" />
         {children}
       </main>
     </SidebarProvider>
