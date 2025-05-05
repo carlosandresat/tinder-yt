@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/auth";
+import { Power } from "lucide-react";
 
 export function LogoutButton() {
   return (
@@ -10,7 +11,9 @@ export function LogoutButton() {
         await signOut({redirectTo: "/"});
       }}
     >
-      <Button type="submit">Salir</Button>
+      <Button type="submit">
+        <Power />
+      </Button>
     </form>
   );
 }
