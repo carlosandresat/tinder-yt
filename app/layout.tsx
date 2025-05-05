@@ -36,9 +36,6 @@ export default function RootLayout({
           {children}
           <Toaster />
           <Analytics />
-          <div className="absolute bottom-0 w-full">
-            <Footer />
-          </div>
         </ThemeProvider>
       </body>
     </html>
