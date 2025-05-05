@@ -12,7 +12,7 @@ export async function MatchSection() {
   const timeLeft = new Date("2025-04-28T05:00").getTime() - new Date().getTime();
 
   return (
-    <div className="flex flex-col w-full max-w-screen-xl p-8">
+    <div className="flex flex-col w-full max-w-screen-xl px-8 pb-28">
       <div className="text-lg font-semibold self-end">
         Desbloqueos disponibles: {availableUnlocks}
       </div>

@@ -5,15 +5,13 @@ export default async function Page() {
   const session = await auth();
   if (!session?.user) {
     return (
-      <main className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-2xl font-semibold tracking-tight text-center">
-          No has iniciado sesión
-        </h1>
-      </main>
+      <h1 className="text-2xl font-semibold tracking-tight text-center">
+        No has iniciado sesión
+      </h1>
     );
   }
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen">
+    <>
       <h1 className="text-2xl font-semibold tracking-tight text-center">
         Perfil de usuario
       </h1>
@@ -30,6 +28,6 @@ export default async function Page() {
         {session.user.name}
       </h2>
       <p className="text-lg text-muted-foreground mt-2">{session.user.email}</p>
-    </main>
+    </>
   );
 }

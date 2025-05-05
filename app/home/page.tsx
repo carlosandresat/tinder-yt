@@ -16,42 +16,25 @@ export default async function Page() {
   
   if (!isUserVerified.verified) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center">
-        <div className="w-full flex items-center justify-between mt-8 px-8 absolute top-0">
-          <ModeToggle />
-          <LogoutButton />
-        </div>
-        <div className="w-full max-w-screen-xl p-8">
+        <div className="max-w-screen-xl p-8 absolute flex-1 top-1/2 -translate-y-1/2">
           <VerificationForm userId={session?.user?.id}/>
         </div>
-      </main>
     );
   } else {
     if (!isAppActive) {
       return (
-        <main className="flex min-h-screen flex-col items-center justify-center">
-          <div className="w-full flex items-center justify-between mt-8 px-8 absolute top-0">
-            <ModeToggle />
-            <LogoutButton />
-          </div>
-          <div className="w-full max-w-screen-xl p-8">
+          <div className="max-w-screen-lg p-8 absolute top-1/2 transform -translate-y-1/2">
             <p className="text-xl text-muted-foreground text-center">
               La aplicación no se encuentra activa, quédate atento a las redes
               sociales para saber cuando habrán nuevos matchs
             </p>
           </div>
-        </main>
       );
     } else {
       const isFormAnswered = await isAlreadyAnswered();
       if (!isFormAnswered) {
         return (
-          <main className="flex min-h-screen flex-col items-center pb-24">
-            <div className="w-full flex items-center justify-between mt-8 px-8">
-              <ModeToggle />
-              <LogoutButton />
-            </div>
-            <div className="w-full flex flex-col max-w-screen-xl p-8 space-y-8">
+            <div className="w-full flex flex-col max-w-screen-xl px-8 pb-28 space-y-8">
               <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
                 Formulario TinderYT
               </h3>
@@ -61,17 +44,11 @@ export default async function Page() {
                 }
               />
             </div>
-          </main>
         );
       } else {
         if (Date.now() < matchsDate.getTime()) {
           return (
-            <main className="flex min-h-screen flex-col items-center">
-              <div className="w-full flex items-center justify-between mt-8 px-8">
-                <ModeToggle />
-                <LogoutButton />
-              </div>
-              <div className="absolute h-full w-full flex flex-col justify-center max-w-screen-xl p-8 -z-10">
+              <div className="absolute h-full flex flex-col justify-center max-w-screen-xl p-8 -z-10">
                 <p className="text-xl text-muted-foreground text-center justify-center">
                   Gracias por responder la encuesta, próximamente podrás ver tus
                   matchs
@@ -80,18 +57,10 @@ export default async function Page() {
                   <Countdown targetDate={matchsDate} />
                 </div>
               </div>
-            </main>
           );
         } else {
           return (
-            <main className="flex min-h-screen flex-col items-center pb-24">
-              <div className="w-full flex items-center justify-between mt-8 px-8">
-                <ModeToggle />
-                <LogoutButton />
-              </div>
-
               <MatchSection />
-            </main>
           );
         }
       }
