@@ -25,19 +25,16 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background antialiased",
+          "min-h-screen bg-background antialiased relative",
           inter.className
         )}
       >
-                            <SidebarProvider>
-
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <AppSidebar />
           {children}
           <Toaster />
           <Analytics />
@@ -45,7 +42,6 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-        </SidebarProvider>
       </body>
     </html>
   );
