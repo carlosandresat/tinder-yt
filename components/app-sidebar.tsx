@@ -42,18 +42,24 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar>
-      <SidebarHeader className="flex-row items-center justify-center gap-2 px-4 py-4 border-b font-semibold">
-        <div className="flex items-center justify-center">
-          <Image
-            className="size-12 rounded-full"
-            src="/logo.webp"
-            alt="Logo"
-            width={80}
-            height={80}
-          />
-        </div>
-        TinderYT
+    <Sidebar collapsible="icon">
+      <SidebarHeader className="border-b">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/home">
+                <Image
+                  className="size-8 rounded-full"
+                  src="/logo.webp"
+                  alt="Logo"
+                  width={80}
+                  height={80}
+                />
+                <span className="ml-2 font-semibold">TinderYT</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
