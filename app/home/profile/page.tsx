@@ -52,8 +52,8 @@ export default async function Page() {
             <Image
               src="/media-icons/whatsapp.png"
               alt="Whatsapp Icon"
-              height={32}
-              width={32}
+              height={26}
+              width={26}
               className=" dark:invert"
             />
             <Input
@@ -71,8 +71,8 @@ export default async function Page() {
             <Image
               src="/media-icons/instagram.png"
               alt="Instagram Icon"
-              height={32}
-              width={32}
+              height={26}
+              width={26}
               className=" dark:invert"
             />
             <Input
@@ -90,8 +90,8 @@ export default async function Page() {
             <Image
               src="/media-icons/facebook.png"
               alt="Facebook Icon"
-              height={32}
-              width={32}
+              height={26}
+              width={26}
               className=" dark:invert"
             />
             <Input
