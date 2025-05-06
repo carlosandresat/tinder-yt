@@ -19,8 +19,8 @@ export default function Page() {
         Lista de Bloqueados
       </h1>
       <p className="text-muted-foreground max-w-screen-lg px-8 pt-2 text-center">
-        ¿Tienes a alguien que no quieres ni ver? Agréga aquí a tu ex, a tus amix
-        o a quelquiera que no quieras ver en TinderYT. No te preocupes, no se
+        ¿Tienes a alguien que no quieres ni ver? Agrega aquí a tu ex, a tus amix
+        o a cualquiera que no quieras ver en TinderYT. No te preocupes, no se
         enterarán de que los bloqueaste.
       </p>
       <div className="space-y-2 px-8 mt-8">
