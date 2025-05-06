@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,6 +7,8 @@ import Image from "next/image";
 
 export default async function Page() {
   const session = await auth();
+  const age: number | null = 26; // Placeholder for age, replace with actual logic to fetch user's age
+
   if (!session?.user) {
     return (
       <h1 className="text-2xl font-semibold tracking-tight text-center">
@@ -43,6 +46,21 @@ export default async function Page() {
             className="resize-none h-32 w-full "
             defaultValue="Descripción de ejemplo"
           />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="age" className="text-base">
+            Edad
+          </Label>
+          {age ? (
+            <div className="flex items-end justify-center space-x-2">
+              <p className="text-2xl">{age}</p>
+              <p className="text-muted-foreground">años</p>
+            </div>
+          ) : (
+            <Button className="flex justify-self-center">
+              Verifica tu edad
+            </Button>
+          )}
         </div>
         <div className="space-y-2">
           <Label htmlFor="whatsapp" className="text-base">
