@@ -48,31 +48,58 @@ export default async function Page() {
           <Label htmlFor="whatsapp" className="text-base">
             Whatsapp
           </Label>
-          <Input
-            id="whatsapp"
-            placeholder="+593999999999"
-            defaultValue="+593987654321"
-          />
+          <div className="flex items-center space-x-2">
+            <Image
+              src="/media-icons/whatsapp.png"
+              alt="Whatsapp Icon"
+              height={32}
+              width={32}
+              className=" dark:invert"
+            />
+            <Input
+              id="whatsapp"
+              placeholder="+593999999999"
+              defaultValue="+593987654321"
+            />
+          </div>
         </div>
         <div className="space-y-2">
           <Label htmlFor="instagram" className="text-base">
             Instagram
           </Label>
-          <Input
-            id="instagram"
-            placeholder="@tu_instagram"
-            defaultValue="@ejemplo_instagram"
-          />
+          <div className="flex items-center space-x-2">
+            <Image
+              src="/media-icons/instagram.png"
+              alt="Instagram Icon"
+              height={32}
+              width={32}
+              className=" dark:invert"
+            />
+            <Input
+              id="instagram"
+              placeholder="@tu_instagram"
+              defaultValue="@ejemplo_instagram"
+            />
+          </div>
         </div>
         <div className="space-y-2">
           <Label htmlFor="facebook" className="text-base">
             Facebook
           </Label>
-          <Input
-            id="facebook"
-            placeholder="Tu Facebook"
-            defaultValue="https://www.facebook.com/ejemplo"
-          />
+          <div className="flex items-center space-x-2">
+            <Image
+              src="/media-icons/facebook.png"
+              alt="Facebook Icon"
+              height={32}
+              width={32}
+              className=" dark:invert"
+            />
+            <Input
+              id="facebook"
+              placeholder="Tu Facebook"
+              defaultValue="https://www.facebook.com/ejemplo"
+            />
+          </div>
         </div>
       </div>
     </>
