@@ -1,6 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { X } from "lucide-react";
 
 export default function Page() {
   return (
@@ -22,6 +32,39 @@ export default function Page() {
           <span className="text-muted-foreground">@yachaytech.edu.ec</span>
         </div>
         <Button className="flex justify-self-end">Añadir</Button>
+      </div>
+      <div className="flex justify-center max-w-screen-lg mt-8 px-8 w-full">
+        <Table>
+          <TableCaption>Lista de usuarios bloqueados.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Email (@yachaytech.edu.ec)</TableHead>
+              <TableHead></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell className="font-medium break-all max-w-full">
+                tumejor.amix
+              </TableCell>
+              <TableCell className="flex justify-end">
+                <Button size="icon" variant="secondary">
+                  <X />
+                </Button>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium break-all">
+                tuex.equisde
+              </TableCell>
+              <TableCell className="flex justify-end">
+                <Button size="icon" variant="secondary">
+                  <X />
+                </Button>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     </>
   );
