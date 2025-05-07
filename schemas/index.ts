@@ -157,3 +157,15 @@ export const WeeklyMultipleQuestionSchema = z.object({
     path: ["answer"], // Path to the field causing the error
   }
 )
+
+export const BirthdaySchema = z.object({
+  day: z.string().min(1, "Tienes que seleccionar un día"),
+  month: z.string().min(1, "Tienes que seleccionar un mes"),
+  year: z.string().min(1, "Tienes que seleccionar un año"),
+}).refine((data) => {
+  const { day, month, year } = data;
+  const date = new Date(`${year}-${month}-${day}`);
+  return date <= new Date();
+}, {
+  message: "La fecha de nacimiento no puede ser mayor a la fecha actual",
+});
