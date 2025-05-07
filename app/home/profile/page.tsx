@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { AddBirthdayDialog } from "@/components/add-birthday-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,7 +8,7 @@ import Image from "next/image";
 
 export default async function Page() {
   const session = await auth();
-  const age: number | null = 26; // Placeholder for age, replace with actual logic to fetch user's age
+  const age: number | null = null; // Placeholder for age, replace with actual logic to fetch user's age
 
   if (!session?.user) {
     return (
@@ -57,9 +58,7 @@ export default async function Page() {
               <p className="text-muted-foreground">años</p>
             </div>
           ) : (
-            <Button className="flex justify-self-center">
-              Verifica tu edad
-            </Button>
+            <AddBirthdayDialog />
           )}
         </div>
         <div className="space-y-2">
