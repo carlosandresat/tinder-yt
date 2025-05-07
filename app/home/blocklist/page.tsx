@@ -1,6 +1,5 @@
+import { BlocklistForm } from "@/components/blocklist-form";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Table,
   TableBody,
@@ -23,29 +22,20 @@ export default function Page() {
         o a cualquiera que no quieras ver en TinderYT. No te preocupes, no se
         enterarán de que los bloqueaste.
       </p>
-      <div className="space-y-2 px-8 mt-8">
-        <Label htmlFor="blocked_email" className="text-base">
-          Email de usuario
-        </Label>
-        <div className="flex items-center space-x-2">
-          <Input id="blocked_email" placeholder="nombre.apellido" />
-          <span className="text-muted-foreground">@yachaytech.edu.ec</span>
-        </div>
-        <Button className="flex justify-self-end">Añadir</Button>
-      </div>
+      <BlocklistForm />
       <div className="flex justify-center max-w-screen-lg mt-8 px-8 w-full">
         <Table>
           <TableCaption>Lista de usuarios bloqueados.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Email (@yachaytech.edu.ec)</TableHead>
+              <TableHead>Email</TableHead>
               <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow>
               <TableCell className="font-medium break-all max-w-full">
-                tumejor.amix
+                tumejor.amix@yachaytech.edu.ec
               </TableCell>
               <TableCell className="flex justify-end">
                 <Button size="icon" variant="secondary">
@@ -55,7 +45,7 @@ export default function Page() {
             </TableRow>
             <TableRow>
               <TableCell className="font-medium break-all">
-                tuex.equisde
+                tuex.equisde@yachaytech.edu.ec
               </TableCell>
               <TableCell className="flex justify-end">
                 <Button size="icon" variant="secondary">

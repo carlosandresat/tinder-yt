@@ -169,3 +169,12 @@ export const BirthdaySchema = z.object({
 }, {
   message: "La fecha de nacimiento no puede ser mayor a la fecha actual",
 });
+
+export const BlocklistSchema = z.object({
+  blocked_email: z
+    .string({
+      required_error:
+        "Por favor ingresa el correo de la persona que quieres bloquear",
+    })
+    .min(2, "Debe contener más de 2 caracteres"),
+});
