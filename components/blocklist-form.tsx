@@ -28,7 +28,7 @@ export function BlocklistForm() {
   });
 
   function onSubmit(data: z.infer<typeof BlocklistSchema>) {
-    console.log(data);
+    form.reset();
     toast({
       title: "You submitted the following values:",
       description: (
