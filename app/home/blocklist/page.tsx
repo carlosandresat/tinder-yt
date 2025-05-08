@@ -23,7 +23,7 @@ export default function Page() {
         enterarán de que los bloqueaste.
       </p>
       <BlocklistForm />
-      <div className="flex justify-center max-w-screen-lg mt-8 px-8 w-full">
+      <div className="flex justify-center max-w-screen-lg mt-8 px-8 w-full pb-28">
         <Table>
           <TableCaption>Lista de usuarios bloqueados.</TableCaption>
           <TableHeader>
