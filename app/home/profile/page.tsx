@@ -61,6 +61,11 @@ export default async function Page() {
             <AddBirthdayDialog />
           )}
         </div>
+        <div className="flex flex-col space-y-4">
+        <p className="text-base">Redes sociales</p>
+        <p className="text-sm text-muted-foreground">
+          Agrega tus redes sociales para que otros usuarios puedan contactarte
+        </p>
         <div className="space-y-2">
           <Label htmlFor="whatsapp" className="text-base">
             Whatsapp
@@ -117,6 +122,7 @@ export default async function Page() {
               defaultValue="https://www.facebook.com/ejemplo"
             />
           </div>
+        </div>
         </div>
       </div>
     </>
