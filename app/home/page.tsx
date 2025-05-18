@@ -23,8 +23,7 @@ export default async function Page() {
       return (
         <div className="max-w-screen-lg p-8 absolute top-1/2 transform -translate-y-1/2">
           <p className="text-xl text-muted-foreground text-center">
-            La aplicación no se encuentra activa, quédate atento a las redes
-            sociales para saber cuando habrán nuevos matchs
+            La aplicación se encuentra en mantenimiento. Se están implementando nuevas funcionalidades. Te agradecemos tu comprensión y paciencia durante este proceso. ¡Pronto estaremos de vuelta!
           </p>
         </div>
       );
