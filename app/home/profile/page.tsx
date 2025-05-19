@@ -33,7 +33,6 @@ export default async function Page() {
       <h2 className="text-xl font-semibold tracking-tight mt-4">
         {session.user.name}
       </h2>
-      <p className="text-lg text-muted-foreground mt-2">{session.user.email}</p>
 
       <div className="flex flex-col space-y-8 sm:max-w-2xl w-full px-8 mt-8 pb-28">
         <div className="space-y-2">
