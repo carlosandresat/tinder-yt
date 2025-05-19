@@ -5,7 +5,6 @@ import { Chakra_Petch } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
-import { Footer } from "@/components/footer";
 
 const inter = Chakra_Petch({ subsets: ["latin"], weight: "500" });
 
