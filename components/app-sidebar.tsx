@@ -1,3 +1,5 @@
+"use client";
+
 import { Home, Settings, CircleUserRound, LockKeyhole } from "lucide-react";
 
 import {
@@ -11,6 +13,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import Image from "next/image";
@@ -41,13 +44,15 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const { setOpenMobile } = useSidebar();
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="/home">
+              <Link href="/home" onClick={() => setOpenMobile(false)}>
                 <Image
                   className="size-8 rounded-full"
                   src="/logo.webp"
@@ -69,7 +74,7 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Link href={item.url}>
+                    <Link href={item.url} onClick={() => setOpenMobile(false)}>
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>
