@@ -1,14 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { signOut } from "@/auth";
 import { Power } from "lucide-react";
+import { logout } from "@/actions/login";
 
 export function LogoutButton() {
   return (
     <form
       action={async () => {
-        "use server";
-
-        await signOut({ redirectTo: "/" });
+        await logout()
       }}
       className="px-0 py-0 max-w-fit"
     >
