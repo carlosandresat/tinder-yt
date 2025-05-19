@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { AddBirthdayDialog } from "@/components/add-birthday-dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 
@@ -46,6 +47,7 @@ export default async function Page() {
             defaultValue="Descripción de ejemplo"
           />
         </div>
+        <Separator />
         <div className="space-y-2">
           <Label htmlFor="age" className="text-base">
             Edad
@@ -59,66 +61,69 @@ export default async function Page() {
             <AddBirthdayDialog />
           )}
         </div>
-        <div className="flex flex-col space-y-4">
+        <Separator />
+        <div className="flex flex-col">
           <p className="text-base">Redes sociales</p>
           <p className="text-sm text-muted-foreground">
             Agrega tus redes sociales para que otros usuarios puedan contactarte
           </p>
-          <div className="space-y-2">
-            <Label htmlFor="whatsapp" className="text-base">
-              Whatsapp
-            </Label>
-            <div className="flex items-center space-x-2">
-              <Image
-                src="/media-icons/whatsapp.png"
-                alt="Whatsapp Icon"
-                height={26}
-                width={26}
-                className=" dark:invert"
-              />
-              <Input
-                id="whatsapp"
-                placeholder="+593999999999"
-                defaultValue="+593987654321"
-              />
+          <div className="space-y-4 mt-4">
+            <div className="space-y-2">
+              <Label htmlFor="whatsapp" className="text-base">
+                Whatsapp
+              </Label>
+              <div className="flex items-center space-x-2">
+                <Image
+                  src="/media-icons/whatsapp.png"
+                  alt="Whatsapp Icon"
+                  height={26}
+                  width={26}
+                  className=" dark:invert"
+                />
+                <Input
+                  id="whatsapp"
+                  placeholder="+593999999999"
+                  defaultValue="+593987654321"
+                />
+              </div>
             </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="instagram" className="text-base">
-              Instagram
-            </Label>
-            <div className="flex items-center space-x-2">
-              <Image
-                src="/media-icons/instagram.png"
-                alt="Instagram Icon"
-                height={26}
-                width={26}
-                className=" dark:invert"
-              />
-              <Input
-                id="instagram"
-                placeholder="@tu_instagram"
-                defaultValue="@ejemplo_instagram"
-              />
+            <div className="space-y-2">
+              <Label htmlFor="instagram" className="text-base">
+                Instagram
+              </Label>
+              <div className="flex items-center space-x-2">
+                <Image
+                  src="/media-icons/instagram.png"
+                  alt="Instagram Icon"
+                  height={26}
+                  width={26}
+                  className=" dark:invert"
+                />
+                <Input
+                  id="instagram"
+                  placeholder="@tu_instagram"
+                  defaultValue="@ejemplo_instagram"
+                />
+              </div>
             </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="facebook" className="text-base">
-              Facebook
-            </Label>
-            <div className="flex items-center space-x-2">
-              <Image
-                src="/media-icons/facebook.png"
-                alt="Facebook Icon"
-                height={26}
-                width={26}
-                className=" dark:invert"
-              />
-              <Input
-                id="facebook"
-                placeholder="Tu Facebook"
-                defaultValue="https://www.facebook.com/ejemplo"
-              />
+            <div className="space-y-2">
+              <Label htmlFor="facebook" className="text-base">
+                Facebook
+              </Label>
+              <div className="flex items-center space-x-2">
+                <Image
+                  src="/media-icons/facebook.png"
+                  alt="Facebook Icon"
+                  height={26}
+                  width={26}
+                  className=" dark:invert"
+                />
+                <Input
+                  id="facebook"
+                  placeholder="Tu Facebook"
+                  defaultValue="https://www.facebook.com/ejemplo"
+                />
+              </div>
             </div>
           </div>
         </div>
