@@ -146,6 +146,44 @@ export default async function Page() {
             <ToggleGroupItem value="amor">Amor</ToggleGroupItem>
             <ToggleGroupItem value="vacile">Vacile</ToggleGroupItem>
           </ToggleGroup>
+          <Button className="self-end mt-4">
+            <Save />
+            Guardar
+          </Button>
+        </div>
+        <Separator />
+        <div className="flex flex-col space-y-2">
+          <div className="flex flex-col">
+            <p>Intereses</p>
+            <p className="text-sm text-muted-foreground">Máximo 3</p>
+          </div>
+          <ToggleGroup
+            type="multiple"
+            className="w-full flex-wrap"
+            variant="outline"
+          >
+            <ToggleGroupItem value="deportes">Deportes</ToggleGroupItem>
+            <ToggleGroupItem value="musica">Música</ToggleGroupItem>
+            <ToggleGroupItem value="arte">Arte</ToggleGroupItem>
+            <ToggleGroupItem value="ciencia">Ciencia</ToggleGroupItem>
+            <ToggleGroupItem value="tecnologia">Tecnología</ToggleGroupItem>
+            <ToggleGroupItem value="cultura">Cultura</ToggleGroupItem>
+            <ToggleGroupItem value="viajes">Viajes</ToggleGroupItem>
+            <ToggleGroupItem value="gastronomia">Gastronomía</ToggleGroupItem>
+            <ToggleGroupItem value="naturaleza">Naturaleza</ToggleGroupItem>
+            <ToggleGroupItem value="fotografia">Fotografía</ToggleGroupItem>
+            <ToggleGroupItem value="moda">Moda</ToggleGroupItem>
+            <ToggleGroupItem value="cine">Cine</ToggleGroupItem>
+            <ToggleGroupItem value="videojuegos">Videojuegos</ToggleGroupItem>
+            <ToggleGroupItem value="literatura">Literatura</ToggleGroupItem>
+            <ToggleGroupItem value="historia">Historia</ToggleGroupItem>
+            <ToggleGroupItem value="filosofia">Filosofía</ToggleGroupItem>
+            <ToggleGroupItem value="animales">Animales</ToggleGroupItem>
+          </ToggleGroup>
+          <Button className="self-end mt-4">
+            <Save />
+            Guardar
+          </Button>
         </div>
       </div>
     </>
