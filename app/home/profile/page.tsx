@@ -185,6 +185,28 @@ export default async function Page() {
             Guardar
           </Button>
         </div>
+        <Separator />
+        <div className="flex flex-col space-y-2">
+          <div className="flex flex-col">
+            <p>Actividades Universitarias</p>
+            <p className="text-sm text-muted-foreground">Máximo 3
+            </p>
+          </div>
+          <ToggleGroup
+            type="multiple"
+            className="w-full flex-wrap"
+            variant="outline"
+          >
+            <ToggleGroupItem value="clubs">Ir a clubes</ToggleGroupItem>
+            <ToggleGroupItem value="estudiar">Estudiar en la Biblioteca</ToggleGroupItem>
+            <ToggleGroupItem value="luxury">Ir al Luxury</ToggleGroupItem>
+            <ToggleGroupItem value="letras">Ir a las letras</ToggleGroupItem>
+          </ToggleGroup>
+          <Button className="self-end mt-4">
+            <Save />
+            Guardar
+          </Button>
+        </div>
       </div>
     </>
   );
