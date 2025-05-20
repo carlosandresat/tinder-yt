@@ -1,9 +1,11 @@
 import { auth } from "@/auth";
 import { AddBirthdayDialog } from "@/components/add-birthday-dialog";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
+import { Save } from "lucide-react";
 import Image from "next/image";
 
 export default async function Page() {
@@ -36,7 +38,7 @@ export default async function Page() {
       </h2>
 
       <div className="flex flex-col space-y-8 sm:max-w-2xl w-full px-8 mt-8 pb-28">
-        <div className="space-y-2">
+        <div className="flex flex-col space-y-2">
           <Label htmlFor="description" className="text-base">
             Descripción
           </Label>
@@ -46,6 +48,10 @@ export default async function Page() {
             className="resize-none h-32 w-full "
             defaultValue="Descripción de ejemplo"
           />
+          <Button className="self-end">
+            <Save />
+            Guardar
+          </Button>
         </div>
         <Separator />
         <div className="space-y-2">
@@ -67,7 +73,7 @@ export default async function Page() {
           <p className="text-sm text-muted-foreground">
             Agrega tus redes sociales para que otros usuarios puedan contactarte
           </p>
-          <div className="space-y-4 mt-4">
+          <div className=" space-y-4 mt-4">
             <div className="space-y-2">
               <Label htmlFor="whatsapp" className="text-base">
                 Whatsapp
@@ -126,6 +132,10 @@ export default async function Page() {
               </div>
             </div>
           </div>
+          <Button className="self-end mt-4">
+            <Save />
+            Guardar
+          </Button>
         </div>
       </div>
     </>
