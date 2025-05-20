@@ -178,3 +178,11 @@ export const BlocklistSchema = z.object({
     })
     .min(2, "Debe contener más de 2 caracteres"),
 });
+
+export const SettingsSchema = z.object({
+  sexPreference: z.enum(["m", "f", "both"], {
+    required_error: 'Debes elegir una opción',
+  }),
+  ageRange: z.tuple([z.number().min(18), z.number().max(99)]),
+  visibleInTinderYT: z.boolean(),
+});
