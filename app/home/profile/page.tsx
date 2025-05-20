@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { Save } from "lucide-react";
 import Image from "next/image";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export default async function Page() {
   const session = await auth();
@@ -136,6 +137,15 @@ export default async function Page() {
             <Save />
             Guardar
           </Button>
+        </div>
+        <Separator />
+        <div className="flex flex-col space-y-2">
+          <p>Abierto a</p>
+          <ToggleGroup type="multiple" className="w-full" variant="outline">
+            <ToggleGroupItem value="amistad">Amistad</ToggleGroupItem>
+            <ToggleGroupItem value="amor">Amor</ToggleGroupItem>
+            <ToggleGroupItem value="vacile">Vacile</ToggleGroupItem>
+          </ToggleGroup>
         </div>
       </div>
     </>
