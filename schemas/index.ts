@@ -205,3 +205,8 @@ export const UserNetworksSchema = z.object({
   facebook: z.string().optional(),
 });
 
+export const UserOpenToSchema = z.object({
+  openTo: z.enum(["amistad", "amor", "vacile"], {
+    required_error: 'Debes elegir una opción',
+  }),
+});
