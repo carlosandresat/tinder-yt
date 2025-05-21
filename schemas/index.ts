@@ -198,3 +198,10 @@ export const UserDescriptionSchema = z.object({
     )
     .max(500, "Tu descripción no puede tener más de 500 caracteres"),
 });
+
+export const UserNetworksSchema = z.object({
+  whatsapp: z.string().optional(),
+  instagram: z.string().optional(),
+  facebook: z.string().optional(),
+});
+
