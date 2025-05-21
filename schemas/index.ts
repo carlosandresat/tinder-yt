@@ -186,3 +186,15 @@ export const SettingsSchema = z.object({
   ageRange: z.tuple([z.number().min(18), z.number().max(99)]),
   visibleInTinderYT: z.boolean(),
 });
+
+export const UserDescriptionSchema = z.object({
+  description: z
+    .string({
+      required_error: "Tienes que subir una descripción",
+    })
+    .min(
+      40,
+      "Tienes que ingresar una descripción de al menos 40 caracteres. Una buena descripción puede motivar a tu match a escribirte. 😉"
+    )
+    .max(500, "Tu descripción no puede tener más de 500 caracteres"),
+});
