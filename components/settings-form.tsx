@@ -75,11 +75,11 @@ export function SettingsForm() {
           control={form.control}
           name="ageRange"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="pb-6">
               <FormLabel>Rango de Edad</FormLabel>
               <FormControl>
                 <DualRangeSlider
-                  label={(value) => value}
+                  label={(value) => value ? value < 40 ? value : `${value}+` : ""}
                   labelPosition="bottom"
                   max={40}
                   min={18}
