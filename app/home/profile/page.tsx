@@ -1,13 +1,8 @@
 import { auth } from "@/auth";
 import { AddBirthdayDialog } from "@/components/add-birthday-dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
-import { Save } from "lucide-react";
 import Image from "next/image";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { UserDescriptionForm } from "@/components/user-description-form";
 import { UserNetworksForm } from "@/components/user-networks-form";
 import { UserOpenToForm } from "@/components/user-open-to-form";
