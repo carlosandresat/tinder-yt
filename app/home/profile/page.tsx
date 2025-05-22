@@ -8,6 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Save } from "lucide-react";
 import Image from "next/image";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { UserDescriptionForm } from "@/components/user-description-form";
+import { UserNetworksForm } from "@/components/user-networks-form";
+import { UserOpenToForm } from "@/components/user-open-to-form";
+import { UserInterestsForm } from "@/components/user-interests-form";
+import { UserUniversityActivitiesForm } from "@/components/user-university-activities-form";
 
 export default async function Page() {
   const session = await auth();
@@ -39,21 +44,7 @@ export default async function Page() {
       </h2>
 
       <div className="flex flex-col space-y-8 sm:max-w-2xl w-full px-8 mt-8 pb-28">
-        <div className="flex flex-col space-y-2">
-          <Label htmlFor="description" className="text-base">
-            Descripción
-          </Label>
-          <Textarea
-            id="description"
-            placeholder="Escribe algo sobre ti..."
-            className="resize-none h-32 w-full "
-            defaultValue="Descripción de ejemplo"
-          />
-          <Button className="self-end">
-            <Save />
-            Guardar
-          </Button>
-        </div>
+        <UserDescriptionForm />
         <Separator />
         <div className="space-y-2">
           <Label htmlFor="age" className="text-base">
@@ -69,144 +60,13 @@ export default async function Page() {
           )}
         </div>
         <Separator />
-        <div className="flex flex-col">
-          <p className="text-base">Redes sociales</p>
-          <p className="text-sm text-muted-foreground">
-            Agrega tus redes sociales para que otros usuarios puedan contactarte
-          </p>
-          <div className=" space-y-4 mt-4">
-            <div className="space-y-2">
-              <Label htmlFor="whatsapp" className="text-base">
-                Whatsapp
-              </Label>
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/media-icons/whatsapp.png"
-                  alt="Whatsapp Icon"
-                  height={26}
-                  width={26}
-                  className=" dark:invert"
-                />
-                <Input
-                  id="whatsapp"
-                  placeholder="+593999999999"
-                  defaultValue="+593987654321"
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="instagram" className="text-base">
-                Instagram
-              </Label>
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/media-icons/instagram.png"
-                  alt="Instagram Icon"
-                  height={26}
-                  width={26}
-                  className=" dark:invert"
-                />
-                <Input
-                  id="instagram"
-                  placeholder="@tu_instagram"
-                  defaultValue="@ejemplo_instagram"
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="facebook" className="text-base">
-                Facebook
-              </Label>
-              <div className="flex items-center space-x-2">
-                <Image
-                  src="/media-icons/facebook.png"
-                  alt="Facebook Icon"
-                  height={26}
-                  width={26}
-                  className=" dark:invert"
-                />
-                <Input
-                  id="facebook"
-                  placeholder="Tu Facebook"
-                  defaultValue="https://www.facebook.com/ejemplo"
-                />
-              </div>
-            </div>
-          </div>
-          <Button className="self-end mt-4">
-            <Save />
-            Guardar
-          </Button>
-        </div>
+        <UserNetworksForm />
         <Separator />
-        <div className="flex flex-col space-y-2">
-          <p>Abierto a</p>
-          <ToggleGroup type="multiple" className="w-full" variant="outline">
-            <ToggleGroupItem value="amistad">Amistad</ToggleGroupItem>
-            <ToggleGroupItem value="amor">Amor</ToggleGroupItem>
-            <ToggleGroupItem value="vacile">Vacile</ToggleGroupItem>
-          </ToggleGroup>
-          <Button className="self-end mt-4">
-            <Save />
-            Guardar
-          </Button>
-        </div>
+        <UserOpenToForm />
         <Separator />
-        <div className="flex flex-col space-y-2">
-          <div className="flex flex-col">
-            <p>Intereses</p>
-            <p className="text-sm text-muted-foreground">Máximo 3</p>
-          </div>
-          <ToggleGroup
-            type="multiple"
-            className="w-full flex-wrap"
-            variant="outline"
-          >
-            <ToggleGroupItem value="deportes">Deportes</ToggleGroupItem>
-            <ToggleGroupItem value="musica">Música</ToggleGroupItem>
-            <ToggleGroupItem value="arte">Arte</ToggleGroupItem>
-            <ToggleGroupItem value="ciencia">Ciencia</ToggleGroupItem>
-            <ToggleGroupItem value="tecnologia">Tecnología</ToggleGroupItem>
-            <ToggleGroupItem value="cultura">Cultura</ToggleGroupItem>
-            <ToggleGroupItem value="viajes">Viajes</ToggleGroupItem>
-            <ToggleGroupItem value="gastronomia">Gastronomía</ToggleGroupItem>
-            <ToggleGroupItem value="naturaleza">Naturaleza</ToggleGroupItem>
-            <ToggleGroupItem value="fotografia">Fotografía</ToggleGroupItem>
-            <ToggleGroupItem value="moda">Moda</ToggleGroupItem>
-            <ToggleGroupItem value="cine">Cine</ToggleGroupItem>
-            <ToggleGroupItem value="videojuegos">Videojuegos</ToggleGroupItem>
-            <ToggleGroupItem value="literatura">Literatura</ToggleGroupItem>
-            <ToggleGroupItem value="historia">Historia</ToggleGroupItem>
-            <ToggleGroupItem value="filosofia">Filosofía</ToggleGroupItem>
-            <ToggleGroupItem value="animales">Animales</ToggleGroupItem>
-          </ToggleGroup>
-          <Button className="self-end mt-4">
-            <Save />
-            Guardar
-          </Button>
-        </div>
+        <UserInterestsForm />
         <Separator />
-        <div className="flex flex-col space-y-2">
-          <div className="flex flex-col">
-            <p>Actividades Universitarias</p>
-            <p className="text-sm text-muted-foreground">Máximo 3
-            </p>
-          </div>
-          <ToggleGroup
-            type="multiple"
-            className="w-full flex-wrap"
-            variant="outline"
-          >
-            <ToggleGroupItem value="clubs">Ir a clubes</ToggleGroupItem>
-            <ToggleGroupItem value="estudiar">Estudiar en la Biblioteca</ToggleGroupItem>
-            <ToggleGroupItem value="luxury">Ir al Luxury</ToggleGroupItem>
-            <ToggleGroupItem value="letras">Ir a las letras</ToggleGroupItem>
-          </ToggleGroup>
-          <Button className="self-end mt-4">
-            <Save />
-            Guardar
-          </Button>
-        </div>
+        <UserUniversityActivitiesForm />
       </div>
     </>
   );
