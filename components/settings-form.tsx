@@ -16,16 +16,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Save } from "lucide-react";
+import { DualRangeSlider } from "@/components/ui/dual-range-slider";
 
 export function SettingsForm() {
   const form = useForm<z.infer<typeof SettingsSchema>>({
     resolver: zodResolver(SettingsSchema),
     defaultValues: {
       sexPreference: "both",
-      ageRange: [18, 99],
+      ageRange: [18, 40],
       visibleInTinderYT: true,
     },
   });
@@ -78,15 +78,15 @@ export function SettingsForm() {
             <FormItem>
               <FormLabel>Rango de Edad</FormLabel>
               <FormControl>
-                <Slider
-                  max={99}
+                <DualRangeSlider
+                  label={(value) => value}
+                  labelPosition="bottom"
+                  max={40}
                   min={18}
                   step={1}
                   className="w-full"
                   value={field.value}
-                  onValueChange={(value) => {
-                    field.onChange(value);
-                  }}
+                  onValueChange={field.onChange}
                 />
               </FormControl>
 
