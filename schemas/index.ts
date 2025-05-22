@@ -210,3 +210,16 @@ export const UserOpenToSchema = z.object({
     required_error: 'Debes elegir una opción',
   }),
 });
+
+export const UserInterestsSchema = z.object({
+  interests: z
+    .array(z.string(), {
+      required_error: "Tienes que seleccionar al menos un interés",
+    })
+    .min(1, "Tienes que seleccionar al menos un interés")
+    .max(3, "Tienes que seleccionar máximo 3 intereses")
+    .refine((data) => {
+      const uniqueInterests = new Set(data);
+      return uniqueInterests.size === data.length;
+    }, "No puedes seleccionar el mismo interés más de una vez"),
+});
