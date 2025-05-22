@@ -223,3 +223,16 @@ export const UserInterestsSchema = z.object({
       return uniqueInterests.size === data.length;
     }, "No puedes seleccionar el mismo interés más de una vez"),
 });
+
+export const UserUniversityActivitiesSchema = z.object({
+  activities: z
+    .array(z.string(), {
+      required_error: "Tienes que seleccionar al menos una actividad",
+    })
+    .min(1, "Tienes que seleccionar al menos una actividad")
+    .max(3, "Tienes que seleccionar máximo 3 actividades")
+    .refine((data) => {
+      const uniqueActivities = new Set(data);
+      return uniqueActivities.size === data.length;
+    }, "No puedes seleccionar la misma actividad más de una vez"),
+});
