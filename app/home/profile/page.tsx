@@ -9,6 +9,8 @@ import { UserOpenToForm } from "@/components/user-open-to-form";
 import { UserInterestsForm } from "@/components/user-interests-form";
 import { UserUniversityActivitiesForm } from "@/components/user-university-activities-form";
 import { UserProfilePictureForm } from "@/components/user-profile-picture-form";
+import { UserDrinkingHabitsForm } from "@/components/user-drinking-habits-form";
+import { UserSmokingHabitsForm } from "@/components/user-smoking-habits-form";
 
 export default async function Page() {
   const session = await auth();
@@ -69,6 +71,10 @@ export default async function Page() {
         <UserInterestsForm />
         <Separator />
         <UserUniversityActivitiesForm />
+        <Separator />
+        <UserDrinkingHabitsForm />
+        <Separator />
+        <UserSmokingHabitsForm />          
       </div>
     </>
   );
