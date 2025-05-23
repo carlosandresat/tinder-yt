@@ -27,21 +27,23 @@ export default async function Page() {
         Perfil de usuario
       </h1>
       {session.user.image ? (
-        <div className="w-32 h-32 rounded-full mt-8">
-          <Image
-            src={session.user.image ?? ""}
-            alt="User Avatar"
-            className="rounded-full w-full h-full object-cover"
-            width={128}
-            height={128}
-          />
-        </div>
+        <>
+          <h2 className="text-xl font-semibold tracking-tight mt-4">
+            {session.user.name}
+          </h2>
+          <div className="w-32 h-32 rounded-full mt-8">
+            <Image
+              src={session.user.image ?? ""}
+              alt="User Avatar"
+              className="rounded-full w-full h-full object-cover"
+              width={128}
+              height={128}
+            />
+          </div>
+        </>
       ) : (
-        <UserProfilePictureForm className="max-w-2xl px-8 w-full" />
+        <UserProfilePictureForm className="max-w-2xl px-8 w-full mt-8" />
       )}
-      <h2 className="text-xl font-semibold tracking-tight mt-4">
-        {session.user.name}
-      </h2>
 
       <div className="flex flex-col space-y-8 sm:max-w-2xl w-full px-8 mt-8 pb-28">
         <UserDescriptionForm />
