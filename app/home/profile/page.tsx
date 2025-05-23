@@ -8,6 +8,7 @@ import { UserNetworksForm } from "@/components/user-networks-form";
 import { UserOpenToForm } from "@/components/user-open-to-form";
 import { UserInterestsForm } from "@/components/user-interests-form";
 import { UserUniversityActivitiesForm } from "@/components/user-university-activities-form";
+import { UserProfilePictureForm } from "@/components/user-profile-picture-form";
 
 export default async function Page() {
   const session = await auth();
@@ -25,15 +26,19 @@ export default async function Page() {
       <h1 className="text-2xl font-semibold tracking-tight text-center">
         Perfil de usuario
       </h1>
-      <div className="w-32 h-32 rounded-full mt-8">
-        <Image
-          src={session.user.image ?? ""}
-          alt="User Avatar"
-          className="rounded-full w-full h-full object-cover"
-          width={128}
-          height={128}
-        />
-      </div>
+      {session.user.image ? (
+        <div className="w-32 h-32 rounded-full mt-8">
+          <Image
+            src={session.user.image ?? ""}
+            alt="User Avatar"
+            className="rounded-full w-full h-full object-cover"
+            width={128}
+            height={128}
+          />
+        </div>
+      ) : (
+        <UserProfilePictureForm className="max-w-2xl px-8 w-full" />
+      )}
       <h2 className="text-xl font-semibold tracking-tight mt-4">
         {session.user.name}
       </h2>
