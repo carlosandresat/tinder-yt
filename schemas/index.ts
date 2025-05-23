@@ -236,3 +236,9 @@ export const UserUniversityActivitiesSchema = z.object({
       return uniqueActivities.size === data.length;
     }, "No puedes seleccionar la misma actividad más de una vez"),
 });
+
+export const UserProfilePictureSchema = z.object({
+  picture: z.instanceof(File).refine((file) => file.size < 2500000, {
+    message: "Tu foto debe pesar menos de 2.5MB",
+  }),
+});
