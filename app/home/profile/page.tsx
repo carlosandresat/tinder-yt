@@ -33,7 +33,7 @@ export default async function Page() {
           </h2>
           <div className="w-32 h-32 rounded-full mt-8">
             <Image
-              src={session.user.image ?? ""}
+              src={session.user.image}
               alt="User Avatar"
               className="rounded-full w-full h-full object-cover"
               width={128}
