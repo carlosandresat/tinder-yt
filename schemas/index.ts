@@ -269,3 +269,12 @@ export const UserDrinkingHabitsSchema = z.object({
     )
     .max(3, "Tienes que seleccionar máximo 3 bebidas"),
 });
+
+export const UserSmokingHabitsSchema = z.object({
+  smokingHabits: z.enum(["never", "occasionally", "socially", "frequently"], {
+    required_error: "Tienes que seleccionar una opción",
+  }),
+  smokingType: z
+    .array(z.enum(["cigarettes", "weed", "vape", "hookah", "other"]))
+    .max(3, "Tienes que seleccionar máximo 3 tipos"),
+});
