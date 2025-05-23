@@ -242,3 +242,30 @@ export const UserProfilePictureSchema = z.object({
     message: "Tu foto debe pesar menos de 2.5MB",
   }),
 });
+
+export const UserDrinkingHabitsSchema = z.object({
+  drinkingHabits: z.enum(["never", "occasionally", "socially", "frequently"], {
+    required_error: "Tienes que seleccionar una opción",
+  }),
+  drinkingType: z
+    .array(
+      z.enum(
+        [
+          "puntas",
+          "switch",
+          "zhumir",
+          "beer",
+          "wine",
+          "cocktails",
+          "tequila",
+          "whiskey",
+          "vodka",
+          "rum",
+        ],
+        {
+          required_error: "Tienes que seleccionar una opción",
+        }
+      )
+    )
+    .max(3, "Tienes que seleccionar máximo 3 bebidas"),
+});
